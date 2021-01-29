@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EIx-ol-n0l">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Another Birdhouse.ttf">
+            <string>AnotherBirdhouse</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="EBOOKAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T2b-5T-QVk">
+                                <rect key="frame" x="16" y="617" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dFz-3s-ZhZ">
+                                <rect key="frame" x="50" y="347" width="275" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AnotherBirdhouse" family="Another Birdhouse" pointSize="29"/>
+                                <state key="normal" title="REGISTER">
+                                    <color key="titleColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="RAk-bF-VaQ" kind="show" id="YPr-EO-7JZ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W0C-s1-TRN">
+                                <rect key="frame" x="50" y="246" width="275" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AnotherBirdhouse" family="Another Birdhouse" pointSize="29"/>
+                                <state key="normal" title="LOG IN">
+                                    <color key="titleColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="cWU-0C-GpP" kind="show" id="zYJ-Rx-gpX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="LF8-Ef-4i1"/>
+                    <connections>
+                        <outlet property="loginButton" destination="W0C-s1-TRN" id="v8o-Sc-Ha9"/>
+                        <outlet property="registerButton" destination="dFz-3s-ZhZ" id="hKI-be-xtg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="198" y="138"/>
+        </scene>
+        <!--Register View Controller-->
+        <scene sceneID="bxK-ld-lAB">
+            <objects>
+                <viewController id="RAk-bF-VaQ" customClass="RegisterViewController" customModule="EBOOKAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JkI-LZ-6Zm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ey3-JU-deJ">
+                                <rect key="frame" x="-5" y="57" width="380" height="491"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="sectionIndexBackgroundColor" red="1" green="0.98823529409999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="registerCell" rowHeight="79" id="qHL-c9-duF" customClass="RegisterCell" customModule="EBOOKAPP" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="380" height="79"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qHL-c9-duF" id="Y69-1E-rmb" customClass="RegisterCell" customModule="EBOOKAPP" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="380" height="79"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LABEL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Oub-FU-zG0">
+                                                    <rect key="frame" x="16" y="0.0" width="331" height="35"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="AnotherBirdhouse" family="Another Birdhouse" pointSize="25"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="hsC-3M-OHO">
+                                                    <rect key="frame" x="16" y="35" width="327" height="34"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </tableViewCellContentView>
+                                        <viewLayoutGuide key="safeArea" id="gJG-WY-Wjl"/>
+                                        <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="label" destination="Oub-FU-zG0" id="d5C-5l-uTP"/>
+                                            <outlet property="textField" destination="hsC-3M-OHO" id="Sn3-l7-vKs"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGU-ww-SEB">
+                                <rect key="frame" x="18" y="556" width="339" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="bhm-vu-VE1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AnotherBirdhouse" family="Another Birdhouse" pointSize="26"/>
+                                <state key="normal" title="Accept Terms &amp; Conditions">
+                                    <color key="titleColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1mB-u9-Tek">
+                                <rect key="frame" x="39" y="606" width="293" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="41" id="Hff-4e-96d"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AnotherBirdhouse" family="Another Birdhouse" pointSize="29"/>
+                                <state key="normal" title="DONE">
+                                    <color key="titleColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="doneButtonAction:" destination="RAk-bF-VaQ" eventType="touchUpInside" id="2aG-h5-oVy"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="lEd-uw-abu"/>
+                        <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="QGU-ww-SEB" firstAttribute="centerX" secondItem="1mB-u9-Tek" secondAttribute="centerX" constant="2" id="4Qs-yg-UKO"/>
+                            <constraint firstItem="1mB-u9-Tek" firstAttribute="centerX" secondItem="JkI-LZ-6Zm" secondAttribute="centerX" constant="-2" id="7xh-aw-Rqg"/>
+                            <constraint firstItem="QGU-ww-SEB" firstAttribute="top" secondItem="Ey3-JU-deJ" secondAttribute="bottom" constant="8" id="CcI-nn-GTe"/>
+                            <constraint firstItem="1mB-u9-Tek" firstAttribute="leading" secondItem="lEd-uw-abu" secondAttribute="leading" constant="39" id="Kxl-g0-hBu"/>
+                            <constraint firstItem="QGU-ww-SEB" firstAttribute="leading" secondItem="lEd-uw-abu" secondAttribute="leading" constant="18" id="Nzv-Xb-grK"/>
+                            <constraint firstItem="lEd-uw-abu" firstAttribute="bottom" secondItem="1mB-u9-Tek" secondAttribute="bottom" constant="20" id="SsI-1R-dxg"/>
+                            <constraint firstItem="Ey3-JU-deJ" firstAttribute="trailing" secondItem="lEd-uw-abu" secondAttribute="trailing" id="TZd-cE-uzn"/>
+                            <constraint firstItem="1mB-u9-Tek" firstAttribute="top" secondItem="QGU-ww-SEB" secondAttribute="bottom" constant="26" id="dAP-a1-n9H"/>
+                            <constraint firstItem="Ey3-JU-deJ" firstAttribute="leading" secondItem="JkI-LZ-6Zm" secondAttribute="leadingMargin" constant="-21" id="ouY-Dg-SeQ"/>
+                            <constraint firstItem="Ey3-JU-deJ" firstAttribute="top" secondItem="lEd-uw-abu" secondAttribute="top" constant="13" id="p6h-8F-5PG"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="wah-OX-Cug"/>
+                    <connections>
+                        <outlet property="doneButton" destination="1mB-u9-Tek" id="quG-LQ-PON"/>
+                        <outlet property="tableView" destination="Ey3-JU-deJ" id="b9T-6V-eO5"/>
+                        <segue destination="aJi-iB-WMP" kind="presentation" identifier="toFirstController2" modalPresentationStyle="fullScreen" id="uxD-rA-4IS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jnm-WI-yBY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="511" y="904"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="zVZ-zl-2Uc">
+            <objects>
+                <viewController id="cWU-0C-GpP" customClass="LoginViewController" customModule="EBOOKAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="p1Y-dR-Ixa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lB1-2c-usI">
+                                <rect key="frame" x="18" y="517" width="339" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="5TY-Ra-qgb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AnotherBirdhouse" family="Another Birdhouse" pointSize="26"/>
+                                <state key="normal" title="Password Recovery">
+                                    <color key="titleColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y8c-Lg-omg">
+                                <rect key="frame" x="83" y="588" width="209" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="cpx-eK-chH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AnotherBirdhouse" family="Another Birdhouse" pointSize="29"/>
+                                <state key="normal" title="LOG IN">
+                                    <color key="titleColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginButtonAction:" destination="cWU-0C-GpP" eventType="touchUpInside" id="3jq-Al-CYg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0qw-KS-5UG">
+                                <rect key="frame" x="18" y="451" width="339" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="rhG-F8-u0R"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AnotherBirdhouse" family="Another Birdhouse" pointSize="26"/>
+                                <state key="normal" title="Stay Active">
+                                    <color key="titleColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="stayActiveButtonAction:" destination="cWU-0C-GpP" eventType="touchUpInside" id="Eus-LZ-2Zx"/>
+                                    <action selector="stayActiveButtoon:" destination="QtN-zM-IhQ" eventType="touchUpInside" id="daw-pC-ag6"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1fY-Ja-dYz">
+                                <rect key="frame" x="0.0" y="143" width="375" height="200"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="wco-FT-vEK"/>
+                                </constraints>
+                                <color key="sectionIndexBackgroundColor" red="1" green="0.98823529409999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="loginCell" rowHeight="100" id="Eip-mG-cD6" customClass="LoginCell" customModule="EBOOKAPP" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Eip-mG-cD6" id="0ga-lL-Vsm">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="kBU-yd-0p3">
+                                                    <rect key="frame" x="24" y="43" width="327" height="34"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LABEL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZqQ-Pm-zYL">
+                                                    <rect key="frame" x="0.0" y="5" width="375" height="35"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="AnotherBirdhouse" family="Another Birdhouse" pointSize="25"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="label" destination="ZqQ-Pm-zYL" id="F5i-FR-NCe"/>
+                                            <outlet property="textField" destination="kBU-yd-0p3" id="kUo-6v-Jhp"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="efl-mS-po0"/>
+                        <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="0qw-KS-5UG" firstAttribute="leading" secondItem="lB1-2c-usI" secondAttribute="leading" id="0En-rE-gDo"/>
+                            <constraint firstItem="lB1-2c-usI" firstAttribute="top" secondItem="0qw-KS-5UG" secondAttribute="bottom" constant="26" id="A3x-hI-Pox"/>
+                            <constraint firstItem="efl-mS-po0" firstAttribute="bottom" secondItem="y8c-Lg-omg" secondAttribute="bottom" constant="29" id="RQZ-7R-SW3"/>
+                            <constraint firstItem="lB1-2c-usI" firstAttribute="centerX" secondItem="y8c-Lg-omg" secondAttribute="centerX" id="Tpm-km-tfu"/>
+                            <constraint firstItem="y8c-Lg-omg" firstAttribute="top" secondItem="lB1-2c-usI" secondAttribute="bottom" constant="31" id="Z60-Ug-5Gu"/>
+                            <constraint firstItem="1fY-Ja-dYz" firstAttribute="centerX" secondItem="p1Y-dR-Ixa" secondAttribute="centerX" id="bjm-FV-FaU"/>
+                            <constraint firstItem="1fY-Ja-dYz" firstAttribute="top" secondItem="efl-mS-po0" secondAttribute="top" constant="99" id="id0-0e-gRO"/>
+                            <constraint firstItem="y8c-Lg-omg" firstAttribute="leading" secondItem="efl-mS-po0" secondAttribute="leading" constant="83" id="oey-ik-7My"/>
+                            <constraint firstItem="1fY-Ja-dYz" firstAttribute="centerX" secondItem="0qw-KS-5UG" secondAttribute="centerX" id="pwb-In-6lX"/>
+                            <constraint firstItem="0qw-KS-5UG" firstAttribute="leading" secondItem="efl-mS-po0" secondAttribute="leading" constant="18" id="yE9-X6-fI4"/>
+                            <constraint firstItem="1fY-Ja-dYz" firstAttribute="leading" secondItem="efl-mS-po0" secondAttribute="leading" id="zcg-VG-nBv"/>
+                            <constraint firstItem="0qw-KS-5UG" firstAttribute="trailing" secondItem="lB1-2c-usI" secondAttribute="trailing" id="zmm-bX-Xjf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Aiw-r1-xvP"/>
+                    <connections>
+                        <outlet property="loginButton" destination="y8c-Lg-omg" id="49T-5e-yLu"/>
+                        <outlet property="tableView" destination="1fY-Ja-dYz" id="PhV-zp-LRF"/>
+                        <segue destination="aJi-iB-WMP" kind="presentation" identifier="toFirstController1" modalPresentationStyle="fullScreen" id="Jfx-6a-rvm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qOa-zd-APw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="QtN-zM-IhQ" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-118" y="904"/>
+        </scene>
+        <!--First Controller-->
+        <scene sceneID="oGx-bZ-4y7">
+            <objects>
+                <viewController id="aJi-iB-WMP" customClass="FirstController" customModule="EBOOKAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rws-86-ipb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IG1-aP-xpE">
+                                <rect key="frame" x="107" y="112" width="161" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="264-lo-cXQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AnotherBirdhouse" family="Another Birdhouse" pointSize="29"/>
+                                <state key="normal" title="Home">
+                                    <color key="titleColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="homeButtonAction:" destination="aJi-iB-WMP" eventType="touchUpInside" id="Bjk-q4-0le"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2hf-MJ-4fz">
+                                <rect key="frame" x="16" y="226" width="160" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="aAF-Nw-HMw"/>
+                                    <constraint firstAttribute="width" constant="160" id="qHi-zl-ZHy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AnotherBirdhouse" family="Another Birdhouse" pointSize="29"/>
+                                <state key="normal" title="Read">
+                                    <color key="titleColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="readButtonAction:" destination="aJi-iB-WMP" eventType="touchUpInside" id="6fq-F2-V9e"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X34-nl-S3M">
+                                <rect key="frame" x="199" y="226" width="160" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="fk8-Tx-7aP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AnotherBirdhouse" family="Another Birdhouse" pointSize="29"/>
+                                <state key="normal" title="Account">
+                                    <color key="titleColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="accountButtonAction:" destination="aJi-iB-WMP" eventType="touchUpInside" id="85V-GJ-uIj"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="OCT-AK-cS0"/>
+                        <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="2hf-MJ-4fz" firstAttribute="leading" secondItem="rws-86-ipb" secondAttribute="leadingMargin" id="74u-r9-VEz"/>
+                            <constraint firstItem="X34-nl-S3M" firstAttribute="trailing" secondItem="rws-86-ipb" secondAttribute="trailingMargin" id="AXm-7u-KSw"/>
+                            <constraint firstItem="2hf-MJ-4fz" firstAttribute="baseline" secondItem="X34-nl-S3M" secondAttribute="baseline" id="FcE-kf-qIu"/>
+                            <constraint firstItem="X34-nl-S3M" firstAttribute="leading" secondItem="2hf-MJ-4fz" secondAttribute="trailing" constant="23" id="JC9-uR-w1C"/>
+                            <constraint firstItem="IG1-aP-xpE" firstAttribute="leading" secondItem="OCT-AK-cS0" secondAttribute="leading" constant="107" id="YvZ-iM-1KN"/>
+                            <constraint firstItem="2hf-MJ-4fz" firstAttribute="top" secondItem="IG1-aP-xpE" secondAttribute="bottom" constant="64" id="Zdi-JT-dl9"/>
+                            <constraint firstItem="IG1-aP-xpE" firstAttribute="top" secondItem="OCT-AK-cS0" secondAttribute="top" constant="112" id="xA0-eR-LEo"/>
+                            <constraint firstItem="IG1-aP-xpE" firstAttribute="centerX" secondItem="rws-86-ipb" secondAttribute="centerX" id="ypE-Dp-9CZ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="22P-VB-tbF"/>
+                    <connections>
+                        <outlet property="accountButton" destination="X34-nl-S3M" id="f5s-JN-aXH"/>
+                        <outlet property="homeButton" destination="IG1-aP-xpE" id="iJF-Wx-MqN"/>
+                        <outlet property="readButton" destination="2hf-MJ-4fz" id="toE-aa-gzz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UwI-6a-sC5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="207" y="1676"/>
+        </scene>
+        <!--Pdf Reader Controller-->
+        <scene sceneID="IXR-Bv-DMS">
+            <objects>
+                <viewController id="Tcp-13-81I" customClass="PdfReaderController" customModule="EBOOKAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Tx3-R4-zCd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="8e9-Kp-Avt"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="3vu-z0-Qkk"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RX2-G2-wOs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1530" y="296"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="kUM-yy-zQe">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EIx-ol-n0l" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eMP-m7-4rv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="1" green="0.98823529409999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="y7h-k1-P0N"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R5E-yf-pEp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="198" y="-562"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="uxD-rA-4IS"/>
+    </inferredMetricsTieBreakers>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
