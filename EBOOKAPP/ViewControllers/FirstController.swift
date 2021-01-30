@@ -28,10 +28,12 @@ class FirstController: UIViewController {
     
     @IBAction func readButtonAction(_ sender: Any)
     {
+        self.performSegue(withIdentifier: "toRead", sender: self)
     }
     
     @IBAction func accountButtonAction(_ sender: Any)
     {
+        self.performSegue(withIdentifier: "toAccount", sender: self)
     }
     
     func makeWhiteBorder(button: UIButton)

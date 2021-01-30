@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B219C9AB25C48ABC0039BF88 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B219C9AA25C48ABC0039BF88 /* RegisterViewController.swift */; };
 		B219C9B125C48AF20039BF88 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B219C9B025C48AF20039BF88 /* LoginViewController.swift */; };
 		B219C9B625C48EC20039BF88 /* LoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B219C9B525C48EC20039BF88 /* LoginCell.swift */; };
 		B219C9BB25C4A7020039BF88 /* FirstController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B219C9BA25C4A7020039BF88 /* FirstController.swift */; };
@@ -22,7 +21,10 @@
 		B2290CF425C3112100EEBF1A /* PdfReaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2290CF325C3112100EEBF1A /* PdfReaderController.swift */; };
 		B2290CF925C3137A00EEBF1A /* sample.pdf in Resources */ = {isa = PBXBuildFile; fileRef = B2290CF825C3137A00EEBF1A /* sample.pdf */; };
 		B2290D0E25C33C0800EEBF1A /* Another Birdhouse.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2290D0725C3351100EEBF1A /* Another Birdhouse.ttf */; };
-		B2290D3325C36BE000EEBF1A /* RegisterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2290D3225C36BE000EEBF1A /* RegisterCell.swift */; };
+		B25E51AE25C5DB62009B6E10 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25E51AD25C5DB62009B6E10 /* AccountViewController.swift */; };
+		B25E51C525C5DD27009B6E10 /* RegisterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25E51C425C5DD27009B6E10 /* RegisterCell.swift */; };
+		B25E51CA25C5DD2E009B6E10 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25E51C925C5DD2E009B6E10 /* RegisterViewController.swift */; };
+		B2B8DB3625C6157300892F13 /* Countries.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B8DB3525C6157300892F13 /* Countries.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +45,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B219C9AA25C48ABC0039BF88 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		B219C9B025C48AF20039BF88 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B219C9B525C48EC20039BF88 /* LoginCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCell.swift; sourceTree = "<group>"; };
 		B219C9BA25C4A7020039BF88 /* FirstController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstController.swift; sourceTree = "<group>"; };
@@ -64,7 +65,10 @@
 		B2290CF325C3112100EEBF1A /* PdfReaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfReaderController.swift; sourceTree = "<group>"; };
 		B2290CF825C3137A00EEBF1A /* sample.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sample.pdf; sourceTree = "<group>"; };
 		B2290D0725C3351100EEBF1A /* Another Birdhouse.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Another Birdhouse.ttf"; sourceTree = "<group>"; };
-		B2290D3225C36BE000EEBF1A /* RegisterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCell.swift; sourceTree = "<group>"; };
+		B25E51AD25C5DB62009B6E10 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		B25E51C425C5DD27009B6E10 /* RegisterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterCell.swift; sourceTree = "<group>"; };
+		B25E51C925C5DD2E009B6E10 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		B2B8DB3525C6157300892F13 /* Countries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countries.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,13 +96,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B219C9AF25C48AD00039BF88 /* LOGIN */ = {
+		B219C9AF25C48AD00039BF88 /* LOGIN PAGE */ = {
 			isa = PBXGroup;
 			children = (
 				B219C9B025C48AF20039BF88 /* LoginViewController.swift */,
 				B219C9B525C48EC20039BF88 /* LoginCell.swift */,
 			);
-			path = LOGIN;
+			path = "LOGIN PAGE";
 			sourceTree = "<group>";
 		};
 		B2290CA225C2F9AF00EEBF1A = {
@@ -157,10 +161,11 @@
 		B2290CFD25C3149700EEBF1A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				B219C9BA25C4A7020039BF88 /* FirstController.swift */,
-				B219C9AF25C48AD00039BF88 /* LOGIN */,
-				B2290D3725C36C9A00EEBF1A /* REGISTER */,
 				B2290CB225C2F9AF00EEBF1A /* ViewController.swift */,
+				B25E51CE25C5DD3A009B6E10 /* REGISTERPAGE */,
+				B219C9AF25C48AD00039BF88 /* LOGIN PAGE */,
+				B219C9BA25C4A7020039BF88 /* FirstController.swift */,
+				B25E51B225C5DBA0009B6E10 /* ACCOUNT PAGE */,
 				B2290CF325C3112100EEBF1A /* PdfReaderController.swift */,
 				B2290D0725C3351100EEBF1A /* Another Birdhouse.ttf */,
 			);
@@ -179,17 +184,26 @@
 		B2290D0525C334EE00EEBF1A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B2B8DB3525C6157300892F13 /* Countries.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		B2290D3725C36C9A00EEBF1A /* REGISTER */ = {
+		B25E51B225C5DBA0009B6E10 /* ACCOUNT PAGE */ = {
 			isa = PBXGroup;
 			children = (
-				B219C9AA25C48ABC0039BF88 /* RegisterViewController.swift */,
-				B2290D3225C36BE000EEBF1A /* RegisterCell.swift */,
+				B25E51AD25C5DB62009B6E10 /* AccountViewController.swift */,
 			);
-			path = REGISTER;
+			path = "ACCOUNT PAGE";
+			sourceTree = "<group>";
+		};
+		B25E51CE25C5DD3A009B6E10 /* REGISTERPAGE */ = {
+			isa = PBXGroup;
+			children = (
+				B25E51C925C5DD2E009B6E10 /* RegisterViewController.swift */,
+				B25E51C425C5DD27009B6E10 /* RegisterCell.swift */,
+			);
+			path = REGISTERPAGE;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,12 +338,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2B8DB3625C6157300892F13 /* Countries.swift in Sources */,
+				B25E51C525C5DD27009B6E10 /* RegisterCell.swift in Sources */,
 				B219C9BB25C4A7020039BF88 /* FirstController.swift in Sources */,
 				B219C9B125C48AF20039BF88 /* LoginViewController.swift in Sources */,
+				B25E51CA25C5DD2E009B6E10 /* RegisterViewController.swift in Sources */,
 				B2290CB325C2F9AF00EEBF1A /* ViewController.swift in Sources */,
-				B219C9AB25C48ABC0039BF88 /* RegisterViewController.swift in Sources */,
 				B219C9B625C48EC20039BF88 /* LoginCell.swift in Sources */,
-				B2290D3325C36BE000EEBF1A /* RegisterCell.swift in Sources */,
+				B25E51AE25C5DB62009B6E10 /* AccountViewController.swift in Sources */,
 				B2290CF425C3112100EEBF1A /* PdfReaderController.swift in Sources */,
 				B2290CAF25C2F9AF00EEBF1A /* AppDelegate.swift in Sources */,
 				B2290CB125C2F9AF00EEBF1A /* SceneDelegate.swift in Sources */,

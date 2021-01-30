@@ -19,8 +19,6 @@ class ViewController: UIViewController {
         registerButton.layer.borderColor = UIColor.white.cgColor
         loginButton.layer.borderWidth = 2
         loginButton.layer.borderColor = UIColor.white.cgColor
-        
-        
         // Do any additional setup after loading the view.
     }
 
