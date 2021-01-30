@@ -15,7 +15,7 @@ class RegisterCell: UITableViewCell, UIPickerViewDataSource, UIPickerViewDelegat
     @IBOutlet weak var textField: UITextField!
     var array = [String]()
     let picker = UIPickerView()
-    var isTexFieldPicker = false
+    var isTextFieldPicker = false
     var view = UIView()
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,7 +28,6 @@ class RegisterCell: UITableViewCell, UIPickerViewDataSource, UIPickerViewDelegat
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapView(gesture:)))
         view.addGestureRecognizer(tapGesture)
         textField.delegate = self
-        
         // Configure the view for the selected state
     }
     

@@ -12,8 +12,8 @@ class RegisterViewController: UIViewController,UITableViewDelegate,UITableViewDa
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var doneButton: UIButton!
-    let countries = ["Afghanistan","Albania","Algeria","American Samoa","Andorra","Angola","Anguilla", "Antigua & Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas",
-                     "Bahrain", "Bangladesh", "Barbados", "Belarus",  "Belgium",  "Belize",  "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia & Herzegovina", "Botswana", "Brazil",  "British Indian Ocean Territory", "British Virgin Islands", "Brunei", "Bulgaria",  "Burkina Faso", "Burundi", "Cambodia",  "Cameroon",  "Canada",  "Canary Islands",  "Cape Verde", "Caribbean Netherlands", "Cayman Islands",  "Central African Republic", "Ceuta & Melilla", "Chad", "Chile", "China",  "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros",  "Congo - Brazzaville",  "Congo - Kinshasa", "Cook Islands",  "Costa Rica", "Croatia",  "Cuba", "Curaçao", "Cyprus", "Czechia",  "Côte d’Ivoire", "Denmark",  "Diego Garcia", "Djibouti",  "Dominica", "Dominican Republic", "Ecuador",  "Egypt",  "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Europe", "Falkland Islands (Islas Malvinas)",  "Faroe Islands",  "Fiji", "Finland", "France",  "French Guiana",  "French Polynesia", "Gabon", "Gambia", "Georgia", "Germany",  "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia",  "Iran", "Iraq", "Ireland",  "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan",  "Kazakhstan", "Kenya", "Kiribati", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latin America", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau",  "Macedonia (FYROM)", "Madagascar", "Malawi", "Malaysia", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania",  "Mauritius", "Mayotte", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique",  "Myanmar (Burma)", "Namibia",  "Nauru", "Nepal", "Netherlands", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "North Korea", "Northern Mariana Islands", "Norway",  "Oman", "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines",  "Pitcairn Islands",  "Poland", "Portugal", "Puerto Rico", "Qatar", "Romania", "Russia", "Rwanda", "Réunion",  "Samoa", "San Marino", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Sint Maarten", "Slovakia", "Slovenia", "Solomon Islands",  "Somalia", "South Africa", "South Korea", "South Sudan", "Spain", "Sri Lanka", "St. Barthélemy", "St. Helena", "St. Kitts & Nevis", "St. Lucia", "St. Martin", "St. Pierre & Miquelon", "St. Vincent & Grenadines", "Sudan", "Suriname", "Svalbard & Jan Mayen", "Swaziland", "Sweden", "Switzerland","Syria", "São Tomé & Príncipe", "Taiwan", "Tajikistan", "Tanzania", "Thailand",  "Timor-Leste", "Togo", "Tokelau",  "Tonga", "Trinidad & Tobago", "Tunisia", "Turkey", "Turks & Caicos Islands", "Tuvalu", "U.S. Outlying Islands", "U.S. Virgin Islands", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Wallis & Futuna", "Western Sahara",  "World", "XA", "XB", "Yemen",  "Zambia", "Zimbabwe", "Åland Islands"]
+    @IBOutlet weak var acceptTermsImageButton: UIButton!
+    var isTermsAccepted = false
     let eBookLanguages = ["Bengali","Hindi","Russian","Italian","Japanese","Chinese tangerine","Arab","Spanish","English","French","Portuguese","German","Turkish"]
     let genders = ["Female","Male","Others"]
     
@@ -36,22 +36,24 @@ class RegisterViewController: UIViewController,UITableViewDelegate,UITableViewDa
         case 1:
             cell.label.text = "Password"
             cell.view = view
+            cell.textField.isSecureTextEntry = true
         case 2:
             cell.label.text = "Age"
             cell.view = view
+            cell.textField.keyboardType = UIKeyboardType.numberPad
         case 3:
             cell.label.text = "Country"
             let placeholderColor = UIColor.black
             cell.textField.attributedPlaceholder = NSAttributedString(string: "Please select your country.", attributes: [NSAttributedString.Key.foregroundColor : placeholderColor])
-            cell.isTexFieldPicker = true
-            cell.array = countries
+            cell.isTextFieldPicker = true
+            cell.array = Countries.getCountries()
             cell.textField.inputView = cell.picker
             createToolbar(textField: cell.textField)
         case 4:
             cell.label.text = "eBook Language"
             let placeholderColor = UIColor.black
             cell.textField.attributedPlaceholder = NSAttributedString(string: "Please select your language.", attributes: [NSAttributedString.Key.foregroundColor : placeholderColor])
-            cell.isTexFieldPicker = true
+            cell.isTextFieldPicker = true
             cell.array = eBookLanguages
             cell.textField.inputView = cell.picker
             createToolbar(textField: cell.textField)
@@ -60,7 +62,7 @@ class RegisterViewController: UIViewController,UITableViewDelegate,UITableViewDa
             cell.label.text = "Gender"
             let placeholderColor = UIColor.black
             cell.textField.attributedPlaceholder = NSAttributedString(string: "Please select your gender.", attributes: [NSAttributedString.Key.foregroundColor : placeholderColor])
-            cell.isTexFieldPicker = true
+            cell.isTextFieldPicker = true
             cell.array = genders
             cell.textField.inputView = cell.picker
             createToolbar(textField: cell.textField)
@@ -83,13 +85,27 @@ class RegisterViewController: UIViewController,UITableViewDelegate,UITableViewDa
         textField.inputAccessoryView = toolBar
     }
     @objc func dismissPicker() {view.endEditing(true)}
-    
     func makeWhiteBorder(button: UIButton)
     {
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.white.cgColor
     }
-
+    func isTermsAcceptedControl()
+    {
+        if !isTermsAccepted
+        {
+            acceptTermsImageButton.setBackgroundImage(UIImage(named: "checked"), for: .normal)
+            isTermsAccepted = true
+        }
+        else
+        {
+            acceptTermsImageButton.setBackgroundImage(UIImage(named: "unchecked"), for: .normal)
+            isTermsAccepted = false
+        }
+    }
+    
+    @IBAction func acceptTermsImageButtonAction(_ sender: Any){isTermsAcceptedControl()}
+    @IBAction func acceptTermsButtonAction(_ sender: Any){isTermsAcceptedControl()}
     @IBAction func doneButtonAction(_ sender: Any)
     {
         let indexPath = NSIndexPath(row: 0, section: 0)
@@ -97,6 +113,8 @@ class RegisterViewController: UIViewController,UITableViewDelegate,UITableViewDa
         print(multilineCell!.textField.text)
         self.performSegue(withIdentifier: "toFirstController2", sender: self)
     }
+    
+    
     
     
 
