@@ -336,6 +336,16 @@
                                     <action selector="accountButtonAction:" destination="aJi-iB-WMP" eventType="touchUpInside" id="85V-GJ-uIj"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rHw-WZ-PGS">
+                                <rect key="frame" x="107" y="371" width="160" height="50"/>
+                                <fontDescription key="fontDescription" name="AnotherBirdhouse" family="Another Birdhouse" pointSize="29"/>
+                                <state key="normal" title="Log Out">
+                                    <color key="titleColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="logOutButtonClicked:" destination="aJi-iB-WMP" eventType="touchUpInside" id="tUi-ch-yNb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="OCT-AK-cS0"/>
                         <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -344,7 +354,11 @@
                             <constraint firstItem="X34-nl-S3M" firstAttribute="trailing" secondItem="rws-86-ipb" secondAttribute="trailingMargin" id="AXm-7u-KSw"/>
                             <constraint firstItem="2hf-MJ-4fz" firstAttribute="baseline" secondItem="X34-nl-S3M" secondAttribute="baseline" id="FcE-kf-qIu"/>
                             <constraint firstItem="X34-nl-S3M" firstAttribute="leading" secondItem="2hf-MJ-4fz" secondAttribute="trailing" constant="23" id="JC9-uR-w1C"/>
+                            <constraint firstItem="OCT-AK-cS0" firstAttribute="bottom" secondItem="rHw-WZ-PGS" secondAttribute="bottom" constant="246" id="JsJ-sf-rSI"/>
+                            <constraint firstItem="rHw-WZ-PGS" firstAttribute="leading" secondItem="IG1-aP-xpE" secondAttribute="leading" id="N9j-Af-FbS"/>
+                            <constraint firstItem="rHw-WZ-PGS" firstAttribute="centerX" secondItem="IG1-aP-xpE" secondAttribute="centerX" id="Qwf-gh-xi7"/>
                             <constraint firstItem="IG1-aP-xpE" firstAttribute="leading" secondItem="OCT-AK-cS0" secondAttribute="leading" constant="107" id="YvZ-iM-1KN"/>
+                            <constraint firstItem="rHw-WZ-PGS" firstAttribute="top" secondItem="2hf-MJ-4fz" secondAttribute="bottom" constant="51" id="ZUr-Rf-giK"/>
                             <constraint firstItem="2hf-MJ-4fz" firstAttribute="top" secondItem="IG1-aP-xpE" secondAttribute="bottom" constant="64" id="Zdi-JT-dl9"/>
                             <constraint firstItem="IG1-aP-xpE" firstAttribute="top" secondItem="OCT-AK-cS0" secondAttribute="top" constant="112" id="xA0-eR-LEo"/>
                             <constraint firstItem="IG1-aP-xpE" firstAttribute="centerX" secondItem="rws-86-ipb" secondAttribute="centerX" id="ypE-Dp-9CZ"/>
@@ -352,11 +366,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="22P-VB-tbF"/>
                     <connections>
-                        <outlet property="accountButton" destination="X34-nl-S3M" id="f5s-JN-aXH"/>
+                        <outlet property="accountButton" destination="rHw-WZ-PGS" id="8a0-St-73t"/>
                         <outlet property="homeButton" destination="IG1-aP-xpE" id="iJF-Wx-MqN"/>
+                        <outlet property="logOutButton" destination="rHw-WZ-PGS" id="6E6-Ds-7bK"/>
                         <outlet property="readButton" destination="2hf-MJ-4fz" id="toE-aa-gzz"/>
                         <segue destination="F4g-B8-V68" kind="show" identifier="toAccount" id="A4u-T5-seV"/>
                         <segue destination="Tcp-13-81I" kind="show" identifier="toRead" id="vqJ-OX-hsF"/>
+                        <segue destination="EIx-ol-n0l" kind="presentation" identifier="toZero" modalPresentationStyle="fullScreen" id="EWE-oB-aKJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UwI-6a-sC5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -461,6 +477,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EIx-ol-n0l" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="APh-xc-THp"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eMP-m7-4rv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -478,7 +495,7 @@
         <!--Navigation Controller-->
         <scene sceneID="10C-o2-FPD">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yVC-AR-VLz" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="first" automaticallyAdjustsScrollViewInsets="NO" id="yVC-AR-VLz" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hTm-vg-7n2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import Firebase
 
 class FirstController: UIViewController {
 
     @IBOutlet weak var homeButton: UIButton!
     @IBOutlet weak var readButton: UIButton!
     @IBOutlet weak var accountButton: UIButton!
+    @IBOutlet weak var logOutButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +26,7 @@ class FirstController: UIViewController {
     
     @IBAction func homeButtonAction(_ sender: Any)
     {
+        
     }
     
     @IBAction func readButtonAction(_ sender: Any)
@@ -42,6 +45,18 @@ class FirstController: UIViewController {
         button.layer.borderColor = UIColor.white.cgColor
     }
     
+    @IBAction func logOutButtonClicked(_ sender: Any)
+    {
+        do
+        {
+           try Auth.auth().signOut()
+           self.performSegue(withIdentifier: "toZero", sender: nil)
+        }
+        catch
+        {
+            print("error")
+        }
+    }
     
     /*
     // MARK: - Navigation

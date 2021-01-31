@@ -6,6 +6,10 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseFirestore
+import CoreData
+
 
 class RegisterViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
    
@@ -90,6 +94,7 @@ class RegisterViewController: UIViewController,UITableViewDelegate,UITableViewDa
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.white.cgColor
     }
+    
     func isTermsAcceptedControl()
     {
         if !isTermsAccepted
@@ -108,10 +113,78 @@ class RegisterViewController: UIViewController,UITableViewDelegate,UITableViewDa
     @IBAction func acceptTermsButtonAction(_ sender: Any){isTermsAcceptedControl()}
     @IBAction func doneButtonAction(_ sender: Any)
     {
-        let indexPath = NSIndexPath(row: 0, section: 0)
+        let email = getCell(index: 0).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let password = getCell(index: 1).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let age = getCell(index: 2).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let country = getCell(index: 3).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let language = getCell(index: 4).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let gender =  getCell(index: 5).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        if email != "" && password != "" && age != "" && country != "" && language != "" && gender != ""
+        {
+            if isTermsAccepted
+            {
+                doneButton.isEnabled = false
+                Auth.auth().createUser(withEmail: email, password: password)//Authantication
+                               { (authData, error) in
+                                 if error != nil
+                                 {
+                                     self.makeAlert(titleInput: "Error!", messageInput: error?.localizedDescription ?? "Error")//for alertMessages of Firebase
+                                     self.doneButton.isEnabled = true
+                                 }
+                                 else
+                                 {
+                                    self.saveItem(isActive: true)
+                                    let user = Auth.auth().currentUser
+                                    let registerDict =  ["userId":user!.uid,"email":email,"age":age,"country":country,"language":language,"gender":gender,"ebooks":[String]()] as [String : Any]
+                                    let firestoreDatabase = Firestore.firestore()
+                                    var  firestoreReference : DocumentReference? = nil
+                                    firestoreDatabase.collection("Users").document(user!.uid).setData(registerDict)
+                                    self.performSegue(withIdentifier: "toFirstController2", sender: self)
+                                }
+                }
+            }
+            else
+            {
+                makeAlert(titleInput: "Aooo!!", messageInput: "Please accept terms and conditions.")
+                doneButton.isEnabled = true
+            }
+        }
+        else
+        {
+            makeAlert(titleInput: "Aooo!!", messageInput: "Please fill all the blanks.")
+            doneButton.isEnabled = true
+        }
+        print(getCell(index: 0).textField.text!)//MAİl
+        print(getCell(index: 1).textField.text!)//Password
+        print(getCell(index: 2).textField.text!)//AGE
+        print(getCell(index: 3).textField.text!)//Country
+        print(getCell(index: 4).textField.text!)//Language
+        print(getCell(index: 5).textField.text!)//Gender
+        print(isTermsAccepted)//Terms
+        
+    }
+    
+    func getCell(index : Int) -> RegisterCell
+    {
+        let indexPath = NSIndexPath(row: index, section: 0)
         let multilineCell = tableView.cellForRow(at: indexPath as IndexPath) as? RegisterCell
-        print(multilineCell!.textField.text)
-        self.performSegue(withIdentifier: "toFirstController2", sender: self)
+        return multilineCell!
+    }
+    
+    func makeAlert(titleInput:String, messageInput:String)//Error method with parameters
+    {
+            let alert = UIAlertController(title: titleInput, message: messageInput, preferredStyle: UIAlertController.Style.alert)
+            let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+            alert.addAction(okButton)
+            self.present(alert, animated:true, completion: nil)
+    }
+    
+    func saveItem(isActive: Bool)
+    {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context =  appDelegate.persistentContainer.viewContext
+        let newEntity = NSEntityDescription.insertNewObject(forEntityName:  "Entity" , into: context)
+        newEntity.setValue(isActive, forKey: "isActive")
     }
     
     

@@ -40,20 +40,9 @@ class RegisterCell: UITableViewCell, UIPickerViewDataSource, UIPickerViewDelegat
         textField.layer.addSublayer(bottomLine)
     }
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int
-    {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
-    {
-        return array.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
-    {
-        return array[row]
-    }
+    func numberOfComponents(in pickerView: UIPickerView) -> Int{return 1}
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{return array.count}
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?{return array[row]}
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
@@ -62,9 +51,12 @@ class RegisterCell: UITableViewCell, UIPickerViewDataSource, UIPickerViewDelegat
         print("Sonra")
         print(array[row])
     }
+
     
     ///Starts Editing The Text Field
     @objc func didTapView(gesture: UITapGestureRecognizer){view.endEditing(true)}
+    
+    /*
     func textFieldDidBeginEditing(_ textField: UITextField) {moveTextField(textField, moveDistance: -80, up: true)}
     /// Finishes Editing The Text Field
     func textFieldDidEndEditing(_ textField: UITextField) {moveTextField(textField, moveDistance: -80, up: false)}
@@ -79,6 +71,8 @@ class RegisterCell: UITableViewCell, UIPickerViewDataSource, UIPickerViewDelegat
         self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
         UIView.commitAnimations()
     }
+    */
+    
     /// Hides the keyboard when the return key pressed
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {textField.resignFirstResponder();return true}
 

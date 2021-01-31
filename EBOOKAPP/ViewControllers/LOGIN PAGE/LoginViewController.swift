@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import CoreData
 
 class LoginViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
     
@@ -21,14 +23,6 @@ class LoginViewController: UIViewController,UITableViewDelegate, UITableViewData
         makeWhiteBorder(button: loginButton)
         // Do any additional setup after loading the view.
     }
-    
-   
-    
-    @IBAction func loginButtonAction(_ sender: Any)
-    {
-        self.performSegue(withIdentifier: "toFirstController1", sender: self)
-    }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "loginCell", for: indexPath) as! LoginCell
@@ -68,9 +62,54 @@ class LoginViewController: UIViewController,UITableViewDelegate, UITableViewData
         }
     }
     
+    func makeAlert(titleInput:String, messageInput:String)//Error method with parameters
+    {
+        let alert = UIAlertController(title: titleInput, message: messageInput, preferredStyle: UIAlertController.Style.alert)
+        let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+        alert.addAction(okButton)
+        self.present(alert, animated:true, completion: nil)
+    }
+    
     @IBAction func stayActiveButtonAction(_ sender: Any){isStayActiveControl()}
     @IBAction func stayActiveImageButtonAction(_ sender: Any){isStayActiveControl()}
     
+    func getCell(index : Int) -> LoginCell
+    {
+        let indexPath = NSIndexPath(row: index, section: 0)
+        let multilineCell = tableView.cellForRow(at: indexPath as IndexPath) as? LoginCell
+        return multilineCell!
+    }
     
-
+    @IBAction func loginButtonAction(_ sender: Any)
+    {
+        loginButton.isEnabled = false
+        let email = getCell(index: 0).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let password = getCell(index: 1).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        if email != "" && password != "" //if email and password is not empty
+        {
+            Auth.auth().signIn(withEmail: email, password: password)//Firebase signIn methods
+            { (authData, error) in
+                if error != nil
+                {
+                    self.makeAlert(titleInput: "Error!", messageInput: error?.localizedDescription ?? "Error")
+                    self.loginButton.isEnabled = true
+                }
+                else
+                {
+                    self.saveItem(isActive: self.isStayActive)
+                    let user = Auth.auth().currentUser
+                    self.performSegue(withIdentifier: "toFirstController1", sender: self)
+                }
+            }
+        }
+    }
+    
+    func saveItem(isActive: Bool)
+    {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context =  appDelegate.persistentContainer.viewContext
+        let newEntity = NSEntityDescription.insertNewObject(forEntityName:"Entity", into: context)
+        newEntity.setValue(isActive, forKey: "isActive")
+    }
+    
 }
