@@ -251,6 +251,9 @@
                                 <state key="normal" title="Password Recovery">
                                     <color key="titleColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="passwordRecoveryAction:" destination="cWU-0C-GpP" eventType="touchUpInside" id="Vsl-ch-sFs"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="efl-mS-po0"/>
@@ -513,7 +516,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="uxD-rA-4IS"/>
+        <segue reference="Jfx-6a-rvm"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="unchecked" width="50" height="50"/>

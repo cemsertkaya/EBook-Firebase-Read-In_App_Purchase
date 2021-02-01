@@ -133,7 +133,7 @@ class RegisterViewController: UIViewController,UITableViewDelegate,UITableViewDa
                                  }
                                  else
                                  {
-                                    self.saveItem(isActive: true)
+                                    self.createEntity(isActive: true)
                                     let user = Auth.auth().currentUser
                                     let registerDict =  ["userId":user!.uid,"email":email,"age":age,"country":country,"language":language,"gender":gender,"ebooks":[String]()] as [String : Any]
                                     let firestoreDatabase = Firestore.firestore()
@@ -179,16 +179,15 @@ class RegisterViewController: UIViewController,UITableViewDelegate,UITableViewDa
             self.present(alert, animated:true, completion: nil)
     }
     
-    func saveItem(isActive: Bool)
+    ///Creates IsActiveEntity with isActive bool when registering operation
+    func createEntity(isActive: Bool)
     {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context =  appDelegate.persistentContainer.viewContext
-        let newEntity = NSEntityDescription.insertNewObject(forEntityName:  "Entity" , into: context)
+        let newEntity = NSEntityDescription.insertNewObject(forEntityName:  "IsActiveElement" , into: context)
         newEntity.setValue(isActive, forKey: "isActive")
+        do{try context.save()}
+        catch{print("error")}
     }
     
-    
-    
-    
-
 }

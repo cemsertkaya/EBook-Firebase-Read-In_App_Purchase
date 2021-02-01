@@ -20,6 +20,7 @@ class FirstController: UIViewController {
         makeWhiteBorder(button: homeButton)
         makeWhiteBorder(button: readButton)
         makeWhiteBorder(button: accountButton)
+        print(Auth.auth().currentUser)
 
         // Do any additional setup after loading the view.
     }

@@ -14,7 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var isActiveArray = [Bool]()
     var window: UIWindow?
-    lazy var persistentContainer: NSPersistentContainer = {
+    
+    lazy var persistentContainer: NSPersistentContainer = { //Implemantation of core data
 
         let container = NSPersistentContainer(name: "CoreData")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
@@ -25,22 +26,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         return container
     }()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        isActiveArray = getCoreData()//Gets value from core data
         let currentUser = Auth.auth().currentUser
-        if isActiveArray.count == 0 {isActiveArray.append(false)}
-        else{
-            print(isActiveArray[0])
-        }
-        if currentUser != nil && isActiveArray[0] == true
+        if isActiveArray[0] == false
         {
-            let board = UIStoryboard(name: "Main", bundle: nil)
-            var openViewController: UINavigationController = board.instantiateViewController(withIdentifier: "first") as! UINavigationController
-            self.window?.rootViewController = openViewController
+            if currentUser != nil//if isActive false logout
+            {
+                do
+                {
+                    try Auth.auth().signOut()
+                }
+                catch{print("error")}
+            }
         }
-        return true
+        else
+        {
+            if currentUser != nil//if user isActive go to main page
+            {
+                let board = UIStoryboard(name: "Main", bundle: nil)
+                var openViewController: UINavigationController = board.instantiateViewController(withIdentifier: "first") as! UINavigationController
+                self.window?.rootViewController = openViewController
+            }
+        }
+            return true
     }
+    
+    
 
     // MARK: UISceneSession Lifecycle
 
@@ -58,14 +73,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
     
+    ///Gets isActive bool from CoreData
     func getCoreData() -> [Bool]
     {
-        let context = self.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Entity")
+        self.isActiveArray.removeAll(keepingCapacity: false)
+        let context = persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "IsActiveElement")
         fetchRequest.returnsObjectsAsFaults = false
         do
         {
             let results = try context.fetch(fetchRequest)
+            print(results.count)
             if results.count > 0
             {
                 for result in results as! [NSManagedObject]
@@ -75,8 +93,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         self.isActiveArray.append(isActive)
                     }
                 }
-                
             }
+            else{self.isActiveArray.append(false)}
         }
         catch
         {
@@ -84,6 +102,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return isActiveArray
     }
+    
+   
+    
+    
 
 
 }
