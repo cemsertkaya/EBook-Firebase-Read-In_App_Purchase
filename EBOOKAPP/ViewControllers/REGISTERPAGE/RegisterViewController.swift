@@ -133,12 +133,13 @@ class RegisterViewController: UIViewController,UITableViewDelegate,UITableViewDa
                                  }
                                  else
                                  {
-                                    self.createEntity(isActive: true)
+                                    CoreDataUtil.createEntityCoreData(isActive: true)
                                     let user = Auth.auth().currentUser
+                                    let userObject = CurrentUser(userId: user!.uid, email: email, age: age, country: country, language: language, gender: gender)
+                                    CoreDataUtil.createUserCoreData(user: userObject)
+                                    print(CoreDataUtil.getCurrentUser().toString())
                                     let registerDict =  ["userId":user!.uid,"email":email,"age":age,"country":country,"language":language,"gender":gender,"ebooks":[String]()] as [String : Any]
-                                    let firestoreDatabase = Firestore.firestore()
-                                    var  firestoreReference : DocumentReference? = nil
-                                    firestoreDatabase.collection("Users").document(user!.uid).setData(registerDict)
+                                    singleton.instance().getUsersDatabase().document(user!.uid).setData(registerDict)
                                     self.performSegue(withIdentifier: "toFirstController2", sender: self)
                                 }
                 }
@@ -154,14 +155,7 @@ class RegisterViewController: UIViewController,UITableViewDelegate,UITableViewDa
             makeAlert(titleInput: "Aooo!!", messageInput: "Please fill all the blanks.")
             doneButton.isEnabled = true
         }
-        print(getCell(index: 0).textField.text!)//MAİl
-        print(getCell(index: 1).textField.text!)//Password
-        print(getCell(index: 2).textField.text!)//AGE
-        print(getCell(index: 3).textField.text!)//Country
-        print(getCell(index: 4).textField.text!)//Language
-        print(getCell(index: 5).textField.text!)//Gender
-        print(isTermsAccepted)//Terms
-        
+
     }
     
     func getCell(index : Int) -> RegisterCell
@@ -179,15 +173,6 @@ class RegisterViewController: UIViewController,UITableViewDelegate,UITableViewDa
             self.present(alert, animated:true, completion: nil)
     }
     
-    ///Creates IsActiveEntity with isActive bool when registering operation
-    func createEntity(isActive: Bool)
-    {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context =  appDelegate.persistentContainer.viewContext
-        let newEntity = NSEntityDescription.insertNewObject(forEntityName:  "IsActiveElement" , into: context)
-        newEntity.setValue(isActive, forKey: "isActive")
-        do{try context.save()}
-        catch{print("error")}
-    }
+    
     
 }

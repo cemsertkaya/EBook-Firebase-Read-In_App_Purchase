@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class AccountViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
@@ -13,18 +14,18 @@ class AccountViewController: UIViewController,UITableViewDelegate,UITableViewDat
     @IBOutlet weak var tableView: UITableView!
     let eBookLanguages = ["Bengali","Hindi","Russian","Italian","Japanese","Chinese tangerine","Arab","Spanish","English","French","Portuguese","German","Turkish"]
     let genders = ["Female","Male","Others"]
+    var currentUser = CurrentUser()
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         tableView.delegate = self; tableView.dataSource = self
         tableView.backgroundView = nil
-
+        currentUser = CoreDataUtil.getCurrentUser()
         // Do any additional setup after loading the view.
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
-    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {return 4}
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "loginCell", for: indexPath) as! LoginCell
@@ -32,28 +33,32 @@ class AccountViewController: UIViewController,UITableViewDelegate,UITableViewDat
         switch indexPath.row {
         case 0:
             cell.label.text = "Country;"
-            let placeholderColor = UIColor.black
-            cell.textField.attributedPlaceholder = NSAttributedString(string: "Please select your country.", attributes: [NSAttributedString.Key.foregroundColor : placeholderColor])
+            //let placeholderColor = UIColor.black
+            //cell.textField.attributedPlaceholder = NSAttributedString(string: "Please select your country.", attributes: [NSAttributedString.Key.foregroundColor : placeholderColor])
+            cell.textField.text = currentUser.getCountry()
             cell.isTextFieldPicker = true
             cell.array = Countries.getCountries()
             cell.textField.inputView = cell.picker
             createToolbar(textField: cell.textField)
         case 1:
             cell.label.text = "Age;"
+            cell.textField.text = currentUser.getAge()
             cell.view = view
             cell.textField.keyboardType = UIKeyboardType.numberPad
         case 2:
             cell.label.text = "Gender;"
-            let placeholderColor = UIColor.black
-            cell.textField.attributedPlaceholder = NSAttributedString(string: "Please select your gender.", attributes: [NSAttributedString.Key.foregroundColor : placeholderColor])
+            //let placeholderColor = UIColor.black
+            //cell.textField.attributedPlaceholder = NSAttributedString(string: "Please select your gender.", attributes: [NSAttributedString.Key.foregroundColor : placeholderColor])
+            cell.textField.text = currentUser.getGender()
             cell.isTextFieldPicker = true
             cell.array = genders
             cell.textField.inputView = cell.picker
             createToolbar(textField: cell.textField)
         case 3:
             cell.label.text = "eBook Language;"
-            let placeholderColor = UIColor.black
-            cell.textField.attributedPlaceholder = NSAttributedString(string: "Please select your language.", attributes: [NSAttributedString.Key.foregroundColor : placeholderColor])
+            //let placeholderColor = UIColor.black
+            //cell.textField.attributedPlaceholder = NSAttributedString(string: "Please select your language.", attributes: [NSAttributedString.Key.foregroundColor : placeholderColor])
+            cell.textField.text = currentUser.getLanguage()
             cell.isTextFieldPicker = true
             cell.array = eBookLanguages
             cell.textField.inputView = cell.picker
@@ -83,10 +88,44 @@ class AccountViewController: UIViewController,UITableViewDelegate,UITableViewDat
         button.layer.borderColor = UIColor.white.cgColor
     }
     
-    @IBAction func saveButtonAction(_ sender: Any) {
+    @IBAction func saveButtonAction(_ sender: Any)
+    {
+        let age = getCell(index: 1).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let country = getCell(index: 0).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let language = getCell(index: 3).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let gender =  getCell(index: 2).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        if age != "" && country != "" && language != "" && gender != ""
+        {
+                saveButton.isEnabled = false
+                CoreDataUtil.createEntityCoreData(isActive: true)
+                let user = Auth.auth().currentUser
+                let userObject = CurrentUser(userId: user!.uid, email: user!.email!, age: age, country: country, language: language, gender: gender)
+                CoreDataUtil.createUserCoreData(user: userObject)//Edit
+                print(CoreDataUtil.getCurrentUser().toString())
+                let changeDict =  ["age":age,"country":country,"language":language,"gender":gender] as [String : Any]
+                singleton.instance().getUsersDatabase().document(user!.uid).updateData(changeDict)
+                saveButton.isEnabled = true
+        }
+        else
+        {
+            makeAlert(titleInput: "Aooo!!", messageInput: "Please fill all the blanks.")
+            saveButton.isEnabled = true
+        }
     }
     
-
+    func getCell(index : Int) -> LoginCell
+    {
+        let indexPath = NSIndexPath(row: index, section: 0)
+        let multilineCell = tableView.cellForRow(at: indexPath as IndexPath) as? LoginCell
+        return multilineCell!
+    }
     
-
+    func makeAlert(titleInput:String, messageInput:String)//Error method with parameters
+    {
+            let alert = UIAlertController(title: titleInput, message: messageInput, preferredStyle: UIAlertController.Style.alert)
+            let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+            alert.addAction(okButton)
+            self.present(alert, animated:true, completion: nil)
+    }
+    
 }
