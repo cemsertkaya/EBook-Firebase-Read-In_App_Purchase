@@ -8,19 +8,21 @@
 import UIKit
 import PDFKit
 
+
 class PdfReaderController: UIViewController {
 
+    @IBOutlet weak var viewSub: UIView!
     override func viewDidLoad()
     {
         super.viewDidLoad()
         //Pdf demo
         let pdfView = PDFView()
         pdfView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(pdfView)
-        pdfView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        pdfView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        pdfView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        pdfView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        viewSub.addSubview(pdfView)
+        pdfView.leadingAnchor.constraint(equalTo: viewSub.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        pdfView.trailingAnchor.constraint(equalTo: viewSub.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        pdfView.topAnchor.constraint(equalTo: viewSub.safeAreaLayoutGuide.topAnchor).isActive = true
+        pdfView.bottomAnchor.constraint(equalTo: viewSub.safeAreaLayoutGuide.bottomAnchor).isActive = true
         pdfView.autoScales = true
         pdfView.displayMode = .singlePageContinuous
         pdfView.displayDirection = .vertical

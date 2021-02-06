@@ -97,7 +97,10 @@ class LoginViewController: UIViewController,UITableViewDelegate, UITableViewData
                 else
                 {
                     self.setIsActive(isActive: self.isStayActive)
+                    print("isActive")
+                    print(self.isStayActive)
                     let user = Auth.auth().currentUser
+                    
                     self.performSegue(withIdentifier: "toFirstController1", sender: self)
                 }
             }

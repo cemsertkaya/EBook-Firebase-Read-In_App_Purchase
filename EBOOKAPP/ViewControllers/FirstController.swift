@@ -14,16 +14,33 @@ class FirstController: UIViewController {
     @IBOutlet weak var readButton: UIButton!
     @IBOutlet weak var accountButton: UIButton!
     @IBOutlet weak var logOutButton: UIButton!
+    @IBOutlet weak var libraryButton: UIButton!
+    @IBOutlet weak var buyButton: UIButton!
+    let user =  Auth.auth().currentUser
     
     override func viewDidLoad() {
         super.viewDidLoad()
         makeWhiteBorder(button: homeButton)
         makeWhiteBorder(button: readButton)
         makeWhiteBorder(button: accountButton)
-        print(Auth.auth().currentUser)
-
-        // Do any additional setup after loading the view.
+        makeWhiteBorder(button: libraryButton)
+        makeWhiteBorder(button: buyButton)
+        makeWhiteBorder(button: logOutButton)
+        print(user)
+        FirebaseUtil.getUserDataAndCreateCore(userId: user!.uid)
+        print(CoreDataUtil.getCurrentUser().toString())
     }
+    
+    @IBAction func buyButtonAction(_ sender: Any)
+    {
+        self.performSegue(withIdentifier: "toBuy", sender: self)
+    }
+    
+    @IBAction func libraryButtonAction(_ sender: Any)
+    {
+        self.performSegue(withIdentifier: "toLibrary", sender: self)
+    }
+    
     
     @IBAction func homeButtonAction(_ sender: Any)
     {
@@ -40,6 +57,9 @@ class FirstController: UIViewController {
         self.performSegue(withIdentifier: "toAccount", sender: self)
     }
     
+        
+    
+    
     func makeWhiteBorder(button: UIButton)
     {
         button.layer.borderWidth = 2
@@ -51,6 +71,7 @@ class FirstController: UIViewController {
         do
         {
            try Auth.auth().signOut()
+           CoreDataUtil.removeUserFromCoreData()
            self.performSegue(withIdentifier: "toZero", sender: nil)
         }
         catch

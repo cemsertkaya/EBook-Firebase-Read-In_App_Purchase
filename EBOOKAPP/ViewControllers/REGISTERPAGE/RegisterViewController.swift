@@ -135,9 +135,6 @@ class RegisterViewController: UIViewController,UITableViewDelegate,UITableViewDa
                                  {
                                     CoreDataUtil.createEntityCoreData(isActive: true)
                                     let user = Auth.auth().currentUser
-                                    let userObject = CurrentUser(userId: user!.uid, email: email, age: age, country: country, language: language, gender: gender)
-                                    CoreDataUtil.createUserCoreData(user: userObject)
-                                    print(CoreDataUtil.getCurrentUser().toString())
                                     let registerDict =  ["userId":user!.uid,"email":email,"age":age,"country":country,"language":language,"gender":gender,"ebooks":[String]()] as [String : Any]
                                     singleton.instance().getUsersDatabase().document(user!.uid).setData(registerDict)
                                     self.performSegue(withIdentifier: "toFirstController2", sender: self)

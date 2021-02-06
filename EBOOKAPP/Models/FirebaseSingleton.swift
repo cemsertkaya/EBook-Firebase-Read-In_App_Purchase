@@ -40,8 +40,31 @@ class singleton
         return singleton.uniqueInstance!.usersDatabase!
     }
     
-    
-    
+}
+
+class FirebaseUtil
+{
+    static func getUserDataAndCreateCore(userId : String)
+    {
+        var newUser = CurrentUser()
+        let docRef = singleton.instance().getUsersDatabase().document(userId)
+        docRef.getDocument
+        {
+           (document, error) in
+           if let document = document, document.exists
+           {
+               let dataDescription = document.data()
+               let age  = dataDescription?["age"] as! String
+               let country  = dataDescription?["country"] as! String
+               let email  = dataDescription?["email"] as! String
+               let gender  = dataDescription?["gender"] as! String
+               let language  = dataDescription?["language"] as! String
+               let userId  = dataDescription?["userId"] as! String
+               newUser = CurrentUser(userId: userId, email: email, age: age, country: country, language: language, gender: gender)
+               CoreDataUtil.createUserCoreData(user: newUser)
+           }
+        }
+    }
     
     
 }

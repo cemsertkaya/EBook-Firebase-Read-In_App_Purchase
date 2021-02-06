@@ -91,10 +91,25 @@ class CoreDataUtil
         return currentUser
     }
     
-    static func deleteCurrentUser()
+    
+    static func removeUserFromCoreData()
     {
-        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "User")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        do
+        {
+            try context.execute(deleteRequest)
+        }
+        catch let error as NSError {
+            // TODO: handle the error
+            print(error.localizedDescription)
+        }
     }
+    
+    
+    
     
     static func updateCurrentUser(age : String, country : String, language: String, gender: String)
     {

@@ -29,6 +29,8 @@
 		B25E51CA25C5DD2E009B6E10 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25E51C925C5DD2E009B6E10 /* RegisterViewController.swift */; };
 		B2615ABB25C88A26005A3FE7 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B2615AB925C88A26005A3FE7 /* CoreData.xcdatamodeld */; };
 		B2615AC625C8AE0F005A3FE7 /* FirebaseSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2615AC525C8AE0F005A3FE7 /* FirebaseSingleton.swift */; };
+		B2A1823725CF40C10054A805 /* LibraryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A1823625CF40C10054A805 /* LibraryController.swift */; };
+		B2AC0EAB25CF424D003EB258 /* LibraryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2AC0EAA25CF424D003EB258 /* LibraryCell.swift */; };
 		B2B4EA2D25C9856600EBEBA8 /* CoreDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B4EA2C25C9856600EBEBA8 /* CoreDataUtil.swift */; };
 		B2B8DB3625C6157300892F13 /* Countries.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B8DB3525C6157300892F13 /* Countries.swift */; };
 /* End PBXBuildFile section */
@@ -80,7 +82,9 @@
 		B25E51C925C5DD2E009B6E10 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		B2615ABA25C88A26005A3FE7 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		B2615AC525C8AE0F005A3FE7 /* FirebaseSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseSingleton.swift; sourceTree = "<group>"; };
+		B2A1823625CF40C10054A805 /* LibraryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LibraryController.swift; path = EBOOKAPP/ViewControllers/LibraryController.swift; sourceTree = SOURCE_ROOT; };
 		B2A3D7D425C766BC004EC232 /* EBOOKAPP */ = {isa = PBXFileReference; lastKnownFileType = folder; path = EBOOKAPP; sourceTree = "<group>"; };
+		B2AC0EAA25CF424D003EB258 /* LibraryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCell.swift; sourceTree = "<group>"; };
 		B2B4EA2C25C9856600EBEBA8 /* CoreDataUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUtil.swift; sourceTree = "<group>"; };
 		B2B8DB3525C6157300892F13 /* Countries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countries.swift; sourceTree = "<group>"; };
 		B2EACC5425C76CEB001094E9 /* Entity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entity+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -202,6 +206,8 @@
 		B2290CFD25C3149700EEBF1A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B2A1823625CF40C10054A805 /* LibraryController.swift */,
+				B2AC0EAA25CF424D003EB258 /* LibraryCell.swift */,
 				B2290CB225C2F9AF00EEBF1A /* ViewController.swift */,
 				B219C9BA25C4A7020039BF88 /* FirstController.swift */,
 				B25E51CE25C5DD3A009B6E10 /* REGISTERPAGE */,
@@ -444,6 +450,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2AC0EAB25CF424D003EB258 /* LibraryCell.swift in Sources */,
 				B2B8DB3625C6157300892F13 /* Countries.swift in Sources */,
 				B25E51C525C5DD27009B6E10 /* RegisterCell.swift in Sources */,
 				B219C9BB25C4A7020039BF88 /* FirstController.swift in Sources */,
@@ -455,6 +462,7 @@
 				B2615ABB25C88A26005A3FE7 /* CoreData.xcdatamodeld in Sources */,
 				B2290CF425C3112100EEBF1A /* PdfReaderController.swift in Sources */,
 				B2290CAF25C2F9AF00EEBF1A /* AppDelegate.swift in Sources */,
+				B2A1823725CF40C10054A805 /* LibraryController.swift in Sources */,
 				B2615AC625C8AE0F005A3FE7 /* FirebaseSingleton.swift in Sources */,
 				B2B4EA2D25C9856600EBEBA8 /* CoreDataUtil.swift in Sources */,
 				B24B5F8125C9902D00140C79 /* CurrentUser.swift in Sources */,

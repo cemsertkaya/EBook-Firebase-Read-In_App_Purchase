@@ -39,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 do
                 {
                     try Auth.auth().signOut()
+                    CoreDataUtil.removeUserFromCoreData()
                 }
                 catch{print("error")}
             }
@@ -48,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if currentUser != nil//if user isActive go to main page
             {
                 let board = UIStoryboard(name: "Main", bundle: nil)
-                var openViewController: UINavigationController = board.instantiateViewController(withIdentifier: "first") as! UINavigationController
+                var openViewController: UIViewController = board.instantiateViewController(withIdentifier: "first") as! UIViewController
                 self.window?.rootViewController = openViewController
             }
         }
