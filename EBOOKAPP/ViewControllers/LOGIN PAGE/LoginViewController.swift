@@ -94,7 +94,7 @@ class LoginViewController: UIViewController,UITableViewDelegate, UITableViewData
                     self.makeAlert(titleInput: "Error!", messageInput: error?.localizedDescription ?? "Error")
                     self.loginButton.isEnabled = true
                 }
-                else
+                else//if coredata not exist create and set it.
                 {
                     self.setIsActive(isActive: self.isStayActive)
                     print("isActive")

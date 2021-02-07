@@ -11,26 +11,61 @@ import PDFKit
 
 class PdfReaderController: UIViewController {
 
-    @IBOutlet weak var viewSub: UIView!
+    @IBOutlet weak var stopButton: UIButton!
+    @IBOutlet weak var viewMain: PDFView!
+    @IBOutlet weak var label: UILabel!
+    var isLocked = false //if user presses stop button, pdf is locked on the page
+    var document = PDFDocument()
     override func viewDidLoad()
     {
         super.viewDidLoad()
         //Pdf demo
-        let pdfView = PDFView()
-        pdfView.translatesAutoresizingMaskIntoConstraints = false
-        viewSub.addSubview(pdfView)
-        pdfView.leadingAnchor.constraint(equalTo: viewSub.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        pdfView.trailingAnchor.constraint(equalTo: viewSub.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        pdfView.topAnchor.constraint(equalTo: viewSub.safeAreaLayoutGuide.topAnchor).isActive = true
-        pdfView.bottomAnchor.constraint(equalTo: viewSub.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        pdfView.autoScales = true
-        pdfView.displayMode = .singlePageContinuous
-        pdfView.displayDirection = .vertical
-        guard let path = Bundle.main.url(forResource: "sample", withExtension: "pdf")
+        //label.text = pdfView.currentPage?.pageRef.pageNumber.stringValue
+        
+        //pdfView = PDFView(frame: self.viewMain.bounds)
+        //pdfView.autoScales = true
+        //pdfView.displayMode = .singlePageContinuous
+        //pdfView.usePageViewController(true)
+        //viewMain.addSubview(pdfView)
+        guard let path = Bundle.main.url(forResource: "resume", withExtension: "pdf")
         else {return}
-        let document = PDFDocument(url:path)
-        pdfView.document = document
-
+        document = PDFDocument(url:path)!
+        viewMain.document = document
+        /*viewMain.autoScales = true
+        viewMain.usePageViewController(true)
+        viewMain.displayMode = PDFDisplayMode.singlePage
+        viewMain.displayDirection = .vertical
+        viewMain.maxScaleFactor = 4.0
+        viewMain.minScaleFactor = viewMain.scaleFactorForSizeToFit*/
+        //viewMain.autoresizesSubviews = true
+        viewMain.autoresizingMask = [.flexibleWidth, .flexibleHeight, .flexibleTopMargin, .flexibleLeftMargin]
+        viewMain.displayDirection = .vertical
+        viewMain.autoScales = true
+        viewMain.displayMode = .singlePageContinuous
+        viewMain.usePageViewController(true)
+        viewMain.displaysPageBreaks = true
+        viewMain.maxScaleFactor = 4.0
+        viewMain.minScaleFactor = viewMain.scaleFactorForSizeToFit
+        viewMain.backgroundColor = UIColor.white
+        //viewMain.setValue(true, forKey: "forcesTopAlignment")
+        
+        //viewMain.scaleFactor = 1.0
+        
+    }
+    
+    @IBAction func stopButtonAction(_ sender: Any)
+    {
+        if(!isLocked)
+        {
+            isLocked = true
+            //let currentPageIndex = document.index(for: pdfView.currentPage!)
+            //label.text = String(currentPageIndex)
+        }
+        else
+        {
+            isLocked = false
+            
+        }
     }
     
 

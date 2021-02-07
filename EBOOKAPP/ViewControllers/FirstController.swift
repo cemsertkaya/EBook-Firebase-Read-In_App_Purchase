@@ -33,7 +33,7 @@ class FirstController: UIViewController {
     
     @IBAction func buyButtonAction(_ sender: Any)
     {
-        self.performSegue(withIdentifier: "toBuy", sender: self)
+        self.performSegue(withIdentifier: "toLibrary2", sender: self)
     }
     
     @IBAction func libraryButtonAction(_ sender: Any)

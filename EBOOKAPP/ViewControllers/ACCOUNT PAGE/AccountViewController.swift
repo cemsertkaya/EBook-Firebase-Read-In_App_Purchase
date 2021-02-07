@@ -15,6 +15,7 @@ class AccountViewController: UIViewController,UITableViewDelegate,UITableViewDat
     let eBookLanguages = ["Bengali","Hindi","Russian","Italian","Japanese","Chinese tangerine","Arab","Spanish","English","French","Portuguese","German","Turkish"]
     let genders = ["Female","Male","Others"]
     var currentUser = CurrentUser()
+    @IBOutlet weak var homeButton: UIButton!
     
     override func viewDidLoad()
     {
@@ -22,6 +23,8 @@ class AccountViewController: UIViewController,UITableViewDelegate,UITableViewDat
         tableView.delegate = self; tableView.dataSource = self
         tableView.backgroundView = nil
         currentUser = CoreDataUtil.getCurrentUser()
+        makeWhiteBorder(button: saveButton)
+        
         // Do any additional setup after loading the view.
     }
     
@@ -82,6 +85,7 @@ class AccountViewController: UIViewController,UITableViewDelegate,UITableViewDat
         textField.inputAccessoryView = toolBar
     }
     @objc func dismissPicker() {view.endEditing(true)}
+    
     func makeWhiteBorder(button: UIButton)
     {
         button.layer.borderWidth = 2
@@ -128,4 +132,5 @@ class AccountViewController: UIViewController,UITableViewDelegate,UITableViewDat
             self.present(alert, animated:true, completion: nil)
     }
     
+   
 }
