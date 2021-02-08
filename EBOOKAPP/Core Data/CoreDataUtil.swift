@@ -37,7 +37,11 @@ class CoreDataUtil
         newUser.setValue(user.getEmail(), forKey: "email")
         newUser.setValue(user.getCountry(), forKey: "country")
         newUser.setValue(user.getAge(), forKey: "age")
-        do{try context.save()}
+        do{
+            try context.save()
+            print("saved")
+            
+        }
         catch{print("error")}
     }
     
@@ -111,28 +115,48 @@ class CoreDataUtil
     
     
     
-    static func updateCurrentUser(age : String, country : String, language: String, gender: String)
-    {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        var items = [NSManagedObject]()
-        let data = items[0]
-        data.setValue(age, forKey: "age")
-        data.setValue(country, forKey: "country")
-        data.setValue(language, forKey: "language")
-        data.setValue(gender, forKey: "gender")
+    
+    
+    ///Sets true or false to isActive bool
+    static func updateCurrentUser(user: CurrentUser){
+        var managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        let result = try? managedObjectContext.fetch(fetchRequest)
+        let resultData = result as! [NSManagedObject]
+        for object in resultData {
+            object.setValue(user.getAge(), forKey: "age")
+            object.setValue(user.getCountry(), forKey: "country")
+            object.setValue(user.getLanguage(), forKey: "language")
+            object.setValue(user.getGender(), forKey: "gender")
+        }
         do
         {
-            try context.save()
-            print(getCurrentUser().toString())
+            try managedObjectContext.save()
+            print(user.toString())
+        } catch let error as NSError  {
+            print("Could not save \(error), \(error.userInfo)")
+        }
+    }
+    
+    
+    static func numberOfCoreUser() -> Int
+    {
+        var currentUserNumber = Int()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        fetchRequest.returnsObjectsAsFaults = false
+        do
+        {
+            let results = try context.fetch(fetchRequest)
+            currentUserNumber = results.count
         }
         catch
         {
-            print("Error")
+            print("There is a error")
         }
-        
-        
-        
+        return currentUserNumber
     }
+    
     
 }

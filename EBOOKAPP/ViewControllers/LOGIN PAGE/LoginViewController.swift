@@ -100,7 +100,6 @@ class LoginViewController: UIViewController,UITableViewDelegate, UITableViewData
                     print("isActive")
                     print(self.isStayActive)
                     let user = Auth.auth().currentUser
-                    
                     self.performSegue(withIdentifier: "toFirstController1", sender: self)
                 }
             }
@@ -165,4 +164,6 @@ class LoginViewController: UIViewController,UITableViewDelegate, UITableViewData
             alert.addAction(cancel)
             self.present(alert, animated:true, completion: nil)
         }
+    
+    
 }

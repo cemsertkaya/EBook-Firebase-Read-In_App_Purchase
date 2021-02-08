@@ -27,37 +27,42 @@ class FirstController: UIViewController {
         makeWhiteBorder(button: buyButton)
         makeWhiteBorder(button: logOutButton)
         print(user)
-        FirebaseUtil.getUserDataAndCreateCore(userId: user!.uid)
+        if CoreDataUtil.numberOfCoreUser() == 0
+        {
+            print("yokuz")
+            FirebaseUtil.getUserDataAndCreateCore(userId: user!.uid)//BUGGGGGGGGGGGGG
+        }
+        else
+        {
+            print(CoreDataUtil.numberOfCoreUser())
+        }
         print(CoreDataUtil.getCurrentUser().toString())
     }
     
-    @IBAction func buyButtonAction(_ sender: Any)
+    @IBAction func buyButtonAction(_ sender: Any){self.performSegue(withIdentifier: "toLibrary2", sender: self)}
+    
+    @IBAction func libraryButtonAction(_ sender: Any){self.performSegue(withIdentifier: "toLibrary", sender: self)}
+    
+    @IBAction func homeButtonAction(_ sender: Any){}
+    
+    @IBAction func readButtonAction(_ sender: Any){self.performSegue(withIdentifier: "toRead", sender: self)}
+    
+    @IBAction func accountButtonAction(_ sender: Any){self.performSegue(withIdentifier: "toAccount", sender: self)}
+    
+   /// It selects the cell button type
+   override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        self.performSegue(withIdentifier: "toLibrary2", sender: self)
+           if segue.identifier == "toLibrary"
+           {
+               let destinationVC = segue.destination as! LibraryController
+               destinationVC.controllerType = false
+           }
+           else if segue.identifier == "toLibrary2"
+           {
+              let destinationVC = segue.destination as! LibraryController
+              destinationVC.controllerType = true
+           }
     }
-    
-    @IBAction func libraryButtonAction(_ sender: Any)
-    {
-        self.performSegue(withIdentifier: "toLibrary", sender: self)
-    }
-    
-    
-    @IBAction func homeButtonAction(_ sender: Any)
-    {
-        
-    }
-    
-    @IBAction func readButtonAction(_ sender: Any)
-    {
-        self.performSegue(withIdentifier: "toRead", sender: self)
-    }
-    
-    @IBAction func accountButtonAction(_ sender: Any)
-    {
-        self.performSegue(withIdentifier: "toAccount", sender: self)
-    }
-    
-        
     
     
     func makeWhiteBorder(button: UIButton)

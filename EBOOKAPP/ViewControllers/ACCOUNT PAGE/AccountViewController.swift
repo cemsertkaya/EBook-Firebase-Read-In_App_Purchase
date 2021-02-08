@@ -24,6 +24,7 @@ class AccountViewController: UIViewController,UITableViewDelegate,UITableViewDat
         tableView.backgroundView = nil
         currentUser = CoreDataUtil.getCurrentUser()
         makeWhiteBorder(button: saveButton)
+        makeWhiteBorder(button: homeButton)
         
         // Do any additional setup after loading the view.
     }
@@ -101,11 +102,9 @@ class AccountViewController: UIViewController,UITableViewDelegate,UITableViewDat
         if age != "" && country != "" && language != "" && gender != ""
         {
                 saveButton.isEnabled = false
-                CoreDataUtil.createEntityCoreData(isActive: true)
                 let user = Auth.auth().currentUser
                 let userObject = CurrentUser(userId: user!.uid, email: user!.email!, age: age, country: country, language: language, gender: gender)
-                CoreDataUtil.createUserCoreData(user: userObject)//Edit
-                print(CoreDataUtil.getCurrentUser().toString())
+                CoreDataUtil.updateCurrentUser(user: userObject)
                 let changeDict =  ["age":age,"country":country,"language":language,"gender":gender] as [String : Any]
                 singleton.instance().getUsersDatabase().document(user!.uid).updateData(changeDict)
                 saveButton.isEnabled = true

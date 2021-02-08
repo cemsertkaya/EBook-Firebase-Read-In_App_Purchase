@@ -83,6 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         do
         {
             let results = try context.fetch(fetchRequest)
+            print("Results of isActive")
             print(results.count)
             if results.count > 0
             {

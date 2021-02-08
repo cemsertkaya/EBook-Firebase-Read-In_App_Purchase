@@ -12,7 +12,7 @@ class LibraryCell: UITableViewCell {
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var readButton: UIButton!
     @IBOutlet weak var label: UILabel!
-    var buttonType = Bool() // if false, it is library page if true, it is buying page
+    var buttonType = Bool() // if false, it is library page. if true, it is buying page
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,22 +25,44 @@ class LibraryCell: UITableViewCell {
         view.layer.borderWidth = 2
         view.layer.borderColor = UIColor.black.cgColor
         view.layer.cornerRadius = 10
-        // Configure the view for the selected state
+        makeWhiteBorder(button: readButton)
+        if buttonType != nil
+        {
+            if buttonType == false
+            {
+                readButton.setTitle("READ", for: UIControl.State.normal)
+                
+            }
+            else
+            {
+                readButton.setTitle("BUY", for: UIControl.State.normal)
+            }
+        }
     }
     
     @IBAction func readButtonAction(_ sender: Any)//it can be read or buy
     {
         if buttonType != nil
         {
-            if buttonType == false
-            {
-                
-            }
-            else
-            {
-                
-            }
+            if buttonType == false{readButtonAction()}
+            else{buyButtonAction()}
         }
+    }
+    
+    func makeWhiteBorder(button: UIButton)
+    {
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor.white.cgColor
+    }
+    
+    func buyButtonAction()
+    {
+        
+    }
+    
+    func readButtonAction()
+    {
+        
     }
     
 }

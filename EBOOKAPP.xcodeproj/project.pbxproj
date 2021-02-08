@@ -11,6 +11,8 @@
 		B219C9B125C48AF20039BF88 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B219C9B025C48AF20039BF88 /* LoginViewController.swift */; };
 		B219C9B625C48EC20039BF88 /* LoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B219C9B525C48EC20039BF88 /* LoginCell.swift */; };
 		B219C9BB25C4A7020039BF88 /* FirstController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B219C9BA25C4A7020039BF88 /* FirstController.swift */; };
+		B226D51B25D1CE3C0071DE84 /* sample2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = B226D51A25D1CE3B0071DE84 /* sample2.pdf */; };
+		B226D52025D1E1B10071DE84 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = B226D51F25D1E1B10071DE84 /* Book.swift */; };
 		B2290CAF25C2F9AF00EEBF1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2290CAE25C2F9AF00EEBF1A /* AppDelegate.swift */; };
 		B2290CB125C2F9AF00EEBF1A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2290CB025C2F9AF00EEBF1A /* SceneDelegate.swift */; };
 		B2290CB325C2F9AF00EEBF1A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2290CB225C2F9AF00EEBF1A /* ViewController.swift */; };
@@ -33,7 +35,6 @@
 		B2AC0EAB25CF424D003EB258 /* LibraryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2AC0EAA25CF424D003EB258 /* LibraryCell.swift */; };
 		B2B4EA2D25C9856600EBEBA8 /* CoreDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B4EA2C25C9856600EBEBA8 /* CoreDataUtil.swift */; };
 		B2B8DB3625C6157300892F13 /* Countries.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B8DB3525C6157300892F13 /* Countries.swift */; };
-		B2E2E97F25D0A290005D0769 /* resume.pdf in Resources */ = {isa = PBXBuildFile; fileRef = B2E2E97E25D0A28F005D0769 /* resume.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,8 @@
 		B219C9B025C48AF20039BF88 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B219C9B525C48EC20039BF88 /* LoginCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCell.swift; sourceTree = "<group>"; };
 		B219C9BA25C4A7020039BF88 /* FirstController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstController.swift; sourceTree = "<group>"; };
+		B226D51A25D1CE3B0071DE84 /* sample2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sample2.pdf; sourceTree = SOURCE_ROOT; };
+		B226D51F25D1E1B10071DE84 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		B2290CAB25C2F9AF00EEBF1A /* EBOOKAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EBOOKAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2290CAE25C2F9AF00EEBF1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B2290CB025C2F9AF00EEBF1A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,7 +91,6 @@
 		B2AC0EAA25CF424D003EB258 /* LibraryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCell.swift; sourceTree = "<group>"; };
 		B2B4EA2C25C9856600EBEBA8 /* CoreDataUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUtil.swift; sourceTree = "<group>"; };
 		B2B8DB3525C6157300892F13 /* Countries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countries.swift; sourceTree = "<group>"; };
-		B2E2E97E25D0A28F005D0769 /* resume.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = resume.pdf; path = ../../resume.pdf; sourceTree = "<group>"; };
 		B2EACC5425C76CEB001094E9 /* Entity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B2EACC5525C76CEB001094E9 /* Entity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D72482DC367A21BD95BA725A /* Pods_EBOOKAPP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EBOOKAPP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -177,8 +179,8 @@
 				B2290D0525C334EE00EEBF1A /* Resources */,
 				B2290D0125C3345500EEBF1A /* Storyboards */,
 				B2290CFD25C3149700EEBF1A /* ViewControllers */,
-				B2E2E97E25D0A28F005D0769 /* resume.pdf */,
 				B2290CF825C3137A00EEBF1A /* sample.pdf */,
+				B226D51A25D1CE3B0071DE84 /* sample2.pdf */,
 				B2290CB725C2F9B300EEBF1A /* Assets.xcassets */,
 				B2290CBC25C2F9B300EEBF1A /* Info.plist */,
 				B2428F5825C73DA1007525D0 /* GoogleService-Info.plist */,
@@ -260,6 +262,7 @@
 			children = (
 				B2615AC525C8AE0F005A3FE7 /* FirebaseSingleton.swift */,
 				B24B5F8025C9902D00140C79 /* CurrentUser.swift */,
+				B226D51F25D1E1B10071DE84 /* Book.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -392,9 +395,9 @@
 				B2290D0E25C33C0800EEBF1A /* Another Birdhouse.ttf in Resources */,
 				B2290CF925C3137A00EEBF1A /* sample.pdf in Resources */,
 				B2290CBB25C2F9B300EEBF1A /* LaunchScreen.storyboard in Resources */,
+				B226D51B25D1CE3C0071DE84 /* sample2.pdf in Resources */,
 				B2290CB825C2F9B300EEBF1A /* Assets.xcassets in Resources */,
 				B2290CB625C2F9AF00EEBF1A /* Main.storyboard in Resources */,
-				B2E2E97F25D0A290005D0769 /* resume.pdf in Resources */,
 				B2428F5925C73DA1007525D0 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -476,6 +479,7 @@
 				B2290CAF25C2F9AF00EEBF1A /* AppDelegate.swift in Sources */,
 				B2A1823725CF40C10054A805 /* LibraryController.swift in Sources */,
 				B2615AC625C8AE0F005A3FE7 /* FirebaseSingleton.swift in Sources */,
+				B226D52025D1E1B10071DE84 /* Book.swift in Sources */,
 				B2B4EA2D25C9856600EBEBA8 /* CoreDataUtil.swift in Sources */,
 				B24B5F8125C9902D00140C79 /* CurrentUser.swift in Sources */,
 				B2290CB125C2F9AF00EEBF1A /* SceneDelegate.swift in Sources */,

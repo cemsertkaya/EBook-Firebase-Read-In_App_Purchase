@@ -14,11 +14,15 @@ class singleton
     private static var  uniqueInstance:singleton? = nil
     private var db = Firestore.firestore()
     private var usersDatabase:CollectionReference?
+    private var booksDatabase:CollectionReference?
+    private var bookNamesDatabase:CollectionReference?
     
     private init()
     {
         self.db = Firestore.firestore()
         self.usersDatabase = self.db.collection("Users")
+        self.booksDatabase = self.db.collection("Books")
+        self.bookNamesDatabase = self.db.collection("Booknames")
     }
     
     public static func instance() -> singleton
@@ -38,6 +42,16 @@ class singleton
     func getUsersDatabase() -> CollectionReference
     {
         return singleton.uniqueInstance!.usersDatabase!
+    }
+    
+    func getBooksDatabase() -> CollectionReference
+    {
+        return singleton.uniqueInstance!.booksDatabase!
+    }
+    
+    func getBookNamesDatabase() -> CollectionReference
+    {
+        return singleton.uniqueInstance!.bookNamesDatabase!
     }
     
 }
@@ -65,6 +79,5 @@ class FirebaseUtil
            }
         }
     }
-    
     
 }
