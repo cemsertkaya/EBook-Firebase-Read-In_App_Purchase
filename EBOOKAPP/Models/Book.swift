@@ -8,35 +8,35 @@
 import Foundation
  class Book
  {
-    private var mainId : String
-    private var languageId : String
-    private var languageTitle : String
+    private var id : String
+    private var language : String
+    private var title : String
 
-    init(mainId:String, languageId:String, languageTitle:String)
+    init(id:String, language:String, title:String)
     {
-        self.mainId = mainId
-        self.languageId = languageId
-        self.languageTitle = languageTitle
+        self.id = id
+        self.language = language
+        self.title = title
     }
     
-    func getMainId() -> String
+    func getId() -> String
     {
-        self.mainId
+        self.id
     }
     
-    func getLanguageId() -> String
+    func getLanguage() -> String
     {
-        self.languageId
+        self.language
     }
     
-    func getLanguageTitle() -> String
+    func getTitle() -> String
     {
-        self.languageTitle
+        self.language
     }
     
     func toString() -> String
     {
-        let toString = getMainId() + getLanguageId() + getLanguageTitle()
+        let toString = getId() + getLanguage() + getTitle()
         return toString
         
     }

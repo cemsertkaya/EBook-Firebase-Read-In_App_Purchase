@@ -17,6 +17,7 @@ class FirstController: UIViewController {
     @IBOutlet weak var libraryButton: UIButton!
     @IBOutlet weak var buyButton: UIButton!
     let user =  Auth.auth().currentUser
+    var isActive = Bool()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,17 +27,17 @@ class FirstController: UIViewController {
         makeWhiteBorder(button: libraryButton)
         makeWhiteBorder(button: buyButton)
         makeWhiteBorder(button: logOutButton)
-        print(user)
-        if CoreDataUtil.numberOfCoreUser() == 0
+        if isActive != nil && CoreDataUtil.numberOfCoreUser() == 0
         {
-            print("yokuz")
-            FirebaseUtil.getUserDataAndCreateCore(userId: user!.uid)//BUGGGGGGGGGGGGG
+            FirebaseUtil.getUserDataAndCreateCore(userId: user!.uid, isActive: isActive)
+            
         }
         else
         {
-            print(CoreDataUtil.numberOfCoreUser())
+            print("error")
         }
         print(CoreDataUtil.getCurrentUser().toString())
+        
     }
     
     @IBAction func buyButtonAction(_ sender: Any){self.performSegue(withIdentifier: "toLibrary2", sender: self)}

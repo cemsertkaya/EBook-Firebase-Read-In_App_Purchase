@@ -15,6 +15,7 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
     @IBOutlet weak var tableView: UITableView!
     var booksForBuy = [Book]()
     var booksForLibrary = [Book]()
+    @IBOutlet weak var libraryButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,20 +23,14 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
         makeWhiteBorder(button: homeButton)
         if !controllerType//This is library view controller
         {
-            
+            libraryButton.setTitle("LIBRARY", for: UIControl.State.normal)
         }
         else//This is buy view controller
         {
-            var currentUserLanguage = CoreDataUtil.getCurrentUser().getLanguage()
-            if currentUserLanguage != nil
-            {
-                self.getAvailableBooksForBuy(ebookLanguage: CoreDataUtil.getCurrentUser().getLanguage())
-            }
-            else
-            {
-                print("Language is nil")
-            }
+            libraryButton.setTitle("BUY", for: UIControl.State.normal)
+            getAvailableBooksForBuy()
         }
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -54,7 +49,17 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "libraryCell", for: indexPath) as! LibraryCell
         cell.buttonType = controllerType
-        cell.label.text = self.booksForBuy[indexPath.row].getLanguageTitle()
+        
+        if !controllerType//This is library view controller
+        {
+            cell.label.text = self.booksForLibrary[indexPath.row].getTitle()
+            libraryButton.setTitle("LIBRARY", for: UIControl.State.normal)
+        }
+        else//This is buy view controller
+        {
+            cell.label.text = self.booksForBuy[indexPath.row].getTitle()
+            libraryButton.setTitle("BUY", for: UIControl.State.normal)
+        }
         return cell
     }
     
@@ -64,7 +69,7 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
         button.layer.borderColor = UIColor.white.cgColor
     }
     
-    func getAvailableBooksForBuy(ebookLanguage : String)
+    func getAvailableBooksForBuy()
     {
         let docRef = singleton.instance().getBooksDatabase().getDocuments { (querySnapshot, err) in
             if let err = err{print("Error getting documents: \(err)")}
@@ -72,31 +77,17 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
             {
                 for document in querySnapshot!.documents
                 {
-                    let id = document.documentID
                     if  document.exists
                     {
                         let dataDescription = document.data()
-                        let languageId = dataDescription[ebookLanguage]
-                        let docRef2 = singleton.instance().getBookNamesDatabase().getDocuments { (querySnapshot, err) in
-                            if let err = err{print("Error getting documents: \(err)")}
-                            else
-                            {
-                                for document in querySnapshot!.documents
-                                {
-                                    if document.exists
-                                    {
-                                        let dataDescription2 = document.data()
-                                        let name = dataDescription2["name"] as! String
-                                        if languageId != nil
-                                        {
-                                            let newBook = Book(mainId: id, languageId: languageId as! String, languageTitle:name)
-                                            self.booksForBuy.append(newBook)
-                                        }
-                                        self.tableView.reloadData()
-                                    }
-                                }
-                            }
-                        }
+                        let language = dataDescription["language"] as! String
+                        let title = dataDescription["title"] as! String
+                        let id = dataDescription["id"] as! String
+                        let book = Book(id: id, language: language, title: title)
+                        self.booksForBuy.append(book)
+                        print(self.booksForBuy.count)
+                        self.tableView.reloadData()
+                        
                     }
                 }
             }

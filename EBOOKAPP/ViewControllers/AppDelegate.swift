@@ -29,11 +29,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        isActiveArray = getCoreData()//Gets value from core data
         let currentUser = Auth.auth().currentUser
-        if isActiveArray[0] == false
+        print("Core Data User Sayısı")
+        print(CoreDataUtil.numberOfCoreUser())
+        if currentUser != nil
         {
-            if currentUser != nil//if isActive false logout
+            if CoreDataUtil.getCurrentUser().getIsActive()
+            {
+                let board = UIStoryboard(name: "Main", bundle: nil)
+                var openViewController: UIViewController = board.instantiateViewController(withIdentifier: "first") as! UIViewController
+                self.window?.rootViewController = openViewController
+            }
+            else//logout yap
             {
                 do
                 {
@@ -45,14 +52,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         else
         {
-            if currentUser != nil//if user isActive go to main page
-            {
-                let board = UIStoryboard(name: "Main", bundle: nil)
-                var openViewController: UIViewController = board.instantiateViewController(withIdentifier: "first") as! UIViewController
-                self.window?.rootViewController = openViewController
-            }
+            print("There is no user.")
         }
-            return true
+        return true
     }
     
     
@@ -72,42 +74,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-    
-    ///Gets isActive bool from CoreData
-    func getCoreData() -> [Bool]
-    {
-        self.isActiveArray.removeAll(keepingCapacity: false)
-        let context = persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "IsActiveElement")
-        fetchRequest.returnsObjectsAsFaults = false
-        do
-        {
-            let results = try context.fetch(fetchRequest)
-            print("Results of isActive")
-            print(results.count)
-            if results.count > 0
-            {
-                for result in results as! [NSManagedObject]
-                {
-                    if let isActive = result.value(forKey: "isActive") as? Bool
-                    {
-                        self.isActiveArray.append(isActive)
-                    }
-                }
-            }
-            else{self.isActiveArray.append(false)}
-        }
-        catch
-        {
-            print("There is a error")
-        }
-        return isActiveArray
-    }
-    
-   
-    
-    
-
-
 }
 

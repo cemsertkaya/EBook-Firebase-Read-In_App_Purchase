@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		19EC397FA114E17F08288458 /* Pods_EBOOKAPP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D72482DC367A21BD95BA725A /* Pods_EBOOKAPP.framework */; };
 		B219C9B125C48AF20039BF88 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B219C9B025C48AF20039BF88 /* LoginViewController.swift */; };
-		B219C9B625C48EC20039BF88 /* LoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B219C9B525C48EC20039BF88 /* LoginCell.swift */; };
 		B219C9BB25C4A7020039BF88 /* FirstController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B219C9BA25C4A7020039BF88 /* FirstController.swift */; };
 		B226D51B25D1CE3C0071DE84 /* sample2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = B226D51A25D1CE3B0071DE84 /* sample2.pdf */; };
 		B226D52025D1E1B10071DE84 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = B226D51F25D1E1B10071DE84 /* Book.swift */; };
@@ -58,7 +57,6 @@
 		56C3E6DF56B6A2FB846AEAC9 /* Pods-EBOOKAPP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EBOOKAPP.release.xcconfig"; path = "Target Support Files/Pods-EBOOKAPP/Pods-EBOOKAPP.release.xcconfig"; sourceTree = "<group>"; };
 		88A2652C6AA6A71567A8C6C4 /* Pods-EBOOKAPP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EBOOKAPP.debug.xcconfig"; path = "Target Support Files/Pods-EBOOKAPP/Pods-EBOOKAPP.debug.xcconfig"; sourceTree = "<group>"; };
 		B219C9B025C48AF20039BF88 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		B219C9B525C48EC20039BF88 /* LoginCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCell.swift; sourceTree = "<group>"; };
 		B219C9BA25C4A7020039BF88 /* FirstController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstController.swift; sourceTree = "<group>"; };
 		B226D51A25D1CE3B0071DE84 /* sample2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sample2.pdf; sourceTree = SOURCE_ROOT; };
 		B226D51F25D1E1B10071DE84 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
@@ -91,8 +89,6 @@
 		B2AC0EAA25CF424D003EB258 /* LibraryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCell.swift; sourceTree = "<group>"; };
 		B2B4EA2C25C9856600EBEBA8 /* CoreDataUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUtil.swift; sourceTree = "<group>"; };
 		B2B8DB3525C6157300892F13 /* Countries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countries.swift; sourceTree = "<group>"; };
-		B2EACC5425C76CEB001094E9 /* Entity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		B2EACC5525C76CEB001094E9 /* Entity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D72482DC367A21BD95BA725A /* Pods_EBOOKAPP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EBOOKAPP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -143,7 +139,6 @@
 			isa = PBXGroup;
 			children = (
 				B219C9B025C48AF20039BF88 /* LoginViewController.swift */,
-				B219C9B525C48EC20039BF88 /* LoginCell.swift */,
 			);
 			path = "LOGIN PAGE";
 			sourceTree = "<group>";
@@ -281,8 +276,6 @@
 			children = (
 				B2615AB925C88A26005A3FE7 /* CoreData.xcdatamodeld */,
 				B2B4EA2C25C9856600EBEBA8 /* CoreDataUtil.swift */,
-				B2EACC5425C76CEB001094E9 /* Entity+CoreDataProperties.swift */,
-				B2EACC5525C76CEB001094E9 /* Entity+CoreDataClass.swift */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -472,7 +465,6 @@
 				B219C9B125C48AF20039BF88 /* LoginViewController.swift in Sources */,
 				B25E51CA25C5DD2E009B6E10 /* RegisterViewController.swift in Sources */,
 				B2290CB325C2F9AF00EEBF1A /* ViewController.swift in Sources */,
-				B219C9B625C48EC20039BF88 /* LoginCell.swift in Sources */,
 				B25E51AE25C5DB62009B6E10 /* AccountViewController.swift in Sources */,
 				B2615ABB25C88A26005A3FE7 /* CoreData.xcdatamodeld in Sources */,
 				B2290CF425C3112100EEBF1A /* PdfReaderController.swift in Sources */,

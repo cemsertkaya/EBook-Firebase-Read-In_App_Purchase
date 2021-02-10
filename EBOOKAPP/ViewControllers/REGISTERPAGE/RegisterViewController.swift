@@ -7,7 +7,6 @@
 
 import UIKit
 import Firebase
-import FirebaseFirestore
 import CoreData
 
 
@@ -18,7 +17,6 @@ class RegisterViewController: UIViewController,UITableViewDelegate,UITableViewDa
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var acceptTermsImageButton: UIButton!
     var isTermsAccepted = false
-    let eBookLanguages = ["Bengali","Hindi","Russian","Italian","Japanese","Chinese tangerine","Arab","Spanish","English","French","Portuguese","German","Turkish"]
     let genders = ["Female","Male","Others"]
     
     override func viewDidLoad() {
@@ -28,7 +26,7 @@ class RegisterViewController: UIViewController,UITableViewDelegate,UITableViewDa
         // Do any additional setup after loading the view.
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {return 6}
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {return 5}
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "registerCell", for: indexPath) as! RegisterCell
@@ -54,15 +52,6 @@ class RegisterViewController: UIViewController,UITableViewDelegate,UITableViewDa
             cell.textField.inputView = cell.picker
             createToolbar(textField: cell.textField)
         case 4:
-            cell.label.text = "eBook Language"
-            let placeholderColor = UIColor.black
-            cell.textField.attributedPlaceholder = NSAttributedString(string: "Please select your language.", attributes: [NSAttributedString.Key.foregroundColor : placeholderColor])
-            cell.isTextFieldPicker = true
-            cell.array = eBookLanguages
-            cell.textField.inputView = cell.picker
-            createToolbar(textField: cell.textField)
-
-        case 5:
             cell.label.text = "Gender"
             let placeholderColor = UIColor.black
             cell.textField.attributedPlaceholder = NSAttributedString(string: "Please select your gender.", attributes: [NSAttributedString.Key.foregroundColor : placeholderColor])
@@ -117,9 +106,8 @@ class RegisterViewController: UIViewController,UITableViewDelegate,UITableViewDa
         let password = getCell(index: 1).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let age = getCell(index: 2).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let country = getCell(index: 3).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        let language = getCell(index: 4).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        let gender =  getCell(index: 5).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        if email != "" && password != "" && age != "" && country != "" && language != "" && gender != ""
+        let gender =  getCell(index: 4).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        if email != "" && password != "" && age != "" && country != "" && gender != ""
         {
             if isTermsAccepted
             {
@@ -133,9 +121,10 @@ class RegisterViewController: UIViewController,UITableViewDelegate,UITableViewDa
                                  }
                                  else
                                  {
-                                    CoreDataUtil.createEntityCoreData(isActive: true)
                                     let user = Auth.auth().currentUser
-                                    let registerDict =  ["userId":user!.uid,"email":email,"age":age,"country":country,"language":language,"gender":gender,"ebooks":[String]()] as [String : Any]
+                                    let registerDict =  ["userId":user!.uid,"email":email,"age":age,"country":country,"gender":gender,"ebooks":[String]()] as [String : Any]
+                                    let currentUser = CurrentUser(userId: user!.uid, email: email, age: age, country: country, gender: gender, isActive: true)
+                                    CoreDataUtil.createUserCoreData(user: currentUser)
                                     singleton.instance().getUsersDatabase().document(user!.uid).setData(registerDict)
                                     self.performSegue(withIdentifier: "toFirstController2", sender: self)
                                 }

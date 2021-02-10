@@ -15,14 +15,12 @@ class singleton
     private var db = Firestore.firestore()
     private var usersDatabase:CollectionReference?
     private var booksDatabase:CollectionReference?
-    private var bookNamesDatabase:CollectionReference?
     
     private init()
     {
         self.db = Firestore.firestore()
         self.usersDatabase = self.db.collection("Users")
         self.booksDatabase = self.db.collection("Books")
-        self.bookNamesDatabase = self.db.collection("Booknames")
     }
     
     public static func instance() -> singleton
@@ -49,16 +47,12 @@ class singleton
         return singleton.uniqueInstance!.booksDatabase!
     }
     
-    func getBookNamesDatabase() -> CollectionReference
-    {
-        return singleton.uniqueInstance!.bookNamesDatabase!
-    }
     
 }
 
 class FirebaseUtil
 {
-    static func getUserDataAndCreateCore(userId : String)
+    static func getUserDataAndCreateCore(userId : String, isActive : Bool)
     {
         var newUser = CurrentUser()
         let docRef = singleton.instance().getUsersDatabase().document(userId)
@@ -72,9 +66,8 @@ class FirebaseUtil
                let country  = dataDescription?["country"] as! String
                let email  = dataDescription?["email"] as! String
                let gender  = dataDescription?["gender"] as! String
-               let language  = dataDescription?["language"] as! String
                let userId  = dataDescription?["userId"] as! String
-               newUser = CurrentUser(userId: userId, email: email, age: age, country: country, language: language, gender: gender)
+               newUser = CurrentUser(userId: userId, email: email, age: age, country: country, gender: gender, isActive: isActive)
                CoreDataUtil.createUserCoreData(user: newUser)
            }
         }

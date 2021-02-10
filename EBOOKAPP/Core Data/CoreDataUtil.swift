@@ -14,16 +14,6 @@ class CoreDataUtil
     
     
     
-    ///Creates IsActiveEntity with isActive bool when registering operation
-    static func createEntityCoreData(isActive: Bool)
-    {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context =  appDelegate.persistentContainer.viewContext
-        let newEntity = NSEntityDescription.insertNewObject(forEntityName:"IsActiveElement", into: context)
-        newEntity.setValue(isActive, forKey: "isActive")
-        do{try context.save()}
-        catch{print("error")}
-    }
     
     ///Creates user object for keeping user's data
     static func createUserCoreData(user: CurrentUser)
@@ -32,14 +22,16 @@ class CoreDataUtil
         let context = appDelegate.persistentContainer.viewContext
         let newUser = NSEntityDescription.insertNewObject(forEntityName: "User", into: context)
         newUser.setValue(user.getUserId(), forKey: "userId")
-        newUser.setValue(user.getLanguage(), forKey: "language")
         newUser.setValue(user.getGender(), forKey: "gender")
         newUser.setValue(user.getEmail(), forKey: "email")
         newUser.setValue(user.getCountry(), forKey: "country")
         newUser.setValue(user.getAge(), forKey: "age")
+        newUser.setValue(user.getIsActive(), forKey: "isActive")
         do{
             try context.save()
-            print("saved")
+            print("SAVED")
+            print(CoreDataUtil.numberOfCoreUser())
+            print(CoreDataUtil.getCurrentUser().toString())
             
         }
         catch{print("error")}
@@ -65,10 +57,6 @@ class CoreDataUtil
                     {
                         currentUser.setUserId(userId: userId)
                     }
-                    if let language = result.value(forKey: "language") as? String
-                    {
-                        currentUser.setLanguage(language: language)
-                    }
                     if let gender = result.value(forKey: "gender") as? String
                     {
                         currentUser.setGender(gender: gender)
@@ -84,6 +72,10 @@ class CoreDataUtil
                     if let age = result.value(forKey: "age") as? String
                     {
                         currentUser.setAge(age: age)
+                    }
+                    if let isActive = result.value(forKey: "isActive") as? Bool
+                    {
+                        currentUser.setIsActive(isActive: isActive)
                     }
                 }
             }
@@ -118,21 +110,19 @@ class CoreDataUtil
     
     
     ///Sets true or false to isActive bool
-    static func updateCurrentUser(user: CurrentUser){
+    static func updateCurrentUserOnAccount(age: String, country: String, gender:String){
         var managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         let result = try? managedObjectContext.fetch(fetchRequest)
         let resultData = result as! [NSManagedObject]
         for object in resultData {
-            object.setValue(user.getAge(), forKey: "age")
-            object.setValue(user.getCountry(), forKey: "country")
-            object.setValue(user.getLanguage(), forKey: "language")
-            object.setValue(user.getGender(), forKey: "gender")
+            object.setValue(age, forKey: "age")
+            object.setValue(country, forKey: "country")
+            object.setValue(gender, forKey: "gender")
         }
         do
         {
             try managedObjectContext.save()
-            print(user.toString())
         } catch let error as NSError  {
             print("Could not save \(error), \(error.userInfo)")
         }

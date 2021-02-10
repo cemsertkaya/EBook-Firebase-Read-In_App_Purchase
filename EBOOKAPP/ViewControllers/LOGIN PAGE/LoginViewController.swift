@@ -12,31 +12,34 @@ import CoreData
 class LoginViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
     
 
+    @IBOutlet weak var stayActiveMarkButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var stayActiveMarkButton: UIButton!
-    var isStayActive = false
+    var stayActiveMarked = false
     override func viewDidLoad()
     {
         super.viewDidLoad()
         tableView.delegate = self; tableView.dataSource = self
+        tableView.register(UINib(nibName: "LoginCell",bundle: nil), forCellReuseIdentifier: "loginCell")
         makeWhiteBorder(button: loginButton)
         // Do any additional setup after loading the view.
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "loginCell", for: indexPath) as! LoginCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "registerCell", for: indexPath) as! RegisterCell
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         switch indexPath.row
         {
             case 0:
                 cell.label.text = "E-Mail;"
                 cell.view = view
+                //cell.createBottomLine()
                 
             case 1:
                 cell.label.text = "Password;"
                 cell.view = view
                 cell.textField.isSecureTextEntry = true
+                //cell.createBottomLine()
             default:
                 cell.label.text = "NULL"
                 cell.view = view
@@ -48,29 +51,30 @@ class LoginViewController: UIViewController,UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {return 2}
     func makeWhiteBorder(button: UIButton){button.layer.borderWidth = 2;button.layer.borderColor = UIColor.white.cgColor}
     
-    func isStayActiveControl()
+    func isStayActiveButtonControl()
     {
-        if !isStayActive
+        if !stayActiveMarked
         {
             stayActiveMarkButton.setBackgroundImage(UIImage(named: "checked"), for: .normal)
-            isStayActive = true
+            stayActiveMarked = true
         }
         else
         {
             stayActiveMarkButton.setBackgroundImage(UIImage(named: "unchecked"), for: .normal)
-            isStayActive = false
+            stayActiveMarked = false
         }
     }
     
     
     
-    @IBAction func stayActiveButtonAction(_ sender: Any){isStayActiveControl();isStayActive = true}
-    @IBAction func stayActiveImageButtonAction(_ sender: Any){isStayActiveControl();isStayActive = true}
+    @IBAction func stayActiveButtonAction(_ sender: Any){isStayActiveButtonControl()}
     
-    func getCell(index : Int) -> LoginCell
+    @IBAction func stayActiveImageButtonAction(_ sender: Any){isStayActiveButtonControl()}
+    
+    func getCell(index : Int) -> RegisterCell
     {
         let indexPath = NSIndexPath(row: index, section: 0)
-        let multilineCell = tableView.cellForRow(at: indexPath as IndexPath) as? LoginCell
+        let multilineCell = tableView.cellForRow(at: indexPath as IndexPath) as? RegisterCell
         return multilineCell!
     }
     
@@ -96,9 +100,6 @@ class LoginViewController: UIViewController,UITableViewDelegate, UITableViewData
                 }
                 else//if coredata not exist create and set it.
                 {
-                    self.setIsActive(isActive: self.isStayActive)
-                    print("isActive")
-                    print(self.isStayActive)
                     let user = Auth.auth().currentUser
                     self.performSegue(withIdentifier: "toFirstController1", sender: self)
                 }
@@ -106,23 +107,26 @@ class LoginViewController: UIViewController,UITableViewDelegate, UITableViewData
         }
     }
     
-    ///Sets true or false to isActive bool
-    func setIsActive(isActive: Bool){
-        var managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "IsActiveElement")
-        let result = try? managedObjectContext.fetch(fetchRequest)
-        let resultData = result as! [NSManagedObject]
-        for object in resultData {
-                object.setValue(isActive, forKey: "isActive")
-        }
-        do
-        {
-            try managedObjectContext.save()
-            print("saved!")
-        } catch let error as NSError  {
-            print("Could not save \(error), \(error.userInfo)")
-        }
-    }
+    
+    
+    
+    /// It selects the cell button type
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+     {
+            if segue.identifier == "toFirstController1"
+            {
+                let destinationVC = segue.destination as! FirstController
+                if stayActiveMarked
+                {
+                    destinationVC.isActive = true
+                }
+                else
+                {
+                    destinationVC.isActive = false
+                }
+            }
+     }
+    
     
     func makeAlert(titleInput:String, messageInput:String)//Error method with parameters
     {

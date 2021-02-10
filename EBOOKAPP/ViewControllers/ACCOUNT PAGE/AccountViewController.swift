@@ -16,6 +16,7 @@ class AccountViewController: UIViewController,UITableViewDelegate,UITableViewDat
     let genders = ["Female","Male","Others"]
     var currentUser = CurrentUser()
     @IBOutlet weak var homeButton: UIButton!
+    var isActive = Bool()
     
     override func viewDidLoad()
     {
@@ -29,10 +30,10 @@ class AccountViewController: UIViewController,UITableViewDelegate,UITableViewDat
         // Do any additional setup after loading the view.
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {return 4}
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {return 3}
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "loginCell", for: indexPath) as! LoginCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "registerCell", for: indexPath) as! RegisterCell
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         switch indexPath.row {
         case 0:
@@ -56,15 +57,6 @@ class AccountViewController: UIViewController,UITableViewDelegate,UITableViewDat
             cell.textField.text = currentUser.getGender()
             cell.isTextFieldPicker = true
             cell.array = genders
-            cell.textField.inputView = cell.picker
-            createToolbar(textField: cell.textField)
-        case 3:
-            cell.label.text = "eBook Language;"
-            //let placeholderColor = UIColor.black
-            //cell.textField.attributedPlaceholder = NSAttributedString(string: "Please select your language.", attributes: [NSAttributedString.Key.foregroundColor : placeholderColor])
-            cell.textField.text = currentUser.getLanguage()
-            cell.isTextFieldPicker = true
-            cell.array = eBookLanguages
             cell.textField.inputView = cell.picker
             createToolbar(textField: cell.textField)
         default:
@@ -97,15 +89,13 @@ class AccountViewController: UIViewController,UITableViewDelegate,UITableViewDat
     {
         let age = getCell(index: 1).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let country = getCell(index: 0).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        let language = getCell(index: 3).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let gender =  getCell(index: 2).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        if age != "" && country != "" && language != "" && gender != ""
+        if age != "" && country != ""  && gender != ""
         {
                 saveButton.isEnabled = false
                 let user = Auth.auth().currentUser
-                let userObject = CurrentUser(userId: user!.uid, email: user!.email!, age: age, country: country, language: language, gender: gender)
-                CoreDataUtil.updateCurrentUser(user: userObject)
-                let changeDict =  ["age":age,"country":country,"language":language,"gender":gender] as [String : Any]
+                CoreDataUtil.updateCurrentUserOnAccount(age: age, country: country, gender: gender)
+                let changeDict =  ["age":age,"country":country,"gender":gender] as [String : Any]
                 singleton.instance().getUsersDatabase().document(user!.uid).updateData(changeDict)
                 saveButton.isEnabled = true
         }
@@ -116,10 +106,10 @@ class AccountViewController: UIViewController,UITableViewDelegate,UITableViewDat
         }
     }
     
-    func getCell(index : Int) -> LoginCell
+    func getCell(index : Int) -> RegisterCell
     {
         let indexPath = NSIndexPath(row: index, section: 0)
-        let multilineCell = tableView.cellForRow(at: indexPath as IndexPath) as? LoginCell
+        let multilineCell = tableView.cellForRow(at: indexPath as IndexPath) as? RegisterCell
         return multilineCell!
     }
     

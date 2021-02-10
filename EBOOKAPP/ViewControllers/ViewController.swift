@@ -13,13 +13,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var registerButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("WUHAN")
         //Button customizations
         registerButton.layer.borderWidth = 2
         registerButton.layer.borderColor = UIColor.white.cgColor
         loginButton.layer.borderWidth = 2
         loginButton.layer.borderColor = UIColor.white.cgColor
-        // Do any additional setup after loading the view.
     }
 
 
