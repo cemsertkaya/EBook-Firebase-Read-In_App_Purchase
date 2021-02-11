@@ -73,4 +73,13 @@ class FirebaseUtil
         }
     }
     
+    static func getPdfFromStorage(id : String)
+    {
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        let islandRef = storageRef.child(id)
+        //PUT IT IN CORE DATA
+    }
 }
+    
+

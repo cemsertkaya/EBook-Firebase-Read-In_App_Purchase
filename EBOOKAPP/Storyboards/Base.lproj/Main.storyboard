@@ -428,13 +428,13 @@
         <!--First Controller-->
         <scene sceneID="oGx-bZ-4y7">
             <objects>
-                <viewController storyboardIdentifier="first" id="aJi-iB-WMP" customClass="FirstController" customModule="EBOOKAPP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="first" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aJi-iB-WMP" customClass="FirstController" customModule="EBOOKAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rws-86-ipb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2hf-MJ-4fz">
-                                <rect key="frame" x="16" y="265" width="160" height="50"/>
+                                <rect key="frame" x="16" y="265" width="125" height="50"/>
                                 <fontDescription key="fontDescription" name="AnotherBirdhouse" family="Another Birdhouse" pointSize="29"/>
                                 <state key="normal" title="READ">
                                     <color key="titleColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -444,9 +444,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X34-nl-S3M">
-                                <rect key="frame" x="230" y="265" width="129" height="50"/>
+                                <rect key="frame" x="230" y="265" width="125" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="129" id="Rz5-mD-a2C"/>
+                                    <constraint firstAttribute="width" constant="125" id="Rz5-mD-a2C"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="AnotherBirdhouse" family="Another Birdhouse" pointSize="29"/>
                                 <state key="normal" title="ACCOUNT">
@@ -456,23 +456,10 @@
                                     <action selector="accountButtonAction:" destination="aJi-iB-WMP" eventType="touchUpInside" id="rsX-MQ-YL8"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rHw-WZ-PGS">
-                                <rect key="frame" x="127" y="471" width="121" height="41"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="41" id="IrY-Yx-90G"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="AnotherBirdhouse" family="Another Birdhouse" pointSize="29"/>
-                                <state key="normal" title="LOG OUT">
-                                    <color key="titleColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="logOutButtonClicked:" destination="aJi-iB-WMP" eventType="touchUpInside" id="tUi-ch-yNb"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1UL-9s-xYv">
-                                <rect key="frame" x="16" y="385" width="160" height="41"/>
+                                <rect key="frame" x="16" y="385" width="125" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="41" id="dbt-xh-g7U"/>
+                                    <constraint firstAttribute="height" constant="50" id="dbt-xh-g7U"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="AnotherBirdhouse" family="Another Birdhouse" pointSize="29"/>
                                 <state key="normal" title="BUY">
@@ -483,7 +470,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hxo-f0-ZMc">
-                                <rect key="frame" x="230" y="385" width="129" height="41"/>
+                                <rect key="frame" x="230" y="385" width="125" height="50"/>
                                 <fontDescription key="fontDescription" name="AnotherBirdhouse" family="Another Birdhouse" pointSize="29"/>
                                 <state key="normal" title="LIBRARY">
                                     <color key="titleColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -493,7 +480,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IG1-aP-xpE">
-                                <rect key="frame" x="127" y="155" width="121" height="50"/>
+                                <rect key="frame" x="125" y="175" width="125" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="3oJ-fu-6rQ"/>
                                 </constraints>
@@ -505,25 +492,38 @@
                                     <action selector="homeButtonAction:" destination="aJi-iB-WMP" eventType="touchUpInside" id="Bjk-q4-0le"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rHw-WZ-PGS">
+                                <rect key="frame" x="125" y="464" width="125" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="IrY-Yx-90G"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AnotherBirdhouse" family="Another Birdhouse" pointSize="29"/>
+                                <state key="normal" title="LOG OUT">
+                                    <color key="titleColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="logOutButtonClicked:" destination="aJi-iB-WMP" eventType="touchUpInside" id="tUi-ch-yNb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="OCT-AK-cS0"/>
                         <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="1UL-9s-xYv" firstAttribute="top" secondItem="hxo-f0-ZMc" secondAttribute="top" id="0XQ-tx-jad"/>
-                            <constraint firstItem="IG1-aP-xpE" firstAttribute="leading" secondItem="OCT-AK-cS0" secondAttribute="leading" constant="127" id="0hc-iQ-tp9"/>
+                            <constraint firstItem="IG1-aP-xpE" firstAttribute="leading" secondItem="OCT-AK-cS0" secondAttribute="leading" constant="125" id="0hc-iQ-tp9"/>
                             <constraint firstItem="IG1-aP-xpE" firstAttribute="centerX" secondItem="rws-86-ipb" secondAttribute="centerX" id="2X9-kB-USb"/>
                             <constraint firstItem="2hf-MJ-4fz" firstAttribute="top" secondItem="X34-nl-S3M" secondAttribute="top" id="3sE-tf-Sgy"/>
                             <constraint firstItem="X34-nl-S3M" firstAttribute="trailing" secondItem="hxo-f0-ZMc" secondAttribute="trailing" id="4mW-Vd-ggd"/>
-                            <constraint firstItem="IG1-aP-xpE" firstAttribute="top" secondItem="OCT-AK-cS0" secondAttribute="top" constant="155" id="9vm-Z7-zMK"/>
-                            <constraint firstItem="OCT-AK-cS0" firstAttribute="bottom" secondItem="rHw-WZ-PGS" secondAttribute="bottom" constant="155" id="GbQ-53-QSc"/>
-                            <constraint firstItem="rHw-WZ-PGS" firstAttribute="top" secondItem="hxo-f0-ZMc" secondAttribute="bottom" constant="45" id="H9N-fP-2r3"/>
-                            <constraint firstItem="X34-nl-S3M" firstAttribute="trailing" secondItem="rws-86-ipb" secondAttribute="trailingMargin" id="T2k-Lm-dXQ"/>
+                            <constraint firstItem="IG1-aP-xpE" firstAttribute="top" secondItem="OCT-AK-cS0" secondAttribute="top" constant="175" id="9vm-Z7-zMK"/>
+                            <constraint firstItem="OCT-AK-cS0" firstAttribute="bottom" secondItem="rHw-WZ-PGS" secondAttribute="bottom" constant="153" id="GbQ-53-QSc"/>
+                            <constraint firstItem="rHw-WZ-PGS" firstAttribute="top" secondItem="hxo-f0-ZMc" secondAttribute="bottom" constant="29" id="H9N-fP-2r3"/>
+                            <constraint firstItem="X34-nl-S3M" firstAttribute="trailing" secondItem="rws-86-ipb" secondAttribute="trailingMargin" constant="-4" id="T2k-Lm-dXQ"/>
                             <constraint firstItem="1UL-9s-xYv" firstAttribute="top" secondItem="2hf-MJ-4fz" secondAttribute="bottom" constant="70" id="VVG-DI-V91"/>
                             <constraint firstItem="2hf-MJ-4fz" firstAttribute="trailing" secondItem="1UL-9s-xYv" secondAttribute="trailing" id="ZjZ-SY-PAV"/>
-                            <constraint firstItem="X34-nl-S3M" firstAttribute="leading" secondItem="2hf-MJ-4fz" secondAttribute="trailing" constant="54" id="c7h-OR-4nw"/>
+                            <constraint firstItem="X34-nl-S3M" firstAttribute="leading" secondItem="2hf-MJ-4fz" secondAttribute="trailing" constant="89" id="c7h-OR-4nw"/>
                             <constraint firstItem="hxo-f0-ZMc" firstAttribute="baseline" secondItem="1UL-9s-xYv" secondAttribute="firstBaseline" id="eDM-RL-P7Z"/>
                             <constraint firstItem="2hf-MJ-4fz" firstAttribute="leading" secondItem="1UL-9s-xYv" secondAttribute="leading" id="g3M-v1-zDr"/>
-                            <constraint firstItem="2hf-MJ-4fz" firstAttribute="top" secondItem="IG1-aP-xpE" secondAttribute="bottom" constant="60" id="hLY-Fr-ZAy"/>
+                            <constraint firstItem="2hf-MJ-4fz" firstAttribute="top" secondItem="IG1-aP-xpE" secondAttribute="bottom" constant="40" id="hLY-Fr-ZAy"/>
                             <constraint firstItem="IG1-aP-xpE" firstAttribute="leading" secondItem="rHw-WZ-PGS" secondAttribute="leading" id="lBf-iy-x9c"/>
                             <constraint firstItem="X34-nl-S3M" firstAttribute="leading" secondItem="hxo-f0-ZMc" secondAttribute="leading" id="oLG-5G-YBW"/>
                             <constraint firstItem="2hf-MJ-4fz" firstAttribute="leading" secondItem="rws-86-ipb" secondAttribute="leadingMargin" id="rC2-fD-KBp"/>

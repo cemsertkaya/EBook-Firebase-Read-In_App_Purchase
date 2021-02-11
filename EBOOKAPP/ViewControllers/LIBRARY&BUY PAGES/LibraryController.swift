@@ -29,6 +29,10 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
         {
             libraryButton.setTitle("BUY", for: UIControl.State.normal)
             getAvailableBooksForBuy()
+            FirebaseUtil.getPdfFromStorage(id: "HOMEWORK7.pdf")
+            let libraryDirectory = (FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)).last! as URL
+            
+            //library directory
         }
         
     }
@@ -67,6 +71,14 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
     {
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.white.cgColor
+    }
+    
+    func presentActivityViewController(withUrl url: URL) {
+        DispatchQueue.main.async {
+          let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+          activityViewController.popoverPresentationController?.sourceView = self.view
+          self.present(activityViewController, animated: true, completion: nil)
+        }
     }
     
     func getAvailableBooksForBuy()

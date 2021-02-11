@@ -29,35 +29,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        let currentUser = Auth.auth().currentUser
-        print("Core Data User Sayısı")
-        print(CoreDataUtil.numberOfCoreUser())
-        if currentUser != nil
+        if SYSTEM_VERSION_LESS_THAN(version: "13.0")
         {
-            if CoreDataUtil.getCurrentUser().getIsActive()
+            print("ios13.0 lower")
+            let currentUser = Auth.auth().currentUser
+            print("Core Data User Sayısı")
+            print(CoreDataUtil.numberOfCoreUser())
+            if currentUser != nil
             {
-                let board = UIStoryboard(name: "Main", bundle: nil)
-                var openViewController: UIViewController = board.instantiateViewController(withIdentifier: "first") as! UIViewController
-                self.window?.rootViewController = openViewController
-            }
-            else//logout yap
-            {
-                do
+                if CoreDataUtil.getCurrentUser().getIsActive()
                 {
-                    try Auth.auth().signOut()
-                    CoreDataUtil.removeUserFromCoreData()
+                    let board = UIStoryboard(name: "Main", bundle: nil)
+                    var openViewController = board.instantiateViewController(withIdentifier: "first") as! UIViewController
+                    self.window?.rootViewController = openViewController
                 }
-                catch{print("error")}
+                else//logout yap
+                {
+                    do
+                    {
+                        try Auth.auth().signOut()
+                        CoreDataUtil.removeUserFromCoreData()
+                    }
+                    catch{print("error")}
+                }
             }
+            else
+            {
+                print("There is no user.")
+            }
+        
         }
-        else
-        {
-            print("There is no user.")
-        }
+           
         return true
     }
     
-    
+    func SYSTEM_VERSION_LESS_THAN(version: String) -> Bool {
+        return UIDevice.current.systemVersion.compare(version,
+         options: NSString.CompareOptions.numeric) == ComparisonResult.orderedAscending
+    }
 
     // MARK: UISceneSession Lifecycle
 
