@@ -19,26 +19,14 @@ import Foundation
         self.title = title
     }
     
-    func getId() -> String
-    {
-        self.id
-    }
-    
-    func getLanguage() -> String
-    {
-        self.language
-    }
-    
-    func getTitle() -> String
-    {
-        self.language
-    }
+    func getId() -> String {self.id}
+    func getLanguage() -> String {self.language}
+    func getTitle() -> String {self.title}
     
     func toString() -> String
     {
         let toString = getId() + getLanguage() + getTitle()
         return toString
-        
     }
  }
 

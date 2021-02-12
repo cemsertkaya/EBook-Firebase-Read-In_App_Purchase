@@ -16,13 +16,17 @@ class PdfReaderController: UIViewController {
     @IBOutlet weak var label: UILabel!
     var isLocked = false //if user presses stop button, pdf is locked on the page
     var document = PDFDocument()
+    var currentFileUrl = ""
     override func viewDidLoad()
     {
         super.viewDidLoad()
         //Pdf demo
-        guard let path = Bundle.main.url(forResource: "sample2", withExtension: "pdf")
-        else {return}
-        document = PDFDocument(url:path)!
+        currentFileUrl = FirebaseUtil.getPdfFromLibrary(id: "05180000116.pdf")
+        if currentFileUrl != ""
+        {
+            let url = URL(string: currentFileUrl)
+            document = PDFDocument(url:url!)!
+        }
         viewMain.document = document
         viewMain.autoresizingMask = [.flexibleWidth, .flexibleHeight, .flexibleTopMargin, .flexibleLeftMargin]
         viewMain.displayDirection = .vertical

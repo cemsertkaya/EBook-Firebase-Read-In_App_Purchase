@@ -32,22 +32,15 @@ class FirstController: UIViewController {
             FirebaseUtil.getUserDataAndCreateCore(userId: user!.uid, isActive: isActive)
             
         }
-        else
-        {
-            print("error")
-        }
+        else{print("error")}
         print(CoreDataUtil.getCurrentUser().toString())
         
     }
     
     @IBAction func buyButtonAction(_ sender: Any){self.performSegue(withIdentifier: "toLibrary2", sender: self)}
-    
     @IBAction func libraryButtonAction(_ sender: Any){self.performSegue(withIdentifier: "toLibrary", sender: self)}
-    
     @IBAction func homeButtonAction(_ sender: Any){}
-    
     @IBAction func readButtonAction(_ sender: Any){self.performSegue(withIdentifier: "toRead", sender: self)}
-    
     @IBAction func accountButtonAction(_ sender: Any){self.performSegue(withIdentifier: "toAccount", sender: self)}
     
    /// It selects the cell button type
@@ -64,7 +57,6 @@ class FirstController: UIViewController {
               destinationVC.controllerType = true
            }
     }
-    
     
     func makeWhiteBorder(button: UIButton)
     {

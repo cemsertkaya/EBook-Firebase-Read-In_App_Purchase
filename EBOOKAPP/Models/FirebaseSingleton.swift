@@ -32,20 +32,11 @@ class singleton
         return uniqueInstance!
     }
     
-    func getDb() -> Firestore
-    {
-        return singleton.uniqueInstance!.db
-    }
+    func getDb() -> Firestore {return singleton.uniqueInstance!.db}
     
-    func getUsersDatabase() -> CollectionReference
-    {
-        return singleton.uniqueInstance!.usersDatabase!
-    }
+    func getUsersDatabase() -> CollectionReference {return singleton.uniqueInstance!.usersDatabase!}
     
-    func getBooksDatabase() -> CollectionReference
-    {
-        return singleton.uniqueInstance!.booksDatabase!
-    }
+    func getBooksDatabase() -> CollectionReference {return singleton.uniqueInstance!.booksDatabase!}
     
     
 }
@@ -73,13 +64,48 @@ class FirebaseUtil
         }
     }
     
-    static func getPdfFromStorage(id : String)
+    static func getPdfFromStorageAndSave(id : String)
     {
         let storage = Storage.storage()
         let storageRef = storage.reference()
-        let islandRef = storageRef.child(id)
-        //PUT IT IN CORE DATA
+        var islandRef = storageRef.child(id)
+        //et localURL = URL(string: id)
+        let tmporaryDirectoryURL = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).first
+        let localURL = tmporaryDirectoryURL!.appendingPathComponent(id)
+        islandRef.write(toFile: localURL) { url, error in
+            if let error = error {
+               print("\(error.localizedDescription)")
+            } else
+            {
+               
+                print(localURL)
+            }
+         }
+        
+    }
+    
+    
+    static func getPdfFromLibrary(id : String) -> String
+    {
+        let fileManager = FileManager.default
+        var newUrlString = ""
+        let documentsURL = fileManager.urls(for: .libraryDirectory, in: .userDomainMask)[0]
+        do {
+            let fileURLs = try fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil)
+            for pdf in fileURLs
+            {
+                let pdfPathArray = pdf.absoluteString.split(separator: "/").map(String.init)
+                if pdfPathArray.contains(id)
+                {
+                    newUrlString = pdf.absoluteString
+                    print(newUrlString)
+                }
+            }
+        } catch {
+            print("Error while enumerating files \(documentsURL.path): \(error.localizedDescription)")
+        }
+        return newUrlString
     }
 }
     
-
+ 

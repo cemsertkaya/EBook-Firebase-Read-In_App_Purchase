@@ -29,12 +29,7 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
         {
             libraryButton.setTitle("BUY", for: UIControl.State.normal)
             getAvailableBooksForBuy()
-            FirebaseUtil.getPdfFromStorage(id: "HOMEWORK7.pdf")
-            let libraryDirectory = (FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)).last! as URL
-            
-            //library directory
         }
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -53,14 +48,15 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "libraryCell", for: indexPath) as! LibraryCell
         cell.buttonType = controllerType
-        
         if !controllerType//This is library view controller
         {
+            cell.bookId = self.booksForLibrary[indexPath.row].getId()
             cell.label.text = self.booksForLibrary[indexPath.row].getTitle()
             libraryButton.setTitle("LIBRARY", for: UIControl.State.normal)
         }
         else//This is buy view controller
         {
+            cell.bookId = self.booksForBuy[indexPath.row].getId()
             cell.label.text = self.booksForBuy[indexPath.row].getTitle()
             libraryButton.setTitle("BUY", for: UIControl.State.normal)
         }
@@ -74,7 +70,8 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
     }
     
     func presentActivityViewController(withUrl url: URL) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async
+        {
           let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
           activityViewController.popoverPresentationController?.sourceView = self.view
           self.present(activityViewController, animated: true, completion: nil)

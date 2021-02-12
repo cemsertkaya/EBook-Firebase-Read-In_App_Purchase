@@ -9,6 +9,7 @@ import UIKit
 
 class LibraryCell: UITableViewCell {
 
+    var bookId = ""
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var readButton: UIButton!
     @IBOutlet weak var label: UILabel!
@@ -31,7 +32,6 @@ class LibraryCell: UITableViewCell {
             if buttonType == false
             {
                 readButton.setTitle("READ", for: UIControl.State.normal)
-                
             }
             else
             {
@@ -45,7 +45,18 @@ class LibraryCell: UITableViewCell {
         if buttonType != nil
         {
             if buttonType == false{readButtonAction()}
-            else{buyButtonAction()}
+            else
+            {
+                print("bookId: " + bookId)
+                if bookId != ""
+                {
+                    buyButtonAction(id: self.bookId)
+                }
+                else
+                {
+                    print("Unexisted book id.")
+                }
+            }
         }
     }
     
@@ -55,9 +66,10 @@ class LibraryCell: UITableViewCell {
         button.layer.borderColor = UIColor.white.cgColor
     }
     
-    func buyButtonAction()
+    func buyButtonAction(id: String)
     {
-        
+        //IN APP PURCHASE CODES IN HERE
+        FirebaseUtil.getPdfFromStorageAndSave(id: id)
     }
     
     func readButtonAction()

@@ -153,7 +153,7 @@ class CoreDataUtil
        
         FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         //https://www.youtube.com/watch?v=asB8PIveZsI&ab_channel=TheSwiftGuy
-        //WATCH
+        //
         
     }
     
