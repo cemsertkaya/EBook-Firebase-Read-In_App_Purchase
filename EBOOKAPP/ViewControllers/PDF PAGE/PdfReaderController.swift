@@ -13,7 +13,8 @@ class PdfReaderController: UIViewController {
 
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var viewMain: PDFView!
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var leftPageNumber: UITextView!
+    @IBOutlet weak var rightPageNumber: UITextView!
     var isLocked = false //if user presses stop button, pdf is locked on the page
     var document = PDFDocument()
     var currentFileUrl = String()
@@ -30,10 +31,6 @@ class PdfReaderController: UIViewController {
             }
             
         }
-        if let page10 = document.page(at: Int(startingPageNumber))
-        {
-            viewMain.go(to: page10)
-        }
         viewMain.document = document
         viewMain.autoresizingMask = [.flexibleWidth, .flexibleHeight, .flexibleTopMargin, .flexibleLeftMargin]
         viewMain.displayDirection = .vertical
@@ -44,7 +41,25 @@ class PdfReaderController: UIViewController {
         viewMain.maxScaleFactor = 4.0
         viewMain.minScaleFactor = viewMain.scaleFactorForSizeToFit
         viewMain.backgroundColor = UIColor.white
+        rightPageNumber.text = "/" + String(document.pageCount)
+        let validStartingPageIndex: Int = Int(startingPageNumber)
+        let page = viewMain.document?.page(at:validStartingPageIndex)
+        if page != nil
+        {
+            viewMain.go(to: page!)
+        }
+        let index = document.index(for: viewMain.currentPage!)
+        leftPageNumber.text = String(index+1)
+        NotificationCenter.default.addObserver(self,selector: #selector(pageDidChange(notification:)),name: Notification.Name.PDFViewPageChanged,object: nil)
     }
+    
+    
+    @objc private func pageDidChange(notification: Notification) {
+          // pdfView is of type PDFView
+        var index = document.index(for: viewMain.currentPage!)
+        leftPageNumber.text = String(index+1)
+     }
+
     
     @IBAction func stopButtonAction(_ sender: Any)
     {
@@ -54,17 +69,20 @@ class PdfReaderController: UIViewController {
    
     @IBAction func nextPageAction(_ sender: Any)//next page button
     {
-        var currentPage = self.viewMain.currentPage?.pageRef?.pageNumber
-        let validPageIndex: Int = currentPage!
+        let index = document.index(for: viewMain.currentPage!)
+        let validPageIndex: Int = index + 1
         guard let targetPage = viewMain.document!.page(at: validPageIndex) else { return }
+        print(targetPage.index)
         viewMain.go(to: targetPage)
     }
     
     @IBAction func previousPageAction(_ sender: Any)//previous page button
     {
-        var currentPage = self.viewMain.currentPage?.pageRef?.pageNumber
-        let validPageIndex: Int = currentPage!
+        let index = document.index(for: viewMain.currentPage!)
+        let validPageIndex: Int = index - 1
         guard let targetPage = viewMain.document!.page(at: validPageIndex) else { return }
+        print(targetPage.index)
         viewMain.go(to: targetPage)
+
     }
 }
