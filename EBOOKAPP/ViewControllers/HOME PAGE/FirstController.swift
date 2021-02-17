@@ -78,6 +78,7 @@ class FirstController: UIViewController, UITableViewDelegate, UITableViewDataSou
             let cell0 =  tableView.dequeueReusableCell(withIdentifier: "singleCell", for: indexPath) as! SingleCell
             cell0.button.setTitle("HOME", for: UIControl.State.normal)
             cell0.buttonType = 0
+            cell0.yourController = self
             cellDefault = cell0
         case 1://READ & ACCOUNT
             let cell1 = tableView.dequeueReusableCell(withIdentifier: "doubleCell", for: indexPath) as! DoubleCell
@@ -130,7 +131,7 @@ class FirstController: UIViewController, UITableViewDelegate, UITableViewDataSou
               let id = CoreDataUtil.getCurrentUser().getCurrentBookId()
               destinationVC.currentFileUrl = id
               destinationVC.startingPageNumber = userEbooks[id]!
-            
+              destinationVC.libraryMapInPdf = userEbooks
            }
     }
     

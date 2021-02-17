@@ -64,6 +64,15 @@ class FirebaseUtil
         }
     }
     
+    ///updates user's ebook array
+    static func updateEbooksDict(dict : [String:Int64], userId : String)
+    {
+        let docRef = singleton.instance().getUsersDatabase().document(userId)
+        let newDict = ["ebooks":dict]
+        docRef.updateData(newDict)
+        print("Ebook page is updated.")
+    }
+    
     static func getEbooks(userId : String, completion: @escaping ([String:Int64]?, Error?) -> Void)
     {
         let user =  Auth.auth().currentUser
@@ -93,12 +102,13 @@ class FirebaseUtil
     
     
     
-    static func getPdfFromStorageAndSave(id : String)
+    static func getPdfFromStorageAndSave(id : String, controller: UIViewController)
     {
+        controller.showSpinner()
         let storage = Storage.storage()
         let storageRef = storage.reference()
-        var islanRefPdf = id + ".pdf"
-        var islandRef = storageRef.child(islanRefPdf)
+        let islanRefPdf = id + ".pdf"
+        let islandRef = storageRef.child(islanRefPdf)
         //et localURL = URL(string: id)
         let tmporaryDirectoryURL = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).first
         let localURL = tmporaryDirectoryURL!.appendingPathComponent(id)
@@ -108,6 +118,8 @@ class FirebaseUtil
             } else
             {
                 print(localURL)
+                controller.removeSpinner()
+                controller.performSegue(withIdentifier: "libraryToPdf", sender: controller)
             }
          }
     }
@@ -135,6 +147,8 @@ class FirebaseUtil
         }
         return newUrlString
     }
+    
+    
 }
     
  

@@ -31,10 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         if SYSTEM_VERSION_LESS_THAN(version: "13.0")
         {
-            print("ios13.0 lower")
+            print("iOS version of this device is lower than 13.0.")
             let currentUser = Auth.auth().currentUser
-            print("Core Data User Sayısı")
-            print(CoreDataUtil.numberOfCoreUser())
+            print("Core Data User Count: " + String(CoreDataUtil.numberOfCoreUser()))
             if currentUser != nil
             {
                 if CoreDataUtil.getCurrentUser().getIsActive()

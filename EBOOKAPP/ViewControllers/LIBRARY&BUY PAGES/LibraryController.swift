@@ -18,7 +18,8 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
     @IBOutlet weak var libraryButton: UIButton!
     var libraryMap = [String:Int64]()
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         tableView.delegate = self; tableView.dataSource = self;
         makeWhiteBorder(button: homeButton)
@@ -31,7 +32,6 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
         {
             libraryButton.setTitle("BUY", for: UIControl.State.normal)
             getAvailableBooksForBuy()
-            
         }
     }
     
@@ -74,16 +74,27 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
     @objc func libraryAction(sender: UIButton)
     {
         let id = self.booksForLibrary[sender.tag].getId()
-        CoreDataUtil.updateCurrentUserBookId(currentBookId: id)
-        print(CoreDataUtil.getCurrentUser().toString())
-        self.performSegue(withIdentifier: "libraryToPdf", sender: self)
+        if FirebaseUtil.getPdfFromLibrary(id: id) != "" //it checks the book is downloaded to the library of phone
+        {
+            CoreDataUtil.updateCurrentUserBookId(currentBookId: id)
+            print(CoreDataUtil.getCurrentUser().toString())
+            self.performSegue(withIdentifier: "libraryToPdf", sender: self)
+        }
+        else// if the pdf is not downloaded before download it
+        {
+            print("böyle bir pdf yok indirilme işlemi yapılacak.....")
+            CoreDataUtil.updateCurrentUserBookId(currentBookId: id)
+            FirebaseUtil.getPdfFromStorageAndSave(id: id, controller: self)//download this pdf from firebase
+            print(CoreDataUtil.getCurrentUser().toString())
+        }
+        
     }
     
     @objc func buyAction(sender: UIButton)
     {
         let id = self.booksForBuy[sender.tag].getId()
         print(id)
-        FirebaseUtil.getPdfFromStorageAndSave(id: id)
+        FirebaseUtil.getPdfFromStorageAndSave(id: id, controller: self)
     }
     
     
@@ -165,11 +176,16 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
             vc.currentFileUrl = id
             var pageNumber = self.libraryMap[id]!
             vc.startingPageNumber = pageNumber
+            vc.libraryMapInPdf = libraryMap
         }
      }
-
+    
+    
+    
 }
 
-    
+
+
+
 
 

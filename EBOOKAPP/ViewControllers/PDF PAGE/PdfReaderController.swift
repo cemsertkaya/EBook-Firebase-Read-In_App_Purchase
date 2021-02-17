@@ -19,6 +19,7 @@ class PdfReaderController: UIViewController {
     var document = PDFDocument()
     var currentFileUrl = String()
     var startingPageNumber = Int64()
+    var libraryMapInPdf = [String:Int64]()
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -26,10 +27,7 @@ class PdfReaderController: UIViewController {
         {
             let libraryPath = FirebaseUtil.getPdfFromLibrary(id: currentFileUrl)
             let url = URL(string: libraryPath)
-            if url != nil{
-                document = PDFDocument(url:url!)!
-            }
-            
+            if url != nil{document = PDFDocument(url:url!)!}
         }
         viewMain.document = document
         viewMain.autoresizingMask = [.flexibleWidth, .flexibleHeight, .flexibleTopMargin, .flexibleLeftMargin]
@@ -44,29 +42,36 @@ class PdfReaderController: UIViewController {
         rightPageNumber.text = "/" + String(document.pageCount)
         let validStartingPageIndex: Int = Int(startingPageNumber)
         let page = viewMain.document?.page(at:validStartingPageIndex)
-        if page != nil
-        {
-            viewMain.go(to: page!)
-        }
+        if page != nil{viewMain.go(to: page!)}
         let index = document.index(for: viewMain.currentPage!)
         leftPageNumber.text = String(index+1)
         NotificationCenter.default.addObserver(self,selector: #selector(pageDidChange(notification:)),name: Notification.Name.PDFViewPageChanged,object: nil)
     }
     
     
-    @objc private func pageDidChange(notification: Notification) {
+    ///is called from notification center when user skip the page, updates current page label
+    @objc private func pageDidChange(notification: Notification)
+    {
           // pdfView is of type PDFView
         var index = document.index(for: viewMain.currentPage!)
         leftPageNumber.text = String(index+1)
      }
 
     
+    ///stop button action, updates ebooks map in firestore
     @IBAction func stopButtonAction(_ sender: Any)
     {
-        
+        let index = document.index(for: viewMain.currentPage!)
+        let validPageIndex: Int = index // current page
+        if libraryMapInPdf[currentFileUrl] != nil
+        {
+            libraryMapInPdf[currentFileUrl]  = Int64(validPageIndex) //updates dict
+            FirebaseUtil.updateEbooksDict(dict: libraryMapInPdf, userId: CoreDataUtil.getCurrentUser().getUserId())
+        }
+        else{print("Current pdf id does not exist in map.")}
     }
     
-   
+   ///Next page button action
     @IBAction func nextPageAction(_ sender: Any)//next page button
     {
         let index = document.index(for: viewMain.currentPage!)
@@ -76,6 +81,7 @@ class PdfReaderController: UIViewController {
         viewMain.go(to: targetPage)
     }
     
+    ///Previous button action
     @IBAction func previousPageAction(_ sender: Any)//previous page button
     {
         let index = document.index(for: viewMain.currentPage!)

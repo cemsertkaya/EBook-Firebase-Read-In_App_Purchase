@@ -21,6 +21,7 @@
 		B2290CD125C2F9B400EEBF1A /* EBOOKAPPUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2290CD025C2F9B400EEBF1A /* EBOOKAPPUITests.swift */; };
 		B2290CF425C3112100EEBF1A /* PdfReaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2290CF325C3112100EEBF1A /* PdfReaderController.swift */; };
 		B2290D0E25C33C0800EEBF1A /* Another Birdhouse.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2290D0725C3351100EEBF1A /* Another Birdhouse.ttf */; };
+		B22C6A4D25DBEE1300264881 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22C6A4C25DBEE1300264881 /* Util.swift */; };
 		B2428F5925C73DA1007525D0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2428F5825C73DA1007525D0 /* GoogleService-Info.plist */; };
 		B24B5F8125C9902D00140C79 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24B5F8025C9902D00140C79 /* CurrentUser.swift */; };
 		B25E51AE25C5DB62009B6E10 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25E51AD25C5DB62009B6E10 /* AccountViewController.swift */; };
@@ -75,6 +76,7 @@
 		B2290CD225C2F9B400EEBF1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2290CF325C3112100EEBF1A /* PdfReaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfReaderController.swift; sourceTree = "<group>"; };
 		B2290D0725C3351100EEBF1A /* Another Birdhouse.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Another Birdhouse.ttf"; sourceTree = "<group>"; };
+		B22C6A4C25DBEE1300264881 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		B2428F5825C73DA1007525D0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B24B5F8025C9902D00140C79 /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		B25E51AD25C5DB62009B6E10 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				B2615AC525C8AE0F005A3FE7 /* FirebaseSingleton.swift */,
 				B24B5F8025C9902D00140C79 /* CurrentUser.swift */,
 				B226D51F25D1E1B10071DE84 /* Book.swift */,
+				B22C6A4C25DBEE1300264881 /* Util.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -479,6 +482,7 @@
 				B219C9B125C48AF20039BF88 /* LoginViewController.swift in Sources */,
 				B25E51CA25C5DD2E009B6E10 /* RegisterViewController.swift in Sources */,
 				B2652D7925DA073B00796D30 /* DoubleCell.swift in Sources */,
+				B22C6A4D25DBEE1300264881 /* Util.swift in Sources */,
 				B2290CB325C2F9AF00EEBF1A /* ViewController.swift in Sources */,
 				B25E51AE25C5DB62009B6E10 /* AccountViewController.swift in Sources */,
 				B2615ABB25C88A26005A3FE7 /* CoreData.xcdatamodeld in Sources */,

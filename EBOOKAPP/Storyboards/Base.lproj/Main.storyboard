@@ -108,17 +108,17 @@
                                 <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="1" green="0.98823529409999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="registerCell" rowHeight="79" id="qHL-c9-duF" customClass="RegisterCell" customModule="EBOOKAPP" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="79"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="registerCell" rowHeight="105" id="qHL-c9-duF" customClass="RegisterCell" customModule="EBOOKAPP" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="105"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qHL-c9-duF" id="Y69-1E-rmb" customClass="RegisterCell" customModule="EBOOKAPP" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="105"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LABEL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Oub-FU-zG0">
                                                     <rect key="frame" x="16" y="0.0" width="331" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="AnotherBirdhouse" family="Another Birdhouse" pointSize="25"/>
+                                                    <fontDescription key="fontDescription" name="AnotherBirdhouse" family="Another Birdhouse" pointSize="27"/>
                                                     <color key="textColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -126,7 +126,7 @@
                                                     <rect key="frame" x="16" y="34" width="331" height="34"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="textColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <fontDescription key="fontDescription" name="AnotherBirdhouse" family="Another Birdhouse" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" name="AnotherBirdhouse" family="Another Birdhouse" pointSize="25"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
@@ -181,7 +181,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1fY-Ja-dYz">
-                                <rect key="frame" x="0.0" y="94" width="375" height="345"/>
+                                <rect key="frame" x="0.0" y="171" width="375" height="268"/>
                                 <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="1" green="0.98823529409999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -277,7 +277,7 @@
                             <constraint firstItem="1fY-Ja-dYz" firstAttribute="centerX" secondItem="p1Y-dR-Ixa" secondAttribute="centerX" id="GVu-PU-jjC"/>
                             <constraint firstItem="bLf-aa-bsW" firstAttribute="bottom" secondItem="0qw-KS-5UG" secondAttribute="bottom" id="JPI-uc-t6H"/>
                             <constraint firstItem="bLf-aa-bsW" firstAttribute="top" secondItem="1fY-Ja-dYz" secondAttribute="bottom" constant="31" id="ShE-TN-g7e"/>
-                            <constraint firstItem="1fY-Ja-dYz" firstAttribute="top" secondItem="efl-mS-po0" secondAttribute="top" constant="50" id="ftz-Qt-qZH"/>
+                            <constraint firstItem="1fY-Ja-dYz" firstAttribute="top" secondItem="efl-mS-po0" secondAttribute="top" constant="127" id="ftz-Qt-qZH"/>
                             <constraint firstItem="efl-mS-po0" firstAttribute="bottom" secondItem="y8c-Lg-omg" secondAttribute="bottom" constant="37" id="fvK-6o-sOd"/>
                             <constraint firstItem="1fY-Ja-dYz" firstAttribute="centerX" secondItem="y8c-Lg-omg" secondAttribute="centerX" id="hMR-kJ-Hbx"/>
                             <constraint firstItem="0qw-KS-5UG" firstAttribute="leading" secondItem="bLf-aa-bsW" secondAttribute="trailing" constant="7" id="kRy-zZ-hLP"/>
@@ -804,7 +804,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="5cd-7R-Q4D"/>
-        <segue reference="gG8-Gb-EAX"/>
+        <segue reference="Tvm-H6-JwH"/>
         <segue reference="8T9-QV-9Yb"/>
     </inferredMetricsTieBreakers>
     <resources>

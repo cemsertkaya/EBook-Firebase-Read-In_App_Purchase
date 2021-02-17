@@ -67,7 +67,7 @@ class RegisterViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {return 1}
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {return 79}
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {return 105}
     
     func createToolbar(textField : UITextField) {
         let toolBar = UIToolbar()

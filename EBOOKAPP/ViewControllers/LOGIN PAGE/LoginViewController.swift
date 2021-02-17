@@ -47,7 +47,7 @@ class LoginViewController: UIViewController,UITableViewDelegate, UITableViewData
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {return 100}
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {return 105}
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {return 2}
     func makeWhiteBorder(button: UIButton){button.layer.borderWidth = 2;button.layer.borderColor = UIColor.white.cgColor}
     
@@ -86,6 +86,7 @@ class LoginViewController: UIViewController,UITableViewDelegate, UITableViewData
     
     @IBAction func loginButtonAction(_ sender: Any)
     {
+        print("Login Button Clicked")
         loginButton.isEnabled = false
         let email = getCell(index: 0).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let password = getCell(index: 1).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -97,6 +98,7 @@ class LoginViewController: UIViewController,UITableViewDelegate, UITableViewData
                 {
                     self.makeAlert(titleInput: "Error!", messageInput: error?.localizedDescription ?? "Error")
                     self.loginButton.isEnabled = true
+                    print("Login Error")
                 }
                 else//if coredata not exist create and set it.
                 {
@@ -104,6 +106,11 @@ class LoginViewController: UIViewController,UITableViewDelegate, UITableViewData
                     self.performSegue(withIdentifier: "toFirstController1", sender: self)
                 }
             }
+        }
+        else
+        {
+            self.makeAlert(titleInput: "Error!", messageInput: "Please fill the all blanks.")
+            loginButton.isEnabled = true
         }
     }
     
