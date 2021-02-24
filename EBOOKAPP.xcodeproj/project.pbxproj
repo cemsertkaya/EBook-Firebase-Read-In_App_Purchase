@@ -22,6 +22,7 @@
 		B2290CF425C3112100EEBF1A /* PdfReaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2290CF325C3112100EEBF1A /* PdfReaderController.swift */; };
 		B2290D0E25C33C0800EEBF1A /* Another Birdhouse.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2290D0725C3351100EEBF1A /* Another Birdhouse.ttf */; };
 		B22C6A4D25DBEE1300264881 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22C6A4C25DBEE1300264881 /* Util.swift */; };
+		B23C096125E2C3F500CC2E6C /* Reach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23C096025E2C3F500CC2E6C /* Reach.swift */; };
 		B2428F5925C73DA1007525D0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2428F5825C73DA1007525D0 /* GoogleService-Info.plist */; };
 		B24B5F8125C9902D00140C79 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24B5F8025C9902D00140C79 /* CurrentUser.swift */; };
 		B25E51AE25C5DB62009B6E10 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25E51AD25C5DB62009B6E10 /* AccountViewController.swift */; };
@@ -32,6 +33,7 @@
 		B2652D7925DA073B00796D30 /* DoubleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2652D7825DA073B00796D30 /* DoubleCell.swift */; };
 		B2652D7E25DA074500796D30 /* SingleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2652D7D25DA074400796D30 /* SingleCell.swift */; };
 		B2A1823725CF40C10054A805 /* LibraryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A1823625CF40C10054A805 /* LibraryController.swift */; };
+		B2A55DA525E67775005BD2C9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A55DA425E67775005BD2C9 /* StoreKit.framework */; };
 		B2AC0EAB25CF424D003EB258 /* LibraryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2AC0EAA25CF424D003EB258 /* LibraryCell.swift */; };
 		B2B4EA2D25C9856600EBEBA8 /* CoreDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B4EA2C25C9856600EBEBA8 /* CoreDataUtil.swift */; };
 		B2B8DB3625C6157300892F13 /* Countries.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B8DB3525C6157300892F13 /* Countries.swift */; };
@@ -77,6 +79,7 @@
 		B2290CF325C3112100EEBF1A /* PdfReaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfReaderController.swift; sourceTree = "<group>"; };
 		B2290D0725C3351100EEBF1A /* Another Birdhouse.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Another Birdhouse.ttf"; sourceTree = "<group>"; };
 		B22C6A4C25DBEE1300264881 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		B23C096025E2C3F500CC2E6C /* Reach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reach.swift; sourceTree = "<group>"; };
 		B2428F5825C73DA1007525D0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B24B5F8025C9902D00140C79 /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		B25E51AD25C5DB62009B6E10 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +91,7 @@
 		B2652D7D25DA074400796D30 /* SingleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleCell.swift; sourceTree = "<group>"; };
 		B2A1823625CF40C10054A805 /* LibraryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LibraryController.swift; path = "EBOOKAPP/ViewControllers/LIBRARY&BUY PAGES/LibraryController.swift"; sourceTree = SOURCE_ROOT; };
 		B2A3D7D425C766BC004EC232 /* EBOOKAPP */ = {isa = PBXFileReference; lastKnownFileType = folder; path = EBOOKAPP; sourceTree = "<group>"; };
+		B2A55DA425E67775005BD2C9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		B2AC0EAA25CF424D003EB258 /* LibraryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCell.swift; sourceTree = "<group>"; };
 		B2B4EA2C25C9856600EBEBA8 /* CoreDataUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUtil.swift; sourceTree = "<group>"; };
 		B2B8DB3525C6157300892F13 /* Countries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countries.swift; sourceTree = "<group>"; };
@@ -100,6 +104,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				19EC397FA114E17F08288458 /* Pods_EBOOKAPP.framework in Frameworks */,
+				B2A55DA525E67775005BD2C9 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +137,7 @@
 		AECD89FDFD2F0429D1E430F8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B2A55DA425E67775005BD2C9 /* StoreKit.framework */,
 				D72482DC367A21BD95BA725A /* Pods_EBOOKAPP.framework */,
 			);
 			name = Frameworks;
@@ -231,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				B2B8DB3525C6157300892F13 /* Countries.swift */,
+				B23C096025E2C3F500CC2E6C /* Reach.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -483,6 +490,7 @@
 				B25E51CA25C5DD2E009B6E10 /* RegisterViewController.swift in Sources */,
 				B2652D7925DA073B00796D30 /* DoubleCell.swift in Sources */,
 				B22C6A4D25DBEE1300264881 /* Util.swift in Sources */,
+				B23C096125E2C3F500CC2E6C /* Reach.swift in Sources */,
 				B2290CB325C2F9AF00EEBF1A /* ViewController.swift in Sources */,
 				B25E51AE25C5DB62009B6E10 /* AccountViewController.swift in Sources */,
 				B2615ABB25C88A26005A3FE7 /* CoreData.xcdatamodeld in Sources */,

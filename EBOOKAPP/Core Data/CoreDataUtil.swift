@@ -41,7 +41,7 @@ class CoreDataUtil
     
     static func getCurrentUser() -> CurrentUser
     {
-        var currentUser = CurrentUser()
+        let currentUser = CurrentUser()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
@@ -111,7 +111,7 @@ class CoreDataUtil
     
     ///Sets true or false to isActive bool
     static func updateCurrentUserOnAccount(age: String, country: String, gender:String){
-        var managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         let result = try? managedObjectContext.fetch(fetchRequest)
         let resultData = result as! [NSManagedObject]
@@ -131,7 +131,7 @@ class CoreDataUtil
     ///Update user's current book id
     static func updateCurrentUserBookId(currentBookId : String)
     {
-        var managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         let result = try? managedObjectContext.fetch(fetchRequest)
         let resultData = result as! [NSManagedObject]

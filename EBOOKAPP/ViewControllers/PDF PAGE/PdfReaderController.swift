@@ -53,7 +53,7 @@ class PdfReaderController: UIViewController {
     @objc private func pageDidChange(notification: Notification)
     {
           // pdfView is of type PDFView
-        var index = document.index(for: viewMain.currentPage!)
+        let index = document.index(for: viewMain.currentPage!)
         leftPageNumber.text = String(index+1)
      }
 

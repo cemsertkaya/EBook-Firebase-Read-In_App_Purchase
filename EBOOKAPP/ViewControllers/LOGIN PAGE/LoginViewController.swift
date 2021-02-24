@@ -100,9 +100,9 @@ class LoginViewController: UIViewController,UITableViewDelegate, UITableViewData
                     self.loginButton.isEnabled = true
                     print("Login Error")
                 }
-                else//if coredata not exist create and set it.
+                else
                 {
-                    let user = Auth.auth().currentUser
+                    //let user = Auth.auth().currentUser
                     self.performSegue(withIdentifier: "toFirstController1", sender: self)
                 }
             }

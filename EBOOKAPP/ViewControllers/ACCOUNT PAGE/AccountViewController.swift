@@ -21,6 +21,9 @@ class AccountViewController: UIViewController,UITableViewDelegate,UITableViewDat
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
+        rightSwipe.direction = .right
+        view.addGestureRecognizer(rightSwipe)
         tableView.delegate = self; tableView.dataSource = self
         tableView.backgroundView = nil
         currentUser = CoreDataUtil.getCurrentUser()
@@ -87,23 +90,31 @@ class AccountViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     @IBAction func saveButtonAction(_ sender: Any)
     {
-        let age = getCell(index: 1).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        let country = getCell(index: 0).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        let gender =  getCell(index: 2).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        if age != "" && country != ""  && gender != ""
+        let status = Reach().connectionStatus()
+        switch status
         {
-                saveButton.isEnabled = false
-                let user = Auth.auth().currentUser
-                CoreDataUtil.updateCurrentUserOnAccount(age: age, country: country, gender: gender)
-                let changeDict =  ["age":age,"country":country,"gender":gender] as [String : Any]
-                singleton.instance().getUsersDatabase().document(user!.uid).updateData(changeDict)
-                saveButton.isEnabled = true
+            case .unknown, .offline:
+                makeAlert(titleInput: "Aooo!!", messageInput: "Please open your internet for changing your account options.")
+            case .online(.wwan), .online(.wiFi):
+                let age = getCell(index: 1).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                let country = getCell(index: 0).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                let gender =  getCell(index: 2).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                if age != "" && country != ""  && gender != ""
+                {
+                        saveButton.isEnabled = false
+                        let user = Auth.auth().currentUser
+                        CoreDataUtil.updateCurrentUserOnAccount(age: age, country: country, gender: gender)
+                        let changeDict =  ["age":age,"country":country,"gender":gender] as [String : Any]
+                        singleton.instance().getUsersDatabase().document(user!.uid).updateData(changeDict)
+                        saveButton.isEnabled = true
+                }
+                else
+                {
+                    makeAlert(titleInput: "Aooo!!", messageInput: "Please fill all the blanks.")
+                    saveButton.isEnabled = true
+                }
         }
-        else
-        {
-            makeAlert(titleInput: "Aooo!!", messageInput: "Please fill all the blanks.")
-            saveButton.isEnabled = true
-        }
+        
     }
     
     func getCell(index : Int) -> RegisterCell
@@ -121,5 +132,17 @@ class AccountViewController: UIViewController,UITableViewDelegate,UITableViewDat
             self.present(alert, animated:true, completion: nil)
     }
     
-   
+    @IBAction func homeButtonClicked(_ sender: Any)
+    {
+        self.performSegue(withIdentifier: "toFirstFromAccount", sender: self)
+    }
+    
+    @objc func handleSwipes(_ sender:UISwipeGestureRecognizer)
+    {
+           if (sender.direction == .right)// Swipe right
+           {
+                self.performSegue(withIdentifier: "toFirstFromAccount", sender: self)
+           }
+    }
+    
 }

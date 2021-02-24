@@ -84,7 +84,7 @@ class FirebaseUtil
            if let document = document, document.exists
            {
                let dataDescription = document.data()
-               var thisMap = dataDescription?["ebooks"] as! [String:Int64]
+               let thisMap = dataDescription?["ebooks"] as! [String:Int64]
                completion(thisMap,nil)
            }
            else if let error = error
@@ -98,8 +98,6 @@ class FirebaseUtil
         }
         
     }
- 
-    
     
     
     static func getPdfFromStorageAndSave(id : String, controller: UIViewController)

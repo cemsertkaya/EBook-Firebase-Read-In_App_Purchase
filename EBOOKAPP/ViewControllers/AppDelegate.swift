@@ -26,39 +26,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return container
     }()
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
+    {
         // Override point for customization after application launch.
+        //IAPManager.shared.fetchProducts()
         FirebaseApp.configure()
         if SYSTEM_VERSION_LESS_THAN(version: "13.0")
         {
             print("iOS version of this device is lower than 13.0.")
-            let currentUser = Auth.auth().currentUser
-            print("Core Data User Count: " + String(CoreDataUtil.numberOfCoreUser()))
-            if currentUser != nil
-            {
-                if CoreDataUtil.getCurrentUser().getIsActive()
+            let status = Reach().connectionStatus()
+            switch status {
+            case .unknown, .offline:
+                print("Not connected")
+            case .online(.wwan), .online(.wiFi):
+                print("Connected")
+                let currentUser = Auth.auth().currentUser
+                print("Core Data User Sayısı")
+                print(CoreDataUtil.numberOfCoreUser())
+                if currentUser != nil
                 {
-                    let board = UIStoryboard(name: "Main", bundle: nil)
-                    var openViewController = board.instantiateViewController(withIdentifier: "first") as! UIViewController
-                    self.window?.rootViewController = openViewController
-                }
-                else//logout yap
-                {
-                    do
+                    if CoreDataUtil.getCurrentUser().getIsActive()
                     {
-                        try Auth.auth().signOut()
-                        CoreDataUtil.removeUserFromCoreData()
+                        let board = UIStoryboard(name: "Main", bundle: nil)
+                        let openViewController = board.instantiateViewController(withIdentifier: "first")
+                        self.window?.rootViewController = openViewController
                     }
-                    catch{print("error")}
+                    else//logout yap
+                    {
+                        do
+                        {
+                            try Auth.auth().signOut()
+                            CoreDataUtil.removeUserFromCoreData()
+                            print("There is auth but stay active is closed.")
+                        }
+                        catch{print("error")}
+                    }
                 }
+                else{print("There is no auth.")}
             }
-            else
-            {
-                print("There is no user.")
-            }
-        
         }
-           
+        
         return true
     }
     

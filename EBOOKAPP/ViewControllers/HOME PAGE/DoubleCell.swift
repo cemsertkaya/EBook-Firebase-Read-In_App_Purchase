@@ -36,7 +36,7 @@ class DoubleCell: UITableViewCell {
             }
             else
             {
-                CoreDataUtil.getCurrentUser().toString()
+                print(CoreDataUtil.getCurrentUser().toString())
                 if yourController?.userEbooks.count != 0
                 {
                     yourController!.performSegue(withIdentifier: "toRead", sender: yourController!)

@@ -29,7 +29,7 @@
                                     <color key="titleColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="cWU-0C-GpP" kind="show" id="zYJ-Rx-gpX"/>
+                                    <action selector="loginButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZJ0-Vx-Kpd"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dFz-3s-ZhZ">
@@ -39,7 +39,7 @@
                                     <color key="titleColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="RAk-bF-VaQ" kind="show" id="YPr-EO-7JZ"/>
+                                    <action selector="registerButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="08K-eV-y1O"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -58,11 +58,14 @@
                     <connections>
                         <outlet property="loginButton" destination="W0C-s1-TRN" id="v8o-Sc-Ha9"/>
                         <outlet property="registerButton" destination="dFz-3s-ZhZ" id="hKI-be-xtg"/>
+                        <segue destination="aJi-iB-WMP" kind="presentation" identifier="toZero" modalPresentationStyle="fullScreen" id="Jzh-Tt-BUh"/>
+                        <segue destination="RAk-bF-VaQ" kind="show" identifier="toRegister" id="Jkn-SV-rZs"/>
+                        <segue destination="cWU-0C-GpP" kind="show" identifier="toLogin" id="FU6-ET-Dnc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="197.10144927536234" y="136.60714285714286"/>
+            <point key="canvasLocation" x="196" y="79"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="bxK-ld-lAB">
@@ -381,7 +384,7 @@
                                     <color key="titleColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="aJi-iB-WMP" kind="presentation" modalPresentationStyle="fullScreen" id="Evx-TY-1yd"/>
+                                    <action selector="homeButtonAction:" destination="vyh-Bs-m9f" eventType="touchUpInside" id="htN-58-49I"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5S-J2-zMq">
@@ -419,6 +422,7 @@
                         <outlet property="libraryButton" destination="N5S-J2-zMq" id="1p8-c8-dX9"/>
                         <outlet property="tableView" destination="FaQ-8T-yD0" id="nY7-Yt-9y1"/>
                         <segue destination="Tcp-13-81I" kind="presentation" identifier="libraryToPdf" modalPresentationStyle="fullScreen" id="5cd-7R-Q4D"/>
+                        <segue destination="aJi-iB-WMP" kind="presentation" identifier="toFirstFromLibrary" modalPresentationStyle="fullScreen" id="hoK-YC-n3O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mON-ee-MPe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -537,9 +541,9 @@
                         <outlet property="tableView" destination="Hg5-2d-mfz" id="wbx-IX-UMw"/>
                         <segue destination="F4g-B8-V68" kind="presentation" identifier="toAccount" modalPresentationStyle="fullScreen" id="A4u-T5-seV"/>
                         <segue destination="Tcp-13-81I" kind="presentation" identifier="toRead" modalPresentationStyle="fullScreen" id="vqJ-OX-hsF"/>
-                        <segue destination="EIx-ol-n0l" kind="presentation" identifier="toZero" modalPresentationStyle="fullScreen" id="EWE-oB-aKJ"/>
                         <segue destination="vyh-Bs-m9f" kind="presentation" identifier="toLibrary" modalPresentationStyle="fullScreen" id="ceK-zc-dZn"/>
                         <segue destination="vyh-Bs-m9f" kind="presentation" identifier="toLibrary2" modalPresentationStyle="fullScreen" id="8T9-QV-9Yb"/>
+                        <segue destination="EIx-ol-n0l" kind="presentation" identifier="toZero" modalPresentationStyle="fullScreen" id="eJy-CR-uFI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UwI-6a-sC5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -578,7 +582,7 @@
                                     <color key="titleColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="aJi-iB-WMP" kind="presentation" modalPresentationStyle="fullScreen" id="aSh-nV-oIh"/>
+                                    <action selector="homeButtonClicked:" destination="F4g-B8-V68" eventType="touchUpInside" id="EPM-sw-nFZ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gyO-c6-k4n">
@@ -658,6 +662,7 @@
                         <outlet property="homeButton" destination="qRV-Pi-4gI" id="CDS-nD-T9H"/>
                         <outlet property="saveButton" destination="paB-wJ-QPc" id="KwI-ha-joz"/>
                         <outlet property="tableView" destination="xDT-XH-cEi" id="VfY-OX-234"/>
+                        <segue destination="aJi-iB-WMP" kind="presentation" identifier="toFirstFromAccount" modalPresentationStyle="fullScreen" id="mtk-Lj-Quv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5YS-Wz-5uU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -799,11 +804,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R5E-yf-pEp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="198" y="-562"/>
+            <point key="canvasLocation" x="196" y="-656"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="5cd-7R-Q4D"/>
+        <segue reference="vqJ-OX-hsF"/>
         <segue reference="Tvm-H6-JwH"/>
         <segue reference="8T9-QV-9Yb"/>
     </inferredMetricsTieBreakers>

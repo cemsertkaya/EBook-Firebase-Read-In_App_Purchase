@@ -100,6 +100,7 @@ class FirstController: UIViewController, UITableViewDelegate, UITableViewDataSou
             let cell3 = tableView.dequeueReusableCell(withIdentifier: "singleCell", for: indexPath) as! SingleCell
             cell3.button.setTitle("LOG OUT", for: UIControl.State.normal)
             cell3.buttonType = 1
+            cell3.yourController = self
             cellDefault = cell3
         default:
             print("hata")

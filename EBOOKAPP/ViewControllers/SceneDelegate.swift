@@ -17,31 +17,36 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        print("ios13+")
-        let currentUser = Auth.auth().currentUser
-        print("Core Data User Sayısı")
-        print(CoreDataUtil.numberOfCoreUser())
-        if currentUser != nil
-        {
-            if CoreDataUtil.getCurrentUser().getIsActive()
+        print("iOS version of this device is more than 13.0.")
+        let status = Reach().connectionStatus()
+        switch status {
+        case .unknown, .offline:
+            print("Not connected")
+        case .online(.wwan), .online(.wiFi):
+            print("Connected")
+            let currentUser = Auth.auth().currentUser
+            print("Core Data User Sayısı")
+            print(CoreDataUtil.numberOfCoreUser())
+            if currentUser != nil
             {
-                let board = UIStoryboard(name: "Main", bundle: nil)
-                var openViewController = board.instantiateViewController(withIdentifier: "first") as! UIViewController
-                self.window?.rootViewController = openViewController
-            }
-            else//logout yap
-            {
-                do
+                if CoreDataUtil.getCurrentUser().getIsActive()
                 {
-                    try Auth.auth().signOut()
-                    CoreDataUtil.removeUserFromCoreData()
+                    let board = UIStoryboard(name: "Main", bundle: nil)
+                    let openViewController = board.instantiateViewController(withIdentifier: "first")
+                    self.window?.rootViewController = openViewController
                 }
-                catch{print("error")}
+                else//logout yap
+                {
+                    do
+                    {
+                        try Auth.auth().signOut()
+                        CoreDataUtil.removeUserFromCoreData()
+                        print("There is auth but stay active is closed.")
+                    }
+                    catch{print("error")}
+                }
             }
-        }
-        else
-        {
-            print("There is no user.")
+            else{print("There is no auth.")}
         }
         guard let _ = (scene as? UIWindowScene) else { return }
     }
