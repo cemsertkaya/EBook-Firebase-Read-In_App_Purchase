@@ -19,6 +19,7 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
     var booksForLibrary = [Book]()
     @IBOutlet weak var libraryButton: UIButton!
     var libraryMap = [String:Int64]()
+    var productSelected = String()
     
     override func viewDidLoad()
     {
@@ -37,8 +38,6 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
         else//This is buy view controller
         {
             libraryButton.setTitle("BUY", for: UIControl.State.normal)
-            print("ProductsIds:")
-            print(productIds.count)
             SKPaymentQueue.default().add(self)
         }
     }
@@ -71,7 +70,7 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
         else//This is buy view controller
         {
             cell.bookId = self.products[indexPath.row].productIdentifier
-            cell.label.text = self.products[indexPath.row].productIdentifier.uppercased()
+            cell.label.text = self.products[indexPath.row].localizedTitle.uppercased()
             cell.readButton.addTarget(self, action: #selector(buyAction(sender:)), for: .touchUpInside)
             cell.readButton.tag = indexPath.row
             libraryButton.setTitle("BUY", for: UIControl.State.normal)
@@ -98,11 +97,7 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
         
     }
     
-    func makeWhiteBorder(button: UIButton)
-    {
-        button.layer.borderWidth = 2
-        button.layer.borderColor = UIColor.white.cgColor
-    }
+    
     
     func presentActivityViewController(withUrl url: URL) {
         DispatchQueue.main.async
@@ -134,7 +129,7 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
                             print("Count:" + String(self.booksForLibrary.count))
                             self.tableView.reloadData()
                         }
-                        else// If user does not have this book
+                        else if self.libraryMap[document.documentID] == nil
                         {
                             self.productIds.append(document.documentID)
                         }
@@ -161,12 +156,6 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
         }
      }
     
-    @IBAction func homeButtonAction(_ sender: Any){self.performSegue(withIdentifier: "toFirstFromLibrary", sender: self)}
-    
-    // Swipe right
-    @objc func handleSwipes(_ sender:UISwipeGestureRecognizer){if (sender.direction == .right){ self.performSegue(withIdentifier: "toFirstFromLibrary", sender: self)}}
-    
-    
     //Payment functions
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction])
     {
@@ -174,13 +163,19 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
         {
             if transaction.transactionState == .purchased
             {
-                print("Transaction is successful.")
-                makeAlert(titleInput: "Congrats", messageInput: transaction.transactionIdentifier!)
+                //print("The transaction is successful.")
+                makeAlert(titleInput: "Success", messageInput: "The transaction is successful.")
+                SKPaymentQueue.default().finishTransaction(transaction)
+                SKPaymentQueue.default().remove(self)
+                libraryMap[productSelected] = 0
+                FirebaseUtil.updateEbooksDict(dict: libraryMap, userId: CoreDataUtil.getCurrentUser().getUserId())
                 
             }
-            else if transaction.transactionState == .failed
+            else if transaction.transactionState == .failed || transaction.transactionState == .deferred
             {
                 print("The transaction has failed.")
+                SKPaymentQueue.default().finishTransaction(transaction)
+                SKPaymentQueue.default().remove(self)
             }
         }
     }
@@ -192,6 +187,8 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
             let transactionRequest = SKMutablePayment()
             transactionRequest.productIdentifier = products[sender.tag].productIdentifier
             SKPaymentQueue.default().add(transactionRequest)
+            self.productSelected = transactionRequest.productIdentifier
+            print(self.productSelected)
         }
         else
         {
@@ -204,7 +201,14 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
         if !response.products.isEmpty
         {
             products = response.products
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+            
+        }
+        else
+        {
+            makeAlert(titleInput: "Aooo!", messageInput: "There is no ebook in system.")
         }
     }
     
@@ -223,7 +227,17 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
             alert.addAction(okButton)
             self.present(alert, animated:true, completion: nil)
     }
+    
+    @IBAction func homeButtonAction(_ sender: Any){self.performSegue(withIdentifier: "toFirstFromLibrary", sender: self)}
+    
+    // Swipe right
+    @objc func handleSwipes(_ sender:UISwipeGestureRecognizer){if (sender.direction == .right){ self.performSegue(withIdentifier: "toFirstFromLibrary", sender: self)}}
 
+    func makeWhiteBorder(button: UIButton)
+    {
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor.white.cgColor
+    }
     
 }
 

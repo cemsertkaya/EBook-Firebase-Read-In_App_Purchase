@@ -98,8 +98,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FDH-6r-NAh">
                                 <rect key="frame" x="16" y="558" width="40" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="2Kc-ot-O76"/>
-                                    <constraint firstAttribute="height" constant="40" id="Yga-DB-XyG"/>
+                                    <constraint firstAttribute="height" constant="40" id="ADF-pg-EkX"/>
+                                    <constraint firstAttribute="width" constant="40" id="yPe-0w-zud"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="unchecked"/>
                                 <connections>
@@ -107,15 +107,15 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ey3-JU-deJ">
-                                <rect key="frame" x="0.0" y="79" width="375" height="433"/>
+                                <rect key="frame" x="0.0" y="52" width="375" height="490"/>
                                 <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="1" green="0.98823529409999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="registerCell" rowHeight="105" id="qHL-c9-duF" customClass="RegisterCell" customModule="EBOOKAPP" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="105"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="registerCell" rowHeight="98" id="qHL-c9-duF" customClass="RegisterCell" customModule="EBOOKAPP" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="98"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qHL-c9-duF" id="Y69-1E-rmb" customClass="RegisterCell" customModule="EBOOKAPP" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="105"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LABEL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Oub-FU-zG0">
@@ -148,19 +148,19 @@
                         <viewLayoutGuide key="safeArea" id="lEd-uw-abu"/>
                         <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="FDH-6r-NAh" firstAttribute="leading" secondItem="JkI-LZ-6Zm" secondAttribute="leadingMargin" id="1s1-h5-7hn"/>
-                            <constraint firstItem="lEd-uw-abu" firstAttribute="trailing" secondItem="1mB-u9-Tek" secondAttribute="trailing" constant="43" id="7bZ-pR-q4D"/>
-                            <constraint firstItem="Ey3-JU-deJ" firstAttribute="centerX" secondItem="JkI-LZ-6Zm" secondAttribute="centerX" id="8uq-cW-A4l"/>
-                            <constraint firstItem="lEd-uw-abu" firstAttribute="bottom" secondItem="1mB-u9-Tek" secondAttribute="bottom" constant="20" id="Bof-0a-SL3"/>
-                            <constraint firstItem="QGU-ww-SEB" firstAttribute="top" secondItem="Ey3-JU-deJ" secondAttribute="bottom" constant="44" id="Onp-Ij-fE7"/>
-                            <constraint firstItem="1mB-u9-Tek" firstAttribute="top" secondItem="FDH-6r-NAh" secondAttribute="bottom" constant="8" id="Sef-fn-HNp"/>
-                            <constraint firstItem="Ey3-JU-deJ" firstAttribute="leading" secondItem="lEd-uw-abu" secondAttribute="leading" id="WXE-8u-1H6"/>
-                            <constraint firstItem="QGU-ww-SEB" firstAttribute="leading" secondItem="FDH-6r-NAh" secondAttribute="trailing" constant="8" id="YlW-LM-hWH"/>
-                            <constraint firstItem="FDH-6r-NAh" firstAttribute="bottom" secondItem="QGU-ww-SEB" secondAttribute="bottom" id="ai2-eS-6xR"/>
-                            <constraint firstItem="lEd-uw-abu" firstAttribute="trailing" secondItem="QGU-ww-SEB" secondAttribute="trailing" constant="6" id="cAs-yO-LYM"/>
-                            <constraint firstItem="Ey3-JU-deJ" firstAttribute="top" secondItem="lEd-uw-abu" secondAttribute="top" constant="35" id="jrs-vI-NHz"/>
-                            <constraint firstItem="1mB-u9-Tek" firstAttribute="leading" secondItem="lEd-uw-abu" secondAttribute="leading" constant="39" id="lE7-eT-3nA"/>
-                            <constraint firstItem="FDH-6r-NAh" firstAttribute="top" secondItem="Ey3-JU-deJ" secondAttribute="bottom" constant="46" id="n4W-JQ-E0Z"/>
+                            <constraint firstItem="1mB-u9-Tek" firstAttribute="leading" secondItem="lEd-uw-abu" secondAttribute="leading" constant="39" id="1tG-3a-M51"/>
+                            <constraint firstItem="FDH-6r-NAh" firstAttribute="bottom" secondItem="QGU-ww-SEB" secondAttribute="bottom" id="7Jz-A3-8N0"/>
+                            <constraint firstItem="FDH-6r-NAh" firstAttribute="top" secondItem="Ey3-JU-deJ" secondAttribute="bottom" constant="16" id="9IZ-1B-LkU"/>
+                            <constraint firstItem="QGU-ww-SEB" firstAttribute="top" secondItem="Ey3-JU-deJ" secondAttribute="bottom" constant="14" id="AMZ-By-8Ym"/>
+                            <constraint firstItem="Ey3-JU-deJ" firstAttribute="top" secondItem="lEd-uw-abu" secondAttribute="top" constant="8" id="JE1-7r-GdI"/>
+                            <constraint firstItem="lEd-uw-abu" firstAttribute="trailing" secondItem="1mB-u9-Tek" secondAttribute="trailing" constant="43" id="LgH-qH-BlV"/>
+                            <constraint firstItem="lEd-uw-abu" firstAttribute="bottom" secondItem="1mB-u9-Tek" secondAttribute="bottom" constant="20" id="UdU-9Z-JUL"/>
+                            <constraint firstItem="1mB-u9-Tek" firstAttribute="top" secondItem="FDH-6r-NAh" secondAttribute="bottom" constant="8" id="Yef-aw-uNh"/>
+                            <constraint firstItem="FDH-6r-NAh" firstAttribute="leading" secondItem="JkI-LZ-6Zm" secondAttribute="leadingMargin" id="gYA-74-Nnv"/>
+                            <constraint firstItem="Ey3-JU-deJ" firstAttribute="leading" secondItem="lEd-uw-abu" secondAttribute="leading" id="hgX-Ma-e9c"/>
+                            <constraint firstItem="QGU-ww-SEB" firstAttribute="leading" secondItem="FDH-6r-NAh" secondAttribute="trailing" constant="8" id="hxr-Vy-uGI"/>
+                            <constraint firstItem="lEd-uw-abu" firstAttribute="trailing" secondItem="QGU-ww-SEB" secondAttribute="trailing" constant="6" id="qah-Zw-EKO"/>
+                            <constraint firstItem="Ey3-JU-deJ" firstAttribute="centerX" secondItem="JkI-LZ-6Zm" secondAttribute="centerX" id="xC0-hb-uGN"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="wah-OX-Cug"/>
@@ -726,7 +726,7 @@
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="7" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="opW-u1-1ND">
                                 <rect key="frame" x="138" y="3" width="44" height="27"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="kMn-26-s27"/>
                                 </constraints>
@@ -736,7 +736,7 @@
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="/989" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nvt-zY-V7C">
                                 <rect key="frame" x="187" y="3" width="44" height="27"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="Oqt-0c-ke4"/>
                                 </constraints>
@@ -809,7 +809,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="vqJ-OX-hsF"/>
-        <segue reference="Tvm-H6-JwH"/>
+        <segue reference="DFx-6R-xlH"/>
         <segue reference="8T9-QV-9Yb"/>
     </inferredMetricsTieBreakers>
     <resources>

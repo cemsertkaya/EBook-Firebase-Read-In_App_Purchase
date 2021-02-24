@@ -67,7 +67,7 @@ class RegisterViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {return 1}
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {return 105}
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {return 98}
     
     func createToolbar(textField : UITextField) {
         let toolBar = UIToolbar()
@@ -115,24 +115,33 @@ class RegisterViewController: UIViewController,UITableViewDelegate,UITableViewDa
         {
             if isTermsAccepted
             {
-                doneButton.isEnabled = false
-                Auth.auth().createUser(withEmail: email, password: password)//Authantication
-                               { (authData, error) in
-                                 if error != nil
-                                 {
-                                     self.makeAlert(titleInput: "Error!", messageInput: error?.localizedDescription ?? "Error")//for alertMessages of Firebase
-                                     self.doneButton.isEnabled = true
-                                 }
-                                 else
-                                 {
-                                    let user = Auth.auth().currentUser
-                                    let registerDict =  ["userId":user!.uid,"email":email,"age":age,"country":country,"gender":gender,"ebooks":[String:Int64]()] as [String : Any]
-                                    let currentUser = CurrentUser(userId: user!.uid, email: email, age: age, country: country, gender: gender, isActive: true, currentBookId: "")
-                                    CoreDataUtil.createUserCoreData(user: currentUser)
-                                    singleton.instance().getUsersDatabase().document(user!.uid).setData(registerDict)
-                                    self.performSegue(withIdentifier: "toFirstController2", sender: self)
-                                }
+                if  17 < Int(age)! && Int(age)! < 100
+                {
+                    doneButton.isEnabled = false
+                    Auth.auth().createUser(withEmail: email, password: password)//Authantication
+                                   { (authData, error) in
+                                     if error != nil
+                                     {
+                                         self.makeAlert(titleInput: "Error!", messageInput: error?.localizedDescription ?? "Error")//for alertMessages of Firebase
+                                         self.doneButton.isEnabled = true
+                                     }
+                                     else
+                                     {
+                                        let user = Auth.auth().currentUser
+                                        let registerDict =  ["userId":user!.uid,"email":email,"age":age,"country":country,"gender":gender,"ebooks":[String:Int64]()] as [String : Any]
+                                        let currentUser = CurrentUser(userId: user!.uid, email: email, age: age, country: country, gender: gender, isActive: true, currentBookId: "")
+                                        CoreDataUtil.createUserCoreData(user: currentUser)
+                                        singleton.instance().getUsersDatabase().document(user!.uid).setData(registerDict)
+                                        self.performSegue(withIdentifier: "toFirstController2", sender: self)
+                                    }
+                    }
                 }
+                else
+                {
+                    makeAlert(titleInput: "Aooo!!", messageInput: "Your age must be between 18 and 100.")
+                    doneButton.isEnabled = true
+                }
+                
             }
             else
             {

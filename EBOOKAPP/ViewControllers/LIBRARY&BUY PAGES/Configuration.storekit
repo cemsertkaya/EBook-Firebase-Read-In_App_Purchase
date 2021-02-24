@@ -1,0 +1,29 @@
+{
+  "products" : [
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "B3352E52",
+      "localizations" : [
+        {
+          "description" : "Italian Book Reference",
+          "displayName" : "Italian Book Reference",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "jnkqhvjfsdoezrxc8swj",
+      "referenceName" : "Italian Book Reference",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 1,
+    "minor" : 0
+  }
+}

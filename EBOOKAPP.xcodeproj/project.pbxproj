@@ -92,6 +92,7 @@
 		B2A1823625CF40C10054A805 /* LibraryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LibraryController.swift; path = "EBOOKAPP/ViewControllers/LIBRARY&BUY PAGES/LibraryController.swift"; sourceTree = SOURCE_ROOT; };
 		B2A3D7D425C766BC004EC232 /* EBOOKAPP */ = {isa = PBXFileReference; lastKnownFileType = folder; path = EBOOKAPP; sourceTree = "<group>"; };
 		B2A55DA425E67775005BD2C9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		B2A55DAF25E6AAB1005BD2C9 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		B2AC0EAA25CF424D003EB258 /* LibraryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCell.swift; sourceTree = "<group>"; };
 		B2B4EA2C25C9856600EBEBA8 /* CoreDataUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUtil.swift; sourceTree = "<group>"; };
 		B2B8DB3525C6157300892F13 /* Countries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countries.swift; sourceTree = "<group>"; };
@@ -275,6 +276,7 @@
 			children = (
 				B2A1823625CF40C10054A805 /* LibraryController.swift */,
 				B2AC0EAA25CF424D003EB258 /* LibraryCell.swift */,
+				B2A55DAF25E6AAB1005BD2C9 /* Configuration.storekit */,
 			);
 			path = "LIBRARY&BUY PAGES";
 			sourceTree = "<group>";
@@ -687,6 +689,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlexisV.EBOOKAPP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -707,6 +710,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.2;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlexisV.EBOOKAPP;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -70,6 +70,9 @@
             ReferencedContainer = "container:EBOOKAPP.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <StoreKitConfigurationFileReference
+         identifier = "../EBOOKAPP/ViewControllers/LIBRARY&amp;BUY PAGES/Configuration.storekit">
+      </StoreKitConfigurationFileReference>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

@@ -51,7 +51,6 @@ class FirstController: UIViewController, UITableViewDelegate, UITableViewDataSou
            if let document = document, document.exists
            {
                let dataDescription = document.data()
-               
                let newMap =  dataDescription?["ebooks"] as! [String:Int64]
                self.userEbooks = newMap
                completion(newMap,nil)
@@ -125,6 +124,7 @@ class FirstController: UIViewController, UITableViewDelegate, UITableViewDataSou
            {
               let destinationVC = segue.destination as! LibraryController
               destinationVC.controllerType = true
+              destinationVC.libraryMap = userEbooks
            }
            else if segue.identifier == "toRead"
            {
