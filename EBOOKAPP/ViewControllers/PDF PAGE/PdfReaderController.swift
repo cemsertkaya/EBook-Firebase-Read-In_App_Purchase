@@ -9,7 +9,7 @@ import UIKit
 import PDFKit
 
 
-class PdfReaderController: UIViewController {
+class PdfReaderController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var viewMain: PDFView!
@@ -23,6 +23,10 @@ class PdfReaderController: UIViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapView(gesture:)))
+        view.addGestureRecognizer(tapGesture)
+        leftPageNumber.delegate = self
+        leftPageNumber.keyboardType = .numberPad
         if currentFileUrl != ""
         {
             let libraryPath = FirebaseUtil.getPdfFromLibrary(id: currentFileUrl)
@@ -39,7 +43,7 @@ class PdfReaderController: UIViewController {
         viewMain.maxScaleFactor = 4.0
         viewMain.minScaleFactor = viewMain.scaleFactorForSizeToFit
         viewMain.backgroundColor = UIColor.white
-        rightPageNumber.text = "/" + String(document.pageCount)
+        rightPageNumber.text =  "/" + String(document.pageCount)
         let validStartingPageIndex: Int = Int(startingPageNumber)
         let page = viewMain.document?.page(at:validStartingPageIndex)
         if page != nil{viewMain.go(to: page!)}
@@ -91,4 +95,18 @@ class PdfReaderController: UIViewController {
         viewMain.go(to: targetPage)
 
     }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        if textView == leftPageNumber && textView.text != ""
+        {
+            let validPageIndex = Int(textView.text!)
+            guard let targetPage = viewMain.document!.page(at: validPageIndex ?? document.pageCount) else {return}
+            viewMain.go(to: targetPage)
+        }
+    }
+    
+    ///Starts Editing The Text Field
+    @objc func didTapView(gesture: UITapGestureRecognizer){view.endEditing(true)}
+    
+    
 }

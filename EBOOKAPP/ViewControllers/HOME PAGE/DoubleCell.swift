@@ -47,7 +47,7 @@ class DoubleCell: UITableViewCell {
         }
         else if leftButtonType == 1 //BUY
         {
-            yourController!.performSegue(withIdentifier: "toLibrary2", sender: yourController!)
+            yourController!.performSegue(withIdentifier: "toBuy", sender: yourController!)
             
         }
         else

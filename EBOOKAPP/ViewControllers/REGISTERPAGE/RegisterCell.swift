@@ -56,22 +56,6 @@ class RegisterCell: UITableViewCell, UIPickerViewDataSource, UIPickerViewDelegat
     ///Starts Editing The Text Field
     @objc func didTapView(gesture: UITapGestureRecognizer){view.endEditing(true)}
     
-    /*
-    func textFieldDidBeginEditing(_ textField: UITextField) {moveTextField(textField, moveDistance: -80, up: true)}
-    /// Finishes Editing The Text Field
-    func textFieldDidEndEditing(_ textField: UITextField) {moveTextField(textField, moveDistance: -80, up: false)}
-    /// Moves the text field in a pretty animation
-    func moveTextField(_ textField: UITextField, moveDistance: Int, up: Bool)
-    {
-        let moveDuration = 0.3
-        let movement: CGFloat = CGFloat(up ? moveDistance : -moveDistance)
-        UIView.beginAnimations("animateTextField", context: nil)
-        UIView.setAnimationBeginsFromCurrentState(true)
-        UIView.setAnimationDuration(moveDuration)
-        self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
-        UIView.commitAnimations()
-    }
-    */
     
     /// Hides the keyboard when the return key pressed
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {textField.resignFirstResponder();return true}

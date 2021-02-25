@@ -101,12 +101,22 @@ class AccountViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 let gender =  getCell(index: 2).textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
                 if age != "" && country != ""  && gender != ""
                 {
+                    if  17 < Int(age)! && Int(age)! < 100
+                    {
                         saveButton.isEnabled = false
                         let user = Auth.auth().currentUser
                         CoreDataUtil.updateCurrentUserOnAccount(age: age, country: country, gender: gender)
                         let changeDict =  ["age":age,"country":country,"gender":gender] as [String : Any]
                         singleton.instance().getUsersDatabase().document(user!.uid).updateData(changeDict)
                         saveButton.isEnabled = true
+                        makeAlert(titleInput: "Success", messageInput: "Your informations have saved successfully.")
+                    }
+                    else
+                    {
+                        makeAlert(titleInput: "Aooo!!", messageInput: "Your age must be between 18 and 100.")
+                        saveButton.isEnabled = true
+                    }
+                    
                 }
                 else
                 {

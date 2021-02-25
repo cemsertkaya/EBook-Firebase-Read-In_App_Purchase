@@ -8,18 +8,13 @@
 import UIKit
 import StoreKit
 
-class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSource, SKPaymentTransactionObserver, SKProductsRequestDelegate
+class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSource
 {
     @IBOutlet weak var homeButton: UIButton!
-    var controllerType = Bool()
     @IBOutlet weak var tableView: UITableView!
-    var products = [SKProduct]()
-    var request: SKProductsRequest!
-    var productIds = [String]()//fetch it from firestore
     var booksForLibrary = [Book]()
     @IBOutlet weak var libraryButton: UIButton!
     var libraryMap = [String:Int64]()
-    var productSelected = String()
     
     override func viewDidLoad()
     {
@@ -30,51 +25,21 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
         tableView.delegate = self; tableView.dataSource = self;
         makeWhiteBorder(button: homeButton)
         getAvailableBooksForLibrary()
-        if !controllerType//This is library view controller
-        {
-            libraryButton.setTitle("LIBRARY", for: UIControl.State.normal)
-            
-        }
-        else//This is buy view controller
-        {
-            libraryButton.setTitle("BUY", for: UIControl.State.normal)
-            SKPaymentQueue.default().add(self)
-        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        //This is library view controller
-        if !controllerType{return booksForLibrary.count}
-        //This is buy view controller
-        else
-        {
-            return products.count
-            
-        }
+        return booksForLibrary.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "libraryCell", for: indexPath) as! LibraryCell
-        cell.buttonType = controllerType
-        if !controllerType//This is library view controller
-        {
-            cell.bookId = self.booksForLibrary[indexPath.row].getId()
-            cell.label.text = self.booksForLibrary[indexPath.row].getTitle().uppercased()
-            libraryButton.setTitle("LIBRARY", for: UIControl.State.normal)
-            cell.readButton.addTarget(self, action: #selector(libraryAction(sender:)), for: .touchUpInside)
-            cell.readButton.tag = indexPath.row
-            cell.viewController = self
-        }
-        else//This is buy view controller
-        {
-            cell.bookId = self.products[indexPath.row].productIdentifier
-            cell.label.text = self.products[indexPath.row].localizedTitle.uppercased()
-            cell.readButton.addTarget(self, action: #selector(buyAction(sender:)), for: .touchUpInside)
-            cell.readButton.tag = indexPath.row
-            libraryButton.setTitle("BUY", for: UIControl.State.normal)
-        }
+        cell.bookId = self.booksForLibrary[indexPath.row].getId()
+        cell.label.text = self.booksForLibrary[indexPath.row].getTitle().uppercased()
+        cell.readButton.addTarget(self, action: #selector(libraryAction(sender:)), for: .touchUpInside)
+        cell.readButton.tag = indexPath.row
+        cell.viewController = self
         return cell
     }
     
@@ -129,15 +94,8 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
                             print("Count:" + String(self.booksForLibrary.count))
                             self.tableView.reloadData()
                         }
-                        else if self.libraryMap[document.documentID] == nil
-                        {
-                            self.productIds.append(document.documentID)
-                        }
                     }
                 }
-                print("Product IDs Count")
-                print((String(self.productIds.count)))
-                self.validate(productIdentifiers: self.productIds)
             }
         }
     }
@@ -156,69 +114,6 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
         }
      }
     
-    //Payment functions
-    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction])
-    {
-        for transaction in transactions
-        {
-            if transaction.transactionState == .purchased
-            {
-                //print("The transaction is successful.")
-                makeAlert(titleInput: "Success", messageInput: "The transaction is successful.")
-                SKPaymentQueue.default().finishTransaction(transaction)
-                SKPaymentQueue.default().remove(self)
-                libraryMap[productSelected] = 0
-                FirebaseUtil.updateEbooksDict(dict: libraryMap, userId: CoreDataUtil.getCurrentUser().getUserId())
-                
-            }
-            else if transaction.transactionState == .failed || transaction.transactionState == .deferred
-            {
-                print("The transaction has failed.")
-                SKPaymentQueue.default().finishTransaction(transaction)
-                SKPaymentQueue.default().remove(self)
-            }
-        }
-    }
-    
-    @objc func buyAction(sender: UIButton)
-    {
-        if SKPaymentQueue.canMakePayments()
-        {
-            let transactionRequest = SKMutablePayment()
-            transactionRequest.productIdentifier = products[sender.tag].productIdentifier
-            SKPaymentQueue.default().add(transactionRequest)
-            self.productSelected = transactionRequest.productIdentifier
-            print(self.productSelected)
-        }
-        else
-        {
-            print("The user cannot make transaction.")
-        }
-    }
-    
-    
-    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-        if !response.products.isEmpty
-        {
-            products = response.products
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-            
-        }
-        else
-        {
-            makeAlert(titleInput: "Aooo!", messageInput: "There is no ebook in system.")
-        }
-    }
-    
-    func validate(productIdentifiers: [String])
-    {
-         let productIdentifiers = Set(productIdentifiers)
-         request = SKProductsRequest(productIdentifiers: productIdentifiers)
-         request.delegate = self
-         request.start()
-    }
     
     func makeAlert(titleInput:String, messageInput:String)//Error method with parameters
     {

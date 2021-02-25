@@ -113,20 +113,18 @@ class FirstController: UIViewController, UITableViewDelegate, UITableViewDataSou
    /// It selects the cell button type
    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-           if segue.identifier == "toLibrary"// LIBRARY
+           if segue.identifier == "toLibrary"//LIBRARY PAGE
            {
                
                let destinationVC = segue.destination as! LibraryController
-               destinationVC.controllerType = false
                destinationVC.libraryMap = userEbooks
            }
-           else if segue.identifier == "toLibrary2" // BUY
+           else if segue.identifier == "toBuy" //BUY PAGE
            {
-              let destinationVC = segue.destination as! LibraryController
-              destinationVC.controllerType = true
+              let destinationVC = segue.destination as! BuyController
               destinationVC.libraryMap = userEbooks
            }
-           else if segue.identifier == "toRead"
+           else if segue.identifier == "toRead" //READ PAGE
            {
               let destinationVC = segue.destination as! PdfReaderController
               let id = CoreDataUtil.getCurrentUser().getCurrentBookId()

@@ -542,8 +542,8 @@
                         <segue destination="F4g-B8-V68" kind="presentation" identifier="toAccount" modalPresentationStyle="fullScreen" id="A4u-T5-seV"/>
                         <segue destination="Tcp-13-81I" kind="presentation" identifier="toRead" modalPresentationStyle="fullScreen" id="vqJ-OX-hsF"/>
                         <segue destination="vyh-Bs-m9f" kind="presentation" identifier="toLibrary" modalPresentationStyle="fullScreen" id="ceK-zc-dZn"/>
-                        <segue destination="vyh-Bs-m9f" kind="presentation" identifier="toLibrary2" modalPresentationStyle="fullScreen" id="8T9-QV-9Yb"/>
                         <segue destination="EIx-ol-n0l" kind="presentation" identifier="toZero" modalPresentationStyle="fullScreen" id="eJy-CR-uFI"/>
+                        <segue destination="CNA-aS-upC" kind="presentation" identifier="toBuy" modalPresentationStyle="fullScreen" id="zk6-hB-59c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UwI-6a-sC5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -735,10 +735,10 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="/989" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nvt-zY-V7C">
-                                <rect key="frame" x="187" y="3" width="44" height="27"/>
+                                <rect key="frame" x="187" y="3" width="54" height="27"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="Oqt-0c-ke4"/>
+                                    <constraint firstAttribute="width" constant="54" id="Oqt-0c-ke4"/>
                                 </constraints>
                                 <color key="textColor" red="0.74901960779999999" green="0.019607843140000001" blue="0.019607843140000001" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="AnotherBirdhouse" family="Another Birdhouse" pointSize="19"/>
@@ -764,13 +764,13 @@
                             <constraint firstItem="Th8-36-Rzc" firstAttribute="bottom" secondItem="8e9-Kp-Avt" secondAttribute="bottom" id="XaL-V3-CMi"/>
                             <constraint firstItem="Th8-36-Rzc" firstAttribute="top" secondItem="Kpe-7M-sdV" secondAttribute="top" id="ZHT-7t-S2l"/>
                             <constraint firstItem="Th8-36-Rzc" firstAttribute="top" secondItem="pbZ-tp-dO8" secondAttribute="bottom" id="cqe-WV-nTr"/>
-                            <constraint firstItem="nvt-zY-V7C" firstAttribute="centerX" secondItem="Kpe-7M-sdV" secondAttribute="centerX" id="dQd-Hz-6M0"/>
+                            <constraint firstItem="nvt-zY-V7C" firstAttribute="centerX" secondItem="Kpe-7M-sdV" secondAttribute="centerX" constant="5" id="dQd-Hz-6M0"/>
                             <constraint firstItem="nvt-zY-V7C" firstAttribute="leading" secondItem="opW-u1-1ND" secondAttribute="trailing" constant="5" id="fcS-0D-uZc"/>
                             <constraint firstItem="Th8-36-Rzc" firstAttribute="leading" secondItem="8e9-Kp-Avt" secondAttribute="leading" constant="133" id="jgZ-FS-YKp"/>
                             <constraint firstItem="opW-u1-1ND" firstAttribute="leading" secondItem="MKI-rU-4bA" secondAttribute="trailing" constant="15" id="sCl-gh-ZZg"/>
                             <constraint firstItem="MKI-rU-4bA" firstAttribute="top" secondItem="opW-u1-1ND" secondAttribute="top" id="szs-Mq-7O9"/>
                             <constraint firstItem="MKI-rU-4bA" firstAttribute="leading" secondItem="xLD-79-Wnc" secondAttribute="trailing" constant="8" id="u8P-RE-eyQ"/>
-                            <constraint firstItem="nvt-zY-V7C" firstAttribute="trailing" secondItem="Kpe-7M-sdV" secondAttribute="trailing" id="w3w-ys-hyT"/>
+                            <constraint firstItem="nvt-zY-V7C" firstAttribute="trailing" secondItem="Kpe-7M-sdV" secondAttribute="trailing" constant="10" id="w3w-ys-hyT"/>
                             <constraint firstItem="Th8-36-Rzc" firstAttribute="baseline" secondItem="Kpe-7M-sdV" secondAttribute="baseline" id="yNj-jB-7t8"/>
                         </constraints>
                     </view>
@@ -784,7 +784,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RX2-G2-wOs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1978.4000000000001" y="2555.1724137931037"/>
+            <point key="canvasLocation" x="-1978.4000000000001" y="2418.440779610195"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kUM-yy-zQe">
@@ -806,11 +806,134 @@
             </objects>
             <point key="canvasLocation" x="196" y="-656"/>
         </scene>
+        <!--Buy Controller-->
+        <scene sceneID="3nz-i0-5fc">
+            <objects>
+                <viewController id="CNA-aS-upC" customClass="BuyController" customModule="EBOOKAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ow3-zz-EiK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tb8-5l-DQK">
+                                <rect key="frame" x="0.0" y="80" width="375" height="587"/>
+                                <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="separatorColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="1" green="0.98823529409999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="libraryCell" rowHeight="75" id="mnJ-v0-ON1" customClass="LibraryCell" customModule="EBOOKAPP" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="75"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mnJ-v0-ON1" id="C0g-wt-OgK">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C5m-ES-apb">
+                                                    <rect key="frame" x="9" y="6" width="356" height="62"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fed-NF-nTM">
+                                                            <rect key="frame" x="8" y="9" width="221" height="44"/>
+                                                            <fontDescription key="fontDescription" name="AnotherBirdhouse" family="Another Birdhouse" pointSize="29"/>
+                                                            <color key="textColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TL1-js-zOw">
+                                                            <rect key="frame" x="269" y="9" width="79" height="44"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="79" id="iyY-7n-Z1P"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="AnotherBirdhouse" family="Another Birdhouse" pointSize="21"/>
+                                                            <state key="normal" title="Button">
+                                                                <color key="titleColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstItem="Fed-NF-nTM" firstAttribute="leading" secondItem="C5m-ES-apb" secondAttribute="leadingMargin" id="9fR-Be-8xm"/>
+                                                        <constraint firstItem="Fed-NF-nTM" firstAttribute="top" secondItem="TL1-js-zOw" secondAttribute="top" id="B64-QO-Z8b"/>
+                                                        <constraint firstItem="Fed-NF-nTM" firstAttribute="top" secondItem="C5m-ES-apb" secondAttribute="top" constant="9" id="bhe-IN-VLa"/>
+                                                        <constraint firstItem="TL1-js-zOw" firstAttribute="leading" secondItem="Fed-NF-nTM" secondAttribute="trailing" constant="40" id="fPU-Ta-smR"/>
+                                                        <constraint firstItem="Fed-NF-nTM" firstAttribute="bottom" secondItem="TL1-js-zOw" secondAttribute="bottom" id="qT0-Z3-zeV"/>
+                                                        <constraint firstItem="Fed-NF-nTM" firstAttribute="centerY" secondItem="C5m-ES-apb" secondAttribute="centerY" id="tdH-GF-w16"/>
+                                                        <constraint firstItem="TL1-js-zOw" firstAttribute="trailing" secondItem="C5m-ES-apb" secondAttribute="trailingMargin" id="vSC-hO-qO0"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="C5m-ES-apb" firstAttribute="leading" secondItem="C0g-wt-OgK" secondAttribute="leadingMargin" constant="-7" id="3Er-dV-6Ur"/>
+                                                <constraint firstItem="C5m-ES-apb" firstAttribute="centerY" secondItem="C0g-wt-OgK" secondAttribute="centerY" id="Dae-jC-B4P"/>
+                                                <constraint firstItem="C5m-ES-apb" firstAttribute="top" secondItem="C0g-wt-OgK" secondAttribute="topMargin" constant="-5" id="cQQ-0b-82k"/>
+                                                <constraint firstItem="C5m-ES-apb" firstAttribute="centerX" secondItem="C0g-wt-OgK" secondAttribute="centerX" id="fWV-25-Ae4"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="label" destination="Fed-NF-nTM" id="dEp-sJ-OJL"/>
+                                            <outlet property="readButton" destination="TL1-js-zOw" id="auI-MX-Byi"/>
+                                            <outlet property="view" destination="C5m-ES-apb" id="9q7-I0-tdl"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KYF-Va-f6Q">
+                                <rect key="frame" x="16" y="20" width="110" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="P3e-Ym-55G"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AnotherBirdhouse" family="Another Birdhouse" pointSize="27"/>
+                                <state key="normal" title="&lt; HOME">
+                                    <color key="titleColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="homeButtonAction:" destination="CNA-aS-upC" eventType="touchUpInside" id="UQE-v1-i6n"/>
+                                    <segue destination="aJi-iB-WMP" kind="presentation" identifier="toFirstFromBuy" modalPresentationStyle="fullScreen" id="oKm-83-VIK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XNL-TE-QYP">
+                                <rect key="frame" x="249" y="20" width="110" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="5gV-Kt-2rB"/>
+                                    <constraint firstAttribute="width" constant="110" id="slv-8r-mfu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AnotherBirdhouse" family="Another Birdhouse" pointSize="27"/>
+                                <state key="normal" title="BUY">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="P4S-mK-erB"/>
+                        <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="tb8-5l-DQK" firstAttribute="top" secondItem="KYF-Va-f6Q" secondAttribute="bottom" constant="10" id="33x-kd-gYC"/>
+                            <constraint firstItem="tb8-5l-DQK" firstAttribute="centerX" secondItem="Ow3-zz-EiK" secondAttribute="centerX" id="Hwl-cc-7dX"/>
+                            <constraint firstItem="XNL-TE-QYP" firstAttribute="baseline" secondItem="KYF-Va-f6Q" secondAttribute="baseline" id="Mg6-cc-PkH"/>
+                            <constraint firstItem="P4S-mK-erB" firstAttribute="trailing" secondItem="KYF-Va-f6Q" secondAttribute="trailing" constant="249" id="Pg8-No-yUX"/>
+                            <constraint firstItem="tb8-5l-DQK" firstAttribute="bottom" secondItem="P4S-mK-erB" secondAttribute="bottom" id="Q9J-Lh-nZ1"/>
+                            <constraint firstItem="XNL-TE-QYP" firstAttribute="trailing" secondItem="Ow3-zz-EiK" secondAttribute="trailingMargin" id="SRu-ka-wM4"/>
+                            <constraint firstItem="KYF-Va-f6Q" firstAttribute="leading" secondItem="Ow3-zz-EiK" secondAttribute="leadingMargin" id="ZFV-dX-RPO"/>
+                            <constraint firstItem="KYF-Va-f6Q" firstAttribute="top" secondItem="P4S-mK-erB" secondAttribute="top" constant="20" id="c1W-3O-bkP"/>
+                            <constraint firstItem="tb8-5l-DQK" firstAttribute="leading" secondItem="P4S-mK-erB" secondAttribute="leading" id="tN6-9A-lBC"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="homeButton" destination="KYF-Va-f6Q" id="bFB-9C-TpX"/>
+                        <outlet property="tableView" destination="tb8-5l-DQK" id="zUc-hA-DWV"/>
+                        <segue destination="vyh-Bs-m9f" kind="presentation" identifier="toLibraryFromBuy" modalPresentationStyle="fullScreen" id="rDv-L1-Yc8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4qB-kN-Srh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2270" y="2475"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="vqJ-OX-hsF"/>
-        <segue reference="DFx-6R-xlH"/>
-        <segue reference="8T9-QV-9Yb"/>
+        <segue reference="5cd-7R-Q4D"/>
+        <segue reference="gG8-Gb-EAX"/>
+        <segue reference="rDv-L1-Yc8"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="back" width="24" height="24"/>
