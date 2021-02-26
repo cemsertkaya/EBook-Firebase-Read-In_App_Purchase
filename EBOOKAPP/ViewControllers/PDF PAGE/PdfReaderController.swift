@@ -9,11 +9,11 @@ import UIKit
 import PDFKit
 
 
-class PdfReaderController: UIViewController, UITextViewDelegate {
+class PdfReaderController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var viewMain: PDFView!
-    @IBOutlet weak var leftPageNumber: UITextView!
+    @IBOutlet weak var leftPageNumber: UITextField!
     @IBOutlet weak var rightPageNumber: UITextView!
     var isLocked = false //if user presses stop button, pdf is locked on the page
     var document = PDFDocument()
@@ -96,14 +96,15 @@ class PdfReaderController: UIViewController, UITextViewDelegate {
 
     }
     
-    func textViewDidChange(_ textView: UITextView) {
-        if textView == leftPageNumber && textView.text != ""
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == leftPageNumber && textField.text != ""
         {
-            let validPageIndex = Int(textView.text!)
+            let validPageIndex = Int(textField.text!)! - 1
             guard let targetPage = viewMain.document!.page(at: validPageIndex ?? document.pageCount) else {return}
             viewMain.go(to: targetPage)
         }
     }
+    
     
     ///Starts Editing The Text Field
     @objc func didTapView(gesture: UITapGestureRecognizer){view.endEditing(true)}

@@ -34,6 +34,7 @@ class BuyController: UIViewController, UITableViewDelegate,UITableViewDataSource
     {
             let cell = tableView.dequeueReusableCell(withIdentifier: "libraryCell", for: indexPath) as! LibraryCell
             cell.bookId = self.products[indexPath.row].productIdentifier
+            cell.readButton.setTitle("BUY", for: .normal)
             cell.label.text = self.products[indexPath.row].localizedTitle.uppercased()
             cell.readButton.addTarget(self, action: #selector(buyAction(sender:)), for: .touchUpInside)
             cell.readButton.tag = indexPath.row
@@ -50,21 +51,11 @@ class BuyController: UIViewController, UITableViewDelegate,UITableViewDataSource
                 {
                     if document.exists
                     {
-                        if self.libraryMap[document.documentID] == nil
-                        {
-                            self.productIds.append(document.documentID)
-                        }
+                        if self.libraryMap[document.documentID] == nil{self.productIds.append(document.documentID)}
                     }
                 }
-                if self.productIds.count == 0
-                {
-                    self.makeAlert(titleInput: "Aooo!", messageInput: "There is no ebook that you don't have.")
-                }
-                else
-                {
-                    self.validate(productIdentifiers: self.productIds)
-                }
-                
+                if self.productIds.count == 0{self.makeAlert(titleInput: "Aooo!", messageInput: "There is no ebook that you don't have.")}
+                else{self.validate(productIdentifiers: self.productIds)}
             }
         }
     }
@@ -72,30 +63,38 @@ class BuyController: UIViewController, UITableViewDelegate,UITableViewDataSource
     //Payment functions
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction])
     {
-        for transaction in transactions
+        transactions.forEach
         {
-            if transaction.transactionState == .purchased
+            switch $0.transactionState
             {
+                    case .purchased:
+                        print("The transaction is completed.")
+                        SKPaymentQueue.default().finishTransaction($0)
+                        SKPaymentQueue.default().remove(self)
+                        libraryMap[productSelected] = 0
+                        print("Product Selected: " + productSelected)
+                        if !libraryMap.isEmpty
+                        {
+                            FirebaseUtil.updateEbooksDict(dict: libraryMap, userId: CoreDataUtil.getCurrentUser().getUserId())
+                            self.performSegue(withIdentifier: "toLibraryFromBuy", sender: self)
+                        }
+                   case .failed, .deferred:
+                        print("The transaction has failed.")
+                        SKPaymentQueue.default().finishTransaction($0)
+                        SKPaymentQueue.default().remove(self)
+                        break
+                   case .purchasing:
+                        break
+                   case .restored:
+                        break
+                   @unknown default:
+                        break
                 
-                //print("The transaction is successful.")
-                //makeAlert(titleInput: "Success", messageInput: "The transaction is successful. You can download and read this book from LIBRARY page.")
-                SKPaymentQueue.default().finishTransaction(transaction)
-                SKPaymentQueue.default().remove(self)
-                libraryMap[productSelected] = 0
-                print("Product Selected: " + productSelected)
-                if !libraryMap.isEmpty
-                {
-                    FirebaseUtil.updateEbooksDict(dict: libraryMap, userId: CoreDataUtil.getCurrentUser().getUserId())
-                    self.performSegue(withIdentifier: "toLibraryFromBuy", sender: self)
-                }
-            }
-            else if transaction.transactionState == .failed || transaction.transactionState == .deferred
-            {
-                print("The transaction has failed.")
-                SKPaymentQueue.default().finishTransaction(transaction)
-                SKPaymentQueue.default().remove(self)
-            }
-        }
+          }
+    }
+        
+        
+            
     }
     
     @objc func buyAction(sender: UIButton)
@@ -108,10 +107,7 @@ class BuyController: UIViewController, UITableViewDelegate,UITableViewDataSource
             self.productSelected = transactionRequest.productIdentifier
             print(self.productSelected)
         }
-        else
-        {
-            print("The user cannot make transaction.")
-        }
+        else{print("The user cannot make transaction.")}
     }
     
     
@@ -119,11 +115,7 @@ class BuyController: UIViewController, UITableViewDelegate,UITableViewDataSource
         if !response.products.isEmpty
         {
             products = response.products
-            DispatchQueue.main.async
-            {
-                self.tableView.reloadData()
-            }
-            
+            DispatchQueue.main.async{self.tableView.reloadData()}
         }
     }
     
@@ -153,10 +145,7 @@ class BuyController: UIViewController, UITableViewDelegate,UITableViewDataSource
         button.layer.borderColor = UIColor.white.cgColor
     }
    
-    @IBAction func homeButtonAction(_ sender: Any)
-    {
-        self.performSegue(withIdentifier: "toFirstFromBuy", sender: self)
-    }
+    @IBAction func homeButtonAction(_ sender: Any){self.performSegue(withIdentifier: "toFirstFromBuy", sender: self)}
     
     /// It selects the cell button type
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
