@@ -34,7 +34,7 @@ class BuyController: UIViewController, UITableViewDelegate,UITableViewDataSource
     {
             let cell = tableView.dequeueReusableCell(withIdentifier: "libraryCell", for: indexPath) as! LibraryCell
             cell.bookId = self.products[indexPath.row].productIdentifier
-            cell.readButton.setTitle("BUY", for: .normal)
+            cell.buttonType = true // BUY BUTTON
             cell.label.text = self.products[indexPath.row].localizedTitle.uppercased()
             cell.readButton.addTarget(self, action: #selector(buyAction(sender:)), for: .touchUpInside)
             cell.readButton.tag = indexPath.row

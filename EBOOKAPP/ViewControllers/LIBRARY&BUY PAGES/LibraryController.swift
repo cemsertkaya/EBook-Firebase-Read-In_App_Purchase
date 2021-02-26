@@ -36,6 +36,7 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "libraryCell", for: indexPath) as! LibraryCell
         cell.bookId = self.booksForLibrary[indexPath.row].getId()
+        cell.buttonType = false // READ BUTTON
         cell.label.text = self.booksForLibrary[indexPath.row].getTitle().uppercased()
         cell.readButton.addTarget(self, action: #selector(libraryAction(sender:)), for: .touchUpInside)
         cell.readButton.tag = indexPath.row
