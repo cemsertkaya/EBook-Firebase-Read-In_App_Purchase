@@ -169,6 +169,7 @@ class LoginViewController: UIViewController,UITableViewDelegate, UITableViewData
             alert.addTextField { (textField) in
                 textField.placeholder = "Please write your e-mail"
                 textField.textColor = .black
+                textField.backgroundColor = .white
             }
             alert.addAction(save)
             let cancel = UIAlertAction(title: "Cancel", style: .default) { (alertAction) in }//Cancel action

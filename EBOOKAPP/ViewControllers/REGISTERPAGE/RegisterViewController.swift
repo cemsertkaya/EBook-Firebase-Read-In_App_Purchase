@@ -46,7 +46,7 @@ class RegisterViewController: UIViewController,UITableViewDelegate,UITableViewDa
         case 3:
             cell.label.text = "Country"
             let placeholderColor = UIColor.black
-            cell.textField.attributedPlaceholder = NSAttributedString(string: "Please select your country.", attributes: [NSAttributedString.Key.foregroundColor : placeholderColor])
+            cell.textField.attributedPlaceholder = NSAttributedString(string: "PLEASE SELECT YOUR COUNTRY.", attributes: [NSAttributedString.Key.foregroundColor : placeholderColor])
             cell.isTextFieldPicker = true
             cell.array = Countries.getCountries()
             cell.textField.inputView = cell.picker
@@ -54,7 +54,7 @@ class RegisterViewController: UIViewController,UITableViewDelegate,UITableViewDa
         case 4:
             cell.label.text = "Gender"
             let placeholderColor = UIColor.black
-            cell.textField.attributedPlaceholder = NSAttributedString(string: "Please select your gender.", attributes: [NSAttributedString.Key.foregroundColor : placeholderColor])
+            cell.textField.attributedPlaceholder = NSAttributedString(string: "PLEASE SELECT YOUR GENDER.", attributes: [NSAttributedString.Key.foregroundColor : placeholderColor])
             cell.isTextFieldPicker = true
             cell.array = genders
             cell.textField.inputView = cell.picker

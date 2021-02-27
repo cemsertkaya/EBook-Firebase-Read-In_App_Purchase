@@ -28,52 +28,76 @@ class DoubleCell: UITableViewCell {
     }
     @IBAction func leftButtonClicked(_ sender: Any)
     {
-        if leftButtonType == 0//READ
+        let status = Reach().connectionStatus()
+        switch status
         {
-            if CoreDataUtil.getCurrentUser().getCurrentBookId() == ""
-            {
-                yourController!.performSegue(withIdentifier: "toLibrary", sender: yourController!)
-            }
-            else
-            {
-                print(CoreDataUtil.getCurrentUser().toString())
-                if yourController?.userEbooks.count != 0
+            case .unknown, .offline:
+                makeAlert(titleInput: "Aooo!!", messageInput: "Please open your internet for using app.")
+            case .online(.wwan), .online(.wiFi):
+                if leftButtonType == 0//READ
                 {
-                    yourController!.performSegue(withIdentifier: "toRead", sender: yourController!)
+                    if CoreDataUtil.getCurrentUser().getCurrentBookId() == ""
+                    {
+                        yourController!.performSegue(withIdentifier: "toLibrary", sender: yourController!)
+                    }
+                    else
+                    {
+                        print(CoreDataUtil.getCurrentUser().toString())
+                        if yourController?.userEbooks.count != 0
+                        {
+                            yourController!.performSegue(withIdentifier: "toRead", sender: yourController!)
+                        }
+                        
+                    }
+                    
                 }
-                
-            }
-            
-        }
-        else if leftButtonType == 1 //BUY
-        {
-            yourController!.performSegue(withIdentifier: "toBuy", sender: yourController!)
-            
-        }
-        else
-        {
-            print("Left Button Type Error")
+                else if leftButtonType == 1 //BUY
+                {
+                    yourController!.performSegue(withIdentifier: "toBuy", sender: yourController!)
+                    
+                }
+                else
+                {
+                    print("Left Button Type Error")
+                }
         }
     }
+    
     @IBAction func rightButtonClicked(_ sender: Any)
     {
-        if rightButtonType == 0 //ACCOUNT
+        let status = Reach().connectionStatus()
+        switch status
         {
-            yourController!.performSegue(withIdentifier: "toAccount", sender: yourController!)
+            case .unknown, .offline:
+                makeAlert(titleInput: "Aooo!!", messageInput: "Please open your internet for using app.")
+            case .online(.wwan), .online(.wiFi):
+                if rightButtonType == 0 //ACCOUNT
+                {
+                    yourController!.performSegue(withIdentifier: "toAccount", sender: yourController!)
+                }
+                else if rightButtonType == 1 //LIBRARY
+                {
+                    yourController!.performSegue(withIdentifier: "toLibrary", sender: yourController!)
+                }
+                else
+                {
+                    print("Right Button Type Error")
+                }
         }
-        else if rightButtonType == 1 //LIBRARY
-        {
-            yourController!.performSegue(withIdentifier: "toLibrary", sender: yourController!)
-        }
-        else
-        {
-            print("Right Button Type Error")
-        }
+        
     }
     
     func makeWhiteBorder(button: UIButton)
     {
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.white.cgColor
+    }
+    
+    func makeAlert(titleInput:String, messageInput:String)//Error method with parameters
+    {
+            let alert = UIAlertController(title: titleInput, message: messageInput, preferredStyle: UIAlertController.Style.alert)
+            let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+            alert.addAction(okButton)
+            yourController!.present(alert, animated:true, completion: nil)
     }
 }

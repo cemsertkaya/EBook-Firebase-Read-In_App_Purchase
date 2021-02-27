@@ -31,16 +31,24 @@ class SingleCell: UITableViewCell {
         }
         else if buttonType == 1
         {
-            do
+            let status = Reach().connectionStatus()
+            switch status
             {
-               try Auth.auth().signOut()
-               CoreDataUtil.removeUserFromCoreData()
-               yourController!.performSegue(withIdentifier: "toZero", sender: yourController!)
+                case .unknown, .offline:
+                    makeAlert(titleInput: "Aooo!!", messageInput: "Please open your internet for using app.")
+                case .online(.wwan), .online(.wiFi):
+                    do
+                    {
+                       try Auth.auth().signOut()
+                       CoreDataUtil.removeUserFromCoreData()
+                       yourController!.performSegue(withIdentifier: "toZero", sender: yourController!)
+                    }
+                    catch
+                    {
+                        print("error")
+                    }
             }
-            catch
-            {
-                print("error")
-            }
+            
         }
         else
         {
@@ -52,5 +60,13 @@ class SingleCell: UITableViewCell {
     {
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.white.cgColor
+    }
+    
+    func makeAlert(titleInput:String, messageInput:String)//Error method with parameters
+    {
+            let alert = UIAlertController(title: titleInput, message: messageInput, preferredStyle: UIAlertController.Style.alert)
+            let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+            alert.addAction(okButton)
+            yourController!.present(alert, animated:true, completion: nil)
     }
 }

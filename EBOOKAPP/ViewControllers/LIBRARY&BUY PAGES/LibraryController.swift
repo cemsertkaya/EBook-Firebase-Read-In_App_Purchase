@@ -15,7 +15,7 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
     var booksForLibrary = [Book]()
     @IBOutlet weak var libraryButton: UIButton!
     var libraryMap = [String:Int64]()
-    
+    var activityView: UIActivityIndicatorView?
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -76,6 +76,7 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
     
     func getAvailableBooksForLibrary()
     {
+        //showActivityIndicator()
         let docRef = singleton.instance().getBooksDatabase().getDocuments { (querySnapshot, err) in
             if let err = err{print("Error getting documents: \(err)")}
             else
@@ -99,6 +100,7 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
                 }
             }
         }
+        //hideActivityIndicator()
     }
     
     /// It selects the cell button type
@@ -134,6 +136,23 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.white.cgColor
     }
+    
+    func showActivityIndicator()
+    {
+        activityView = UIActivityIndicatorView(style: .gray)
+        activityView?.center = self.view.center
+        self.view.addSubview(activityView!)
+        activityView?.startAnimating()
+    }
+    
+    func hideActivityIndicator()
+    {
+        if (activityView != nil)
+        {
+            activityView?.stopAnimating()
+        }
+    }
+    
     
 }
 

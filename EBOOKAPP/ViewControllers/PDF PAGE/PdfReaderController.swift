@@ -65,14 +65,22 @@ class PdfReaderController: UIViewController, UITextFieldDelegate {
     ///stop button action, updates ebooks map in firestore
     @IBAction func stopButtonAction(_ sender: Any)
     {
-        let index = document.index(for: viewMain.currentPage!)
-        let validPageIndex: Int = index // current page
-        if libraryMapInPdf[currentFileUrl] != nil
+        let status = Reach().connectionStatus()
+        switch status
         {
-            libraryMapInPdf[currentFileUrl]  = Int64(validPageIndex) //updates dict
-            FirebaseUtil.updateEbooksDict(dict: libraryMapInPdf, userId: CoreDataUtil.getCurrentUser().getUserId())
+            case .unknown, .offline:
+                makeAlert(titleInput: "Aooo!!", messageInput: "Please open your internet for using app.")
+            case .online(.wwan), .online(.wiFi):
+                let index = document.index(for: viewMain.currentPage!)
+                let validPageIndex: Int = index // current page
+                if libraryMapInPdf[currentFileUrl] != nil
+                {
+                    libraryMapInPdf[currentFileUrl]  = Int64(validPageIndex) //updates dict
+                    FirebaseUtil.updateEbooksDict(dict: libraryMapInPdf, userId: CoreDataUtil.getCurrentUser().getUserId())
+                }
+                else{print("Current pdf id does not exist in map.")}
         }
-        else{print("Current pdf id does not exist in map.")}
+       
     }
     
    ///Next page button action
@@ -109,5 +117,12 @@ class PdfReaderController: UIViewController, UITextFieldDelegate {
     ///Starts Editing The Text Field
     @objc func didTapView(gesture: UITapGestureRecognizer){view.endEditing(true)}
     
+    func makeAlert(titleInput:String, messageInput:String)//Error method with parameters
+    {
+            let alert = UIAlertController(title: titleInput, message: messageInput, preferredStyle: UIAlertController.Style.alert)
+            let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+            alert.addAction(okButton)
+            self.present(alert, animated:true, completion: nil)
+    }
     
 }

@@ -16,7 +16,9 @@ class BuyController: UIViewController, UITableViewDelegate,UITableViewDataSource
     var products = [SKProduct]()
     var request: SKProductsRequest!
     var productIds = [String]()//fetch it from firestore
-    override func viewDidLoad() {
+    var activityView: UIActivityIndicatorView?
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         tableView.delegate = self; tableView.dataSource = self
         SKPaymentQueue.default().add(self)
@@ -43,6 +45,7 @@ class BuyController: UIViewController, UITableViewDelegate,UITableViewDataSource
     
     func getAvailableBooksForBuy()
     {
+        showActivityIndicator()
         let docRef = singleton.instance().getBooksDatabase().getDocuments { [self] (querySnapshot, err) in
             if let err = err{print("Error getting documents: \(err)")}
             else
@@ -54,11 +57,18 @@ class BuyController: UIViewController, UITableViewDelegate,UITableViewDataSource
                         if self.libraryMap[document.documentID] == nil{self.productIds.append(document.documentID)}
                     }
                 }
-                if self.productIds.count == 0{self.makeAlert(titleInput: "Aooo!", messageInput: "There is no ebook that you don't have.")}
+                if self.productIds.count == 0
+                {
+                    self.makeAlert(titleInput: "Aooo!", messageInput: "There is no ebook that you don't have.")
+                }
                 else{self.validate(productIdentifiers: self.productIds)}
             }
         }
+        
     }
+    
+    
+   
     
     //Payment functions
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction])
@@ -117,6 +127,7 @@ class BuyController: UIViewController, UITableViewDelegate,UITableViewDataSource
             products = response.products
             DispatchQueue.main.async{self.tableView.reloadData()}
         }
+        hideActivityIndicator()
     }
     
     func validate(productIdentifiers: [String])
@@ -158,4 +169,24 @@ class BuyController: UIViewController, UITableViewDelegate,UITableViewDataSource
             }
     }
     
+    func showActivityIndicator()
+    {
+        activityView = UIActivityIndicatorView(style: .gray)
+        activityView?.center = self.view.center
+        self.view.addSubview(activityView!)
+        activityView?.startAnimating()
+    }
+    
+    func hideActivityIndicator()
+    {
+        if (activityView != nil)
+        {
+            activityView?.stopAnimating()
+        }
+    }
+    
+ 
+    
+    
 }
+
