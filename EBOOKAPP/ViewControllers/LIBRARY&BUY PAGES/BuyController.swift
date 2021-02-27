@@ -86,6 +86,7 @@ class BuyController: UIViewController, UITableViewDelegate,UITableViewDataSource
                         if !libraryMap.isEmpty
                         {
                             FirebaseUtil.updateEbooksDict(dict: libraryMap, userId: CoreDataUtil.getCurrentUser().getUserId())
+                            hideActivityIndicator()
                             self.performSegue(withIdentifier: "toLibraryFromBuy", sender: self)
                         }
                    case .failed, .deferred:
@@ -116,6 +117,7 @@ class BuyController: UIViewController, UITableViewDelegate,UITableViewDataSource
             SKPaymentQueue.default().add(transactionRequest)
             self.productSelected = transactionRequest.productIdentifier
             print(self.productSelected)
+            showActivityIndicator()
         }
         else{print("The user cannot make transaction.")}
     }
