@@ -27,6 +27,7 @@ class AccountViewController: UIViewController,UITableViewDelegate,UITableViewDat
         tableView.delegate = self; tableView.dataSource = self
         tableView.backgroundView = nil
         currentUser = CoreDataUtil.getCurrentUser()
+        print("Current User" + currentUser.toString() + String(CoreDataUtil.numberOfCoreUser()))
         makeWhiteBorder(button: saveButton)
         makeWhiteBorder(button: homeButton)
         

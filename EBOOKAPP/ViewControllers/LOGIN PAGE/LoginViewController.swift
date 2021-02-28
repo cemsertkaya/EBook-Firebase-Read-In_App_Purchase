@@ -153,12 +153,19 @@ class LoginViewController: UIViewController,UITableViewDelegate, UITableViewData
             alert.setValue(attributedStringMessage, forKey: "attributedMessage")
             alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor  =  UIColor.black//Customization of this pop up alert
             alert.view.tintColor = UIColor.white
-            let save = UIAlertAction(title: "Reset", style: .default) { (alertAction) in//Reset action
+            let save = UIAlertAction(title: "SEND", style: .default) { (alertAction) in//Reset action
                 let textField = alert.textFields![0] as UITextField
                 if textField.text != ""
                 {
                     Auth.auth().sendPasswordReset(withEmail: textField.text!) { error in//Sends email pasword reset from firebase
-                        self.makeAlert(titleInput: "Error", messageInput: error?.localizedDescription ?? "Error")
+                        if error != nil
+                        {
+                            self.makeAlert(titleInput: "Error", messageInput: error?.localizedDescription ?? "Error")
+                        }
+                        else
+                        {
+                            self.makeAlert(titleInput: "Please", messageInput: "Check your e-mail.")
+                        }
                     }
                 }
                 else
@@ -169,11 +176,10 @@ class LoginViewController: UIViewController,UITableViewDelegate, UITableViewData
             alert.addTextField { (textField) in
                 textField.placeholder = "Please write your e-mail"
                 textField.textColor = .black
-                textField.backgroundColor = .white
             }
-            alert.addAction(save)
-            let cancel = UIAlertAction(title: "Cancel", style: .default) { (alertAction) in }//Cancel action
+             let cancel = UIAlertAction(title: "CANCEL", style: .default) { (alertAction) in }//Cancel action
             alert.addAction(cancel)
+            alert.addAction(save)
             self.present(alert, animated:true, completion: nil)
         }
     

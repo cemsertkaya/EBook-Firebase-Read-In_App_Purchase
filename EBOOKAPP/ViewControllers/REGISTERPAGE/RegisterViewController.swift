@@ -101,8 +101,7 @@ class RegisterViewController: UIViewController,UITableViewDelegate,UITableViewDa
     @IBAction func acceptTermsImageButtonAction(_ sender: Any){isTermsAcceptedControl()}
     @IBAction func acceptTermsButtonAction(_ sender: Any)
     {
-        isTermsAcceptedControl()
-        makeAlert(titleInput: "Types of Data Collected", messageInput: "While using our service, We 'LATIN AMERICA L.L.C', 'ALEXIS VEGA', may ask you to provide us with certain personally identifiable information that can be used to contact or identify your. Personally identifiable information may include, but is not limited to: Email adress, age, gender, country ")
+        makeAlert(titleInput: "Types of Data Collected", messageInput: "While using our service, We 'LATIN AMERICA L.L.C', 'ALEXIS VEGA', may ask you to provide us with certain personally identifiable information that can be used to contact or identify your. Personally identifiable information may include, but is not limited to: \nEmail\n adress\n age\n gender\n country")
     }
     @IBAction func doneButtonAction(_ sender: Any)
     {
