@@ -60,6 +60,7 @@ class BuyController: UIViewController, UITableViewDelegate,UITableViewDataSource
                 if self.productIds.count == 0
                 {
                     self.makeAlert(titleInput: "Aooo!", messageInput: "There is no ebook that you don't have.")
+                    hideActivityIndicator()
                 }
                 else{self.validate(productIdentifiers: self.productIds)}
             }

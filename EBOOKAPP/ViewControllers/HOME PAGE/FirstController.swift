@@ -15,11 +15,10 @@ class FirstController: UIViewController, UITableViewDelegate, UITableViewDataSou
     let user =  Auth.auth().currentUser
     var isActive = Bool()
     var userEbooks = [String:Int64]()
-    
+    var activityView: UIActivityIndicatorView?
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.dataSource = self
-        tableView.delegate = self
+        showSpinner()
         if isActive != nil && CoreDataUtil.numberOfCoreUser() == 0
         {
             FirebaseUtil.getUserDataAndCreateCore(userId: user!.uid, isActive: isActive)
@@ -27,17 +26,20 @@ class FirstController: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
         print("cem")
         getEbooks { (newMap, error) in
-            if let newMap = newMap
+            if error == nil
             {
                 print("success")
+                self.removeSpinner()
             }
-            else if let error = error
+            else
             {
                 print("error")
+                self.removeSpinner()
             }
         }
         print(CoreDataUtil.getCurrentUser().toString())
-        
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
     func getEbooks(completion: @escaping ([String:Int64]?, Error?) -> Void)
@@ -135,6 +137,20 @@ class FirstController: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     
+    func showActivityIndicator()
+    {
+        activityView = UIActivityIndicatorView(style: .gray)
+        activityView?.center = self.view.center
+        self.view.addSubview(activityView!)
+        activityView?.startAnimating()
+    }
     
+    func hideActivityIndicator()
+    {
+        if (activityView != nil)
+        {
+            activityView?.stopAnimating()
+        }
+    }
     
 }

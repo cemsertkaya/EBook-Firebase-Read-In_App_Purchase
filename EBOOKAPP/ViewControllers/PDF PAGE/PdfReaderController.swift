@@ -40,8 +40,8 @@ class PdfReaderController: UIViewController, UITextFieldDelegate {
         viewMain.displayMode = .singlePageContinuous
         viewMain.usePageViewController(true)
         viewMain.displaysPageBreaks = true
-        viewMain.maxScaleFactor = 4.0
-        viewMain.minScaleFactor = viewMain.scaleFactorForSizeToFit
+        //viewMain.maxScaleFactor = 4.0
+        //viewMain.minScaleFactor = viewMain.scaleFactorForSizeToFit
         viewMain.backgroundColor = UIColor.white
         rightPageNumber.text =  "/" + String(document.pageCount)
         let validStartingPageIndex: Int = Int(startingPageNumber)
