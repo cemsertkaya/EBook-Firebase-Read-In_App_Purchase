@@ -31,12 +31,12 @@ class LoginViewController: UIViewController,UITableViewDelegate, UITableViewData
         switch indexPath.row
         {
             case 0:
-                cell.label.text = "E-Mail;"
+                cell.label.text = "E-Mail:"
                 cell.view = view
                 //cell.createBottomLine()
                 
             case 1:
-                cell.label.text = "Password;"
+                cell.label.text = "Password:"
                 cell.view = view
                 cell.textField.isSecureTextEntry = true
                 //cell.createBottomLine()

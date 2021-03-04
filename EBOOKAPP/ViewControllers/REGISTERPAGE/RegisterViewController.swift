@@ -33,18 +33,18 @@ class RegisterViewController: UIViewController,UITableViewDelegate,UITableViewDa
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         switch indexPath.row {
         case 0:
-            cell.label.text = "E-mail"
+            cell.label.text = "E-Mail:"
             cell.view = view
         case 1:
-            cell.label.text = "Password"
+            cell.label.text = "Password:"
             cell.view = view
             cell.textField.isSecureTextEntry = true
         case 2:
-            cell.label.text = "Age"
+            cell.label.text = "Age:"
             cell.view = view
             cell.textField.keyboardType = UIKeyboardType.numberPad
         case 3:
-            cell.label.text = "Country"
+            cell.label.text = "Country:"
             let placeholderColor = UIColor.black
             cell.textField.attributedPlaceholder = NSAttributedString(string: "PLEASE SELECT YOUR COUNTRY.", attributes: [NSAttributedString.Key.foregroundColor : placeholderColor])
             cell.isTextFieldPicker = true
@@ -52,7 +52,7 @@ class RegisterViewController: UIViewController,UITableViewDelegate,UITableViewDa
             cell.textField.inputView = cell.picker
             createToolbar(textField: cell.textField)
         case 4:
-            cell.label.text = "Gender"
+            cell.label.text = "Gender:"
             let placeholderColor = UIColor.black
             cell.textField.attributedPlaceholder = NSAttributedString(string: "PLEASE SELECT YOUR GENDER.", attributes: [NSAttributedString.Key.foregroundColor : placeholderColor])
             cell.isTextFieldPicker = true

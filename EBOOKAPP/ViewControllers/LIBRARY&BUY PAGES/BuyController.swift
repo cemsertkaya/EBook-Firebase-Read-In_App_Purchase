@@ -130,6 +130,10 @@ class BuyController: UIViewController, UITableViewDelegate,UITableViewDataSource
             products = response.products
             DispatchQueue.main.async{self.tableView.reloadData()}
         }
+        else
+        {
+            self.makeAlert(titleInput: "Aooo!", messageInput: "There is no ebook that you don't have.")
+        }
         hideActivityIndicator()
     }
     
