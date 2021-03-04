@@ -46,20 +46,28 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
     
     @objc func libraryAction(sender: UIButton)
     {
-        let id = self.booksForLibrary[sender.tag].getId()
-        if FirebaseUtil.getPdfFromLibrary(id: id) != "" //it checks the book is downloaded to the library of phone
+        let status = Reach().connectionStatus()
+        switch status
         {
-            CoreDataUtil.updateCurrentUserBookId(currentBookId: id)
-            print(CoreDataUtil.getCurrentUser().toString())
-            self.performSegue(withIdentifier: "libraryToPdf", sender: self)
+            case .unknown, .offline:
+                makeAlert(titleInput: "Aooo!!", messageInput: "Please open your internet for using app.")
+            case .online(.wwan), .online(.wiFi):
+                let id = self.booksForLibrary[sender.tag].getId()
+                if FirebaseUtil.getPdfFromLibrary(id: id) != "" //it checks the book is downloaded to the library of phone
+                {
+                    CoreDataUtil.updateCurrentUserBookId(currentBookId: id)
+                    print(CoreDataUtil.getCurrentUser().toString())
+                    self.performSegue(withIdentifier: "libraryToPdf", sender: self)
+                }
+                else// if the pdf is not downloaded before download it
+                {
+                    print("böyle bir pdf yok indirilme işlemi yapılacak.....")
+                    CoreDataUtil.updateCurrentUserBookId(currentBookId: id)
+                    FirebaseUtil.getPdfFromStorageAndSave(id: id, controller: self)//download this pdf from firebase
+                    print(CoreDataUtil.getCurrentUser().toString())
+                }
         }
-        else// if the pdf is not downloaded before download it
-        {
-            print("böyle bir pdf yok indirilme işlemi yapılacak.....")
-            CoreDataUtil.updateCurrentUserBookId(currentBookId: id)
-            FirebaseUtil.getPdfFromStorageAndSave(id: id, controller: self)//download this pdf from firebase
-            print(CoreDataUtil.getCurrentUser().toString())
-        }
+        
         
     }
     

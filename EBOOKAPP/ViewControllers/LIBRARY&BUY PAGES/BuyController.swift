@@ -111,16 +111,23 @@ class BuyController: UIViewController, UITableViewDelegate,UITableViewDataSource
     
     @objc func buyAction(sender: UIButton)
     {
-        if SKPaymentQueue.canMakePayments()
+        let status = Reach().connectionStatus()
+        switch status
         {
-            let transactionRequest = SKMutablePayment()
-            transactionRequest.productIdentifier = products[sender.tag].productIdentifier
-            SKPaymentQueue.default().add(transactionRequest)
-            self.productSelected = transactionRequest.productIdentifier
-            print(self.productSelected)
-            showActivityIndicator()
+            case .unknown, .offline:
+                makeAlert(titleInput: "Aooo!!", messageInput: "Please open your internet for using app.")
+            case .online(.wwan), .online(.wiFi):
+                if SKPaymentQueue.canMakePayments()
+                {
+                    let transactionRequest = SKMutablePayment()
+                    transactionRequest.productIdentifier = products[sender.tag].productIdentifier
+                    SKPaymentQueue.default().add(transactionRequest)
+                    self.productSelected = transactionRequest.productIdentifier
+                    print(self.productSelected)
+                    showActivityIndicator()
+                }
+                else{print("The user cannot make transaction.")}
         }
-        else{print("The user cannot make transaction.")}
     }
     
     
