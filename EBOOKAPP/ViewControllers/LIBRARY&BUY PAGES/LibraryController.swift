@@ -84,7 +84,7 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
     
     func getAvailableBooksForLibrary()
     {
-        //showActivityIndicator()
+        
         let docRef = singleton.instance().getBooksDatabase().getDocuments { (querySnapshot, err) in
             if let err = err{print("Error getting documents: \(err)")}
             else
@@ -108,7 +108,6 @@ class LibraryController: UIViewController,UITableViewDelegate,UITableViewDataSou
                 }
             }
         }
-        //hideActivityIndicator()
     }
     
     /// It selects the cell button type

@@ -45,7 +45,6 @@ class BuyController: UIViewController, UITableViewDelegate,UITableViewDataSource
     
     func getAvailableBooksForBuy()
     {
-        showActivityIndicator()
         let docRef = singleton.instance().getBooksDatabase().getDocuments { [self] (querySnapshot, err) in
             if let err = err{print("Error getting documents: \(err)")}
             else
@@ -60,12 +59,10 @@ class BuyController: UIViewController, UITableViewDelegate,UITableViewDataSource
                 if self.productIds.count == 0
                 {
                     self.makeAlert(titleInput: "Aooo!", messageInput: "There is no ebook that you don't have.")
-                    hideActivityIndicator()
                 }
                 else{self.validate(productIdentifiers: self.productIds)}
             }
         }
-        
     }
     
     
@@ -87,7 +84,6 @@ class BuyController: UIViewController, UITableViewDelegate,UITableViewDataSource
                         if !libraryMap.isEmpty
                         {
                             FirebaseUtil.updateEbooksDict(dict: libraryMap, userId: CoreDataUtil.getCurrentUser().getUserId())
-                            hideActivityIndicator()
                             self.performSegue(withIdentifier: "toLibraryFromBuy", sender: self)
                         }
                    case .failed, .deferred:
@@ -133,9 +129,6 @@ class BuyController: UIViewController, UITableViewDelegate,UITableViewDataSource
     
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse)
     {
-        DispatchQueue.main.async {
-            self.hideActivityIndicator()
-        }
         if !response.products.isEmpty
         {
             products = response.products
@@ -143,7 +136,11 @@ class BuyController: UIViewController, UITableViewDelegate,UITableViewDataSource
         }
         else
         {
-            self.makeAlert(titleInput: "Aooo!", messageInput: "There is no ebook that you don't have.")
+            DispatchQueue.main.async
+            {
+                self.makeAlert(titleInput: "Aooo!", messageInput: "There is no ebook that you don't have.")
+            }
+           
         }
     }
     
