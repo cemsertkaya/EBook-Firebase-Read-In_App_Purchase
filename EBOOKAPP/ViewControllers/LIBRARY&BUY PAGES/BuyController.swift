@@ -131,7 +131,11 @@ class BuyController: UIViewController, UITableViewDelegate,UITableViewDataSource
     }
     
     
-    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse)
+    {
+        DispatchQueue.main.async {
+            self.hideActivityIndicator()
+        }
         if !response.products.isEmpty
         {
             products = response.products
@@ -141,7 +145,6 @@ class BuyController: UIViewController, UITableViewDelegate,UITableViewDataSource
         {
             self.makeAlert(titleInput: "Aooo!", messageInput: "There is no ebook that you don't have.")
         }
-        hideActivityIndicator()
     }
     
     func validate(productIdentifiers: [String])
