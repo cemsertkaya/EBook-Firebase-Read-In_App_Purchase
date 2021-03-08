@@ -3,17 +3,17 @@
     {
       "displayPrice" : "0.99",
       "familyShareable" : false,
-      "internalID" : "B3352E52",
+      "internalID" : "B763AD1B",
       "localizations" : [
         {
-          "description" : "Italian Book Reference",
-          "displayName" : "Italian Book Reference",
+          "description" : "LAMORE",
+          "displayName" : "LAMORE",
           "locale" : "en_US"
         }
       ],
       "productID" : "bpscgqrhtnlzxefez2ch",
       "referenceName" : "Italian Book Reference",
-      "type" : "NonConsumable"
+      "type" : "Consumable"
     }
   ],
   "settings" : {

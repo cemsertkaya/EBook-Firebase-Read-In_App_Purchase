@@ -7,6 +7,7 @@
 
 import UIKit
 import StoreKit
+import Firebase
 class BuyController: UIViewController, UITableViewDelegate,UITableViewDataSource, SKPaymentTransactionObserver, SKProductsRequestDelegate
 {
     @IBOutlet weak var tableView: UITableView!
@@ -17,6 +18,7 @@ class BuyController: UIViewController, UITableViewDelegate,UITableViewDataSource
     var request: SKProductsRequest!
     var productIds = [String]()//fetch it from firestore
     var activityView: UIActivityIndicatorView?
+    let user =  Auth.auth().currentUser
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -79,12 +81,15 @@ class BuyController: UIViewController, UITableViewDelegate,UITableViewDataSource
                         print("The transaction is completed.")
                         SKPaymentQueue.default().finishTransaction($0)
                         SKPaymentQueue.default().remove(self)
-                        libraryMap[productSelected] = 0
-                        print("Product Selected: " + productSelected)
-                        if !libraryMap.isEmpty
+                        DispatchQueue.main.async
                         {
-                            FirebaseUtil.updateEbooksDict(dict: libraryMap, userId: CoreDataUtil.getCurrentUser().getUserId())
-                            self.performSegue(withIdentifier: "toLibraryFromBuy", sender: self)
+                            self.libraryMap[self.productSelected] = 0
+                            print("Product Selected: " + self.productSelected)
+                            if !self.libraryMap.isEmpty
+                            {
+                                FirebaseUtil.updateEbooksDict(dict: self.libraryMap, userId: self.user!.uid)
+                                self.performSegue(withIdentifier: "toLibraryFromBuy", sender: self)
+                            }
                         }
                    case .failed, .deferred:
                         print("The transaction has failed.")
@@ -117,9 +122,8 @@ class BuyController: UIViewController, UITableViewDelegate,UITableViewDataSource
                 {
                     let transactionRequest = SKMutablePayment()
                     transactionRequest.productIdentifier = products[sender.tag].productIdentifier
-                    SKPaymentQueue.default().add(transactionRequest)
                     self.productSelected = transactionRequest.productIdentifier
-                    print(self.productSelected)
+                    SKPaymentQueue.default().add(transactionRequest)
                     showActivityIndicator()
                 }
                 else{print("The user cannot make transaction.")}
